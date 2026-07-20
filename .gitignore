@@ -1,0 +1,8 @@
+# Ignore generated graphify artifacts
+graphify-out/
+graphipy.md
+
+# Ignore large media assets
+0718 (online-video-cutter.com).mp4
+Samarth_Maheshwari_Resume.docx
+WhatsApp Image 2026-07-19 at 12.44.46 PM.jpeg
