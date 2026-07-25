@@ -8,10 +8,14 @@
     <title>Portfolio - Home</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
     <style>
         /* ========== RESET & BASE ========== */
-        *, *::before, *::after {
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -24,7 +28,6 @@
             --bg-card-hover: rgba(255, 255, 255, 0.06);
             --border-color: rgba(255, 255, 255, 0.08);
             --text-primary: #ffffff;
-            --text-secondary: rgba(255, 255, 255, 0.7);
             --text-tertiary: rgba(255, 255, 255, 0.5);
             --accent: #a855f7;
             --accent-light: #c084fc;
@@ -129,7 +132,8 @@
             transform: rotate(180deg);
         }
 
-        .sun-icon, .moon-icon {
+        .sun-icon,
+        .moon-icon {
             position: absolute;
             inset: 0;
             transition: opacity 0.4s var(--transition), transform 0.6s var(--transition-bounce);
@@ -165,8 +169,17 @@
         }
 
         @keyframes ring-pulse {
-            0%, 100% { transform: scale(1); opacity: 0.6; }
-            50% { transform: scale(1.15); opacity: 0; }
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+
+            50% {
+                transform: scale(1.15);
+                opacity: 0;
+            }
         }
 
         /* ========== HOME SECTION (unchanged) ========== */
@@ -214,7 +227,9 @@
             pointer-events: auto;
         }
 
-        #play-container:hover { transform: scale(1.05); }
+        #play-container:hover {
+            transform: scale(1.05);
+        }
 
         .play-button {
             width: 70px;
@@ -244,10 +259,22 @@
             transition: all 0.3s;
         }
 
-        .play-icon { margin-left: 4px; }
-        .pause-icon { display: none; }
-        .playing .play-icon { display: none; }
-        .playing .pause-icon { display: block; margin-left: 0; }
+        .play-icon {
+            margin-left: 4px;
+        }
+
+        .pause-icon {
+            display: none;
+        }
+
+        .playing .play-icon {
+            display: none;
+        }
+
+        .playing .pause-icon {
+            display: block;
+            margin-left: 0;
+        }
 
         .play-text {
             color: #fff;
@@ -259,9 +286,20 @@
         }
 
         @media (max-width: 768px) {
-            #play-container { bottom: 30px; right: 30px; }
-            .play-button { width: 55px; height: 55px; }
-            .play-button svg { width: 20px; height: 20px; }
+            #play-container {
+                bottom: 30px;
+                right: 30px;
+            }
+
+            .play-button {
+                width: 55px;
+                height: 55px;
+            }
+
+            .play-button svg {
+                width: 20px;
+                height: 20px;
+            }
         }
 
         .navbar {
@@ -283,7 +321,10 @@
             letter-spacing: 1px;
         }
 
-        .nav-links { display: flex; gap: 30px; }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
 
         .nav-links a {
             color: #fff;
@@ -293,7 +334,9 @@
             transition: color 0.3s;
         }
 
-        .nav-links a:hover { color: rgba(255, 255, 255, 0.7); }
+        .nav-links a:hover {
+            color: rgba(255, 255, 255, 0.7);
+        }
 
         .hire-btn {
             background-color: transparent;
@@ -307,7 +350,9 @@
             transition: all 0.3s;
         }
 
-        .hire-btn:hover { background-color: rgba(255, 255, 255, 0.1); }
+        .hire-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
 
         .hero-content {
             position: absolute;
@@ -346,9 +391,14 @@
             max-width: 480px;
         }
 
-        .hero-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
 
-        .btn-primary, .btn-secondary {
+        .btn-primary,
+        .btn-secondary {
             padding: 14px 28px;
             border-radius: 30px;
             text-decoration: none;
@@ -363,7 +413,9 @@
             color: #000;
         }
 
-        .btn-primary:hover { background-color: rgba(255, 255, 255, 0.8); }
+        .btn-primary:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
 
         .btn-secondary {
             background-color: transparent;
@@ -371,9 +423,12 @@
             border: 1px solid #fff;
         }
 
-        .btn-secondary:hover { background-color: rgba(255, 255, 255, 0.1); }
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
 
-        .btn-github, .btn-resume {
+        .btn-github,
+        .btn-resume {
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -386,19 +441,42 @@
             transition: transform 0.3s var(--transition);
         }
 
-        .btn-github:hover .btn-icon { transform: rotate(-10deg) scale(1.15); }
-        .btn-resume:hover .btn-icon { transform: translateY(2px); }
+        .btn-github:hover .btn-icon {
+            transform: rotate(-10deg) scale(1.15);
+        }
+
+        .btn-resume:hover .btn-icon {
+            transform: translateY(2px);
+        }
 
         @media (max-width: 1024px) {
-            .navbar { padding: 25px 40px; }
-            .hero-content { left: 40px; max-width: 50%; }
-            .greeting { font-size: 38px; }
-            .title { font-size: 52px; }
+            .navbar {
+                padding: 25px 40px;
+            }
+
+            .hero-content {
+                left: 40px;
+                max-width: 50%;
+            }
+
+            .greeting {
+                font-size: 38px;
+            }
+
+            .title {
+                font-size: 52px;
+            }
         }
 
         @media (max-width: 768px) {
-            .navbar { padding: 20px; }
-            .nav-links { display: none; }
+            .navbar {
+                padding: 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
             .hero-content {
                 top: auto;
                 bottom: 110px;
@@ -408,16 +486,43 @@
                 max-width: 100%;
                 width: auto;
             }
-            .greeting { font-size: 28px; margin-bottom: 2px; }
-            .title { font-size: 38px; -webkit-text-stroke: 1px #ffffff; margin-bottom: 15px; }
-            .description { font-size: 15px; margin-bottom: 25px; }
-            .hero-buttons { flex-direction: row; gap: 10px; }
-            .btn-primary, .btn-secondary { padding: 12px 20px; font-size: 14px; }
+
+            .greeting {
+                font-size: 28px;
+                margin-bottom: 2px;
+            }
+
+            .title {
+                font-size: 38px;
+                -webkit-text-stroke: 1px #ffffff;
+                margin-bottom: 15px;
+            }
+
+            .description {
+                font-size: 15px;
+                margin-bottom: 25px;
+            }
+
+            .hero-buttons {
+                flex-direction: row;
+                gap: 10px;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
         }
 
         @media (max-width: 480px) {
-            .hero-buttons { flex-direction: column; }
-            .title { font-size: 34px; }
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .title {
+                font-size: 34px;
+            }
         }
 
         /* ========== ABOUT SECTION — CINEMATIC REDESIGN ========== */
@@ -466,8 +571,13 @@
         }
 
         @keyframes aurora-drift {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(3%, -2%) scale(1.05); }
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(3%, -2%) scale(1.05);
+            }
         }
 
         .about-neural {
@@ -550,8 +660,17 @@
         }
 
         @keyframes pulse-dot {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.4); }
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(1.4);
+            }
         }
 
         .about-title {
@@ -573,9 +692,92 @@
             animation: gradient-flow 8s ease infinite;
         }
 
+        /* Flip Words Custom Component */
+        .flip-words-container {
+            display: inline-block;
+            position: relative;
+            text-align: left;
+            transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            vertical-align: bottom;
+        }
+
+        .flip-word {
+            display: inline-flex;
+            flex-wrap: nowrap;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            pointer-events: none;
+            white-space: nowrap;
+            width: max-content;
+        }
+
+        .flip-word.active {
+            position: relative;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .flip-word.exit {
+            position: absolute;
+            pointer-events: none;
+            animation: flip-word-exit 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .flip-subword {
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .flip-letter {
+            display: inline-block;
+            transform: translateY(12px);
+            filter: blur(6px);
+            opacity: 0;
+            transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+                filter 0.35s ease,
+                opacity 0.35s ease;
+
+            background: linear-gradient(135deg, var(--accent) 0%, #ec4899 45%, var(--accent-light) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-flow 8s ease infinite;
+        }
+
+        .flip-letter.animate-in {
+            transform: translateY(0);
+            filter: blur(0px);
+            opacity: 1;
+        }
+
+        @keyframes flip-word-exit {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+                filter: blur(0px);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(30px, -30px) scale(1.5);
+                filter: blur(8px);
+                position: absolute;
+            }
+        }
+
         @keyframes gradient-flow {
-            0%, 100% { background-position: 0% center; }
-            50% { background-position: 100% center; }
+
+            0%,
+            100% {
+                background-position: 0% center;
+            }
+
+            50% {
+                background-position: 100% center;
+            }
         }
 
         .about-subtitle {
@@ -594,7 +796,10 @@
         }
 
         @keyframes word-rise {
-            to { opacity: 1; transform: translateY(0); }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Hero: Hologram + Identity */
@@ -634,7 +839,9 @@
         }
 
         @keyframes holo-ring-spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .holo-frame {
@@ -660,8 +867,15 @@
         }
 
         @keyframes holo-float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         .holo-corner {
@@ -674,21 +888,38 @@
             opacity: 0.7;
         }
 
-        .holo-corner-tl { top: 12px; left: 12px; border-width: 2px 0 0 2px; }
-        .holo-corner-tr { top: 12px; right: 12px; border-width: 2px 2px 0 0; }
-        .holo-corner-bl { bottom: 12px; left: 12px; border-width: 0 0 2px 2px; }
-        .holo-corner-br { bottom: 12px; right: 12px; border-width: 0 2px 2px 0; }
+        .holo-corner-tl {
+            top: 12px;
+            left: 12px;
+            border-width: 2px 0 0 2px;
+        }
+
+        .holo-corner-tr {
+            top: 12px;
+            right: 12px;
+            border-width: 2px 2px 0 0;
+        }
+
+        .holo-corner-bl {
+            bottom: 12px;
+            left: 12px;
+            border-width: 0 0 2px 2px;
+        }
+
+        .holo-corner-br {
+            bottom: 12px;
+            right: 12px;
+            border-width: 0 2px 2px 0;
+        }
 
         .holo-scanline {
             position: absolute;
             inset: 0;
-            background: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 2px,
-                rgba(168, 85, 247, 0.03) 2px,
-                rgba(168, 85, 247, 0.03) 4px
-            );
+            background: repeating-linear-gradient(0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(168, 85, 247, 0.03) 2px,
+                    rgba(168, 85, 247, 0.03) 4px);
             pointer-events: none;
             z-index: 3;
             opacity: 0.6;
@@ -707,10 +938,23 @@
         }
 
         @keyframes scan-beam {
-            0% { top: 0; opacity: 0; }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% { top: 100%; opacity: 0; }
+            0% {
+                top: 0;
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.6;
+            }
+
+            90% {
+                opacity: 0.6;
+            }
+
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
         }
 
         .holo-image-wrap {
@@ -811,16 +1055,54 @@
             z-index: 2;
         }
 
-        .holo-particle:nth-child(1) { top: 8%; left: -6px; animation-delay: 0s; }
-        .holo-particle:nth-child(2) { top: 35%; right: -10px; animation-delay: 1s; }
-        .holo-particle:nth-child(3) { bottom: 25%; left: 4%; animation-delay: 2s; }
-        .holo-particle:nth-child(4) { top: 65%; right: 2%; animation-delay: 0.5s; }
-        .holo-particle:nth-child(5) { top: 15%; right: 15%; animation-delay: 1.5s; }
-        .holo-particle:nth-child(6) { bottom: 10%; left: 20%; animation-delay: 2.5s; }
+        .holo-particle:nth-child(1) {
+            top: 8%;
+            left: -6px;
+            animation-delay: 0s;
+        }
+
+        .holo-particle:nth-child(2) {
+            top: 35%;
+            right: -10px;
+            animation-delay: 1s;
+        }
+
+        .holo-particle:nth-child(3) {
+            bottom: 25%;
+            left: 4%;
+            animation-delay: 2s;
+        }
+
+        .holo-particle:nth-child(4) {
+            top: 65%;
+            right: 2%;
+            animation-delay: 0.5s;
+        }
+
+        .holo-particle:nth-child(5) {
+            top: 15%;
+            right: 15%;
+            animation-delay: 1.5s;
+        }
+
+        .holo-particle:nth-child(6) {
+            bottom: 10%;
+            left: 20%;
+            animation-delay: 2.5s;
+        }
 
         @keyframes holo-particle {
-            0%, 100% { transform: translate(0, 0); opacity: 0.4; }
-            50% { transform: translate(0, -16px); opacity: 1; }
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+                opacity: 0.4;
+            }
+
+            50% {
+                transform: translate(0, -16px);
+                opacity: 1;
+            }
         }
 
         .holo-border-ring {
@@ -870,7 +1152,7 @@
             box-shadow: var(--shadow-md);
         }
 
-        .identity-panel > * {
+        .identity-panel>* {
             position: relative;
             z-index: 1;
         }
@@ -971,7 +1253,7 @@
             opacity: 1;
         }
 
-        .opp-badge > * {
+        .opp-badge>* {
             position: relative;
             z-index: 1;
         }
@@ -1035,81 +1317,227 @@
             margin-bottom: 8px;
         }
 
-        /* What I Build */
-        .build-grid {
+        /* What I Build - Hover Slider */
+        .build-hover-slider {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(24px, 4vw, 48px);
+            align-items: center;
         }
 
-        .build-item {
+        .build-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .build-list-item {
             position: relative;
-            padding: 24px 20px;
+            padding: 14px 18px;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: background 0.35s var(--transition), transform 0.35s var(--transition-bounce), box-shadow 0.35s var(--transition);
+            background: transparent;
+            border: 1px solid transparent;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .build-list-item.revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .build-list-item:hover {
+            background: var(--bg-card);
+            border-color: var(--border-color);
+            transform: translateX(6px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .build-list-item.active {
+            background: var(--bg-card);
+            border-color: rgba(168, 85, 247, 0.3);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        [data-theme="light"] .build-list-item.active {
+            border-color: rgba(124, 58, 237, 0.25);
+        }
+
+        .build-list-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 4px;
+        }
+
+        .build-list-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(168, 85, 247, 0.12);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            color: var(--accent);
+            flex-shrink: 0;
+            transition: all 0.3s var(--transition);
+        }
+
+        .build-list-item.active .build-list-icon,
+        .build-list-item:hover .build-list-icon {
+            background: rgba(168, 85, 247, 0.25);
+            transform: scale(1.08);
+            box-shadow: 0 0 16px var(--accent-glow);
+        }
+
+        .build-list-icon svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .build-list-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            transition: color 0.3s var(--transition);
+        }
+
+        .build-list-item.active .build-list-name {
+            color: var(--accent-light);
+        }
+
+        .build-list-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            margin-left: 48px;
+            transition: color 0.3s var(--transition);
+        }
+
+        .build-list-item.active .build-list-badge {
+            color: var(--accent);
+        }
+
+        /* Image display area */
+        .build-display {
+            position: relative;
+            aspect-ratio: 4/3;
+            border-radius: 20px;
+            overflow: hidden;
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 20px;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            cursor: default;
-            transition: transform 0.4s var(--transition-bounce), border-color 0.3s var(--transition), box-shadow 0.3s var(--transition);
-            overflow: hidden;
+            box-shadow: var(--shadow-md);
             opacity: 0;
-            transform: translateY(30px);
+            transform: scale(0.95);
+            transition: opacity 0.7s var(--transition), transform 0.7s var(--transition);
         }
 
-        .build-item.revealed {
+        .build-display.revealed {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .build-display-inner {
+            position: absolute;
+            inset: 0;
+        }
+
+        .build-display-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transform: scale(1.1);
+            transition: opacity 0.6s var(--transition), transform 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+        }
+
+        .build-display-img.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .build-display-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(10, 6, 18, 0.6) 100%);
+            pointer-events: none;
+        }
+
+        [data-theme="light"] .build-display-overlay {
+            background: linear-gradient(180deg, transparent 40%, rgba(250, 250, 255, 0.5) 100%);
+        }
+
+        .build-display-label {
+            position: absolute;
+            bottom: 20px;
+            left: 24px;
+            right: 24px;
+            z-index: 2;
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s var(--transition) 0.1s, transform 0.4s var(--transition) 0.1s;
+        }
+
+        .build-display-label.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .build-item::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--accent-glow), transparent 55%);
-            opacity: 0;
-            transition: opacity 0.35s var(--transition);
-            pointer-events: none;
+        [data-theme="light"] .build-display-label {
+            color: #0f0a1f;
         }
 
-        .build-item:hover {
-            transform: translateY(-6px);
-            border-color: rgba(168, 85, 247, 0.35);
-            box-shadow: 0 16px 48px rgba(168, 85, 247, 0.12);
-        }
-
-        .build-item:hover::after {
+        .build-display-sub {
+            font-size: 12px;
+            font-weight: 500;
             opacity: 0.7;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
 
-        .build-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(236, 72, 153, 0.1));
-            border: 1px solid rgba(168, 85, 247, 0.2);
-            color: var(--accent);
-            margin-bottom: 16px;
-            transition: transform 0.4s var(--transition-bounce);
+        @media (max-width: 900px) {
+            .build-hover-slider {
+                grid-template-columns: 1fr;
+            }
+
+            .build-display {
+                aspect-ratio: 16/9;
+                order: -1;
+            }
+
+            .build-list {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 6px;
+            }
+
+            .build-list-item {
+                padding: 12px 14px;
+            }
+
+            .build-list-badge {
+                margin-left: 0;
+            }
         }
 
-        .build-item:hover .build-icon {
-            transform: scale(1.1) rotate(-5deg);
-        }
-
-        .build-icon svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        .build-name {
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--text-primary);
-            letter-spacing: -0.01em;
+        @media (max-width: 500px) {
+            .build-list {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Journey + Focus row */
@@ -1178,9 +1606,17 @@
         }
 
         @keyframes dot-pop {
-            0% { transform: scale(0); }
-            70% { transform: scale(1.2); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(0);
+            }
+
+            70% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
 
         .timeline-step:hover .timeline-dot {
@@ -1284,20 +1720,21 @@
                 grid-template-columns: 1fr;
                 text-align: center;
             }
+
             .identity-panel {
                 max-width: 560px;
                 margin: 0 auto;
             }
+
             .identity-desc {
                 margin-left: auto;
                 margin-right: auto;
             }
+
             .identity-badges {
                 justify-content: center;
             }
-            .build-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+
             .about-dual {
                 grid-template-columns: 1fr;
             }
@@ -1307,16 +1744,11 @@
             .about-section {
                 padding-top: 100px;
             }
-            .build-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-            }
-            .build-item {
-                padding: 18px 16px;
-            }
+
             .focus-orbit {
                 grid-template-columns: 1fr;
             }
+
             .theme-toggle {
                 width: 46px;
                 height: 46px;
@@ -1326,28 +1758,856 @@
         }
 
         @media (max-width: 480px) {
-            .build-grid {
-                grid-template-columns: 1fr;
-            }
             .identity-badges {
                 flex-direction: column;
                 align-items: stretch;
             }
+
             .opp-badge {
                 justify-content: center;
             }
+
             .holo-panel {
                 width: min(100%, 300px);
             }
         }
 
+        /* ========== TECH STACK SECTION ========== */
+        .tech-section {
+            position: relative;
+            min-height: 100vh;
+            padding: clamp(100px, 12vw, 140px) clamp(20px, 5vw, 80px) clamp(80px, 10vw, 120px);
+            background: var(--bg-primary);
+            overflow: hidden;
+            transition: background 0.5s var(--transition);
+        }
+
+        .tech-bg {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .tech-grid-lines {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(var(--border-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 25%, transparent 75%);
+            -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 25%, transparent 75%);
+            opacity: 0.3;
+        }
+
+        .tech-aurora {
+            position: absolute;
+            inset: -20%;
+            background:
+                radial-gradient(ellipse 40% 35% at 20% 30%, rgba(168, 85, 247, 0.15), transparent 55%),
+                radial-gradient(ellipse 35% 30% at 80% 70%, rgba(236, 72, 153, 0.08), transparent 50%),
+                radial-gradient(ellipse 25% 20% at 50% 40%, rgba(59, 130, 246, 0.06), transparent 60%);
+            animation: tech-aurora-drift 20s ease-in-out infinite alternate;
+        }
+
+        [data-theme="light"] .tech-aurora {
+            background:
+                radial-gradient(ellipse 40% 35% at 20% 30%, rgba(124, 58, 237, 0.07), transparent 55%),
+                radial-gradient(ellipse 35% 30% at 80% 70%, rgba(236, 72, 153, 0.04), transparent 50%);
+        }
+
+        @keyframes tech-aurora-drift {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(-2%, 3%) scale(1.03);
+            }
+        }
+
+        #techParticles {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .tech-spotlight {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 65%);
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.4s var(--transition);
+            pointer-events: none;
+            filter: blur(40px);
+            will-change: transform;
+        }
+
+        .tech-section:hover .tech-spotlight {
+            opacity: 0.3;
+        }
+
+        [data-theme="light"] .tech-spotlight {
+            opacity: 0 !important;
+        }
+
+        .tech-container {
+            position: relative;
+            max-width: 1100px;
+            margin: 0 auto;
+            z-index: 2;
+        }
+
+        .tech-header {
+            text-align: center;
+            margin-bottom: clamp(56px, 10vw, 80px);
+        }
+
+        .tech-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 18px;
+            margin-bottom: 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .tech-eyebrow-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        .tech-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.035em;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+
+        .tech-title-accent {
+            background: linear-gradient(135deg, var(--accent) 0%, #3b82f6 30%, #ec4899 70%, var(--accent-light) 100%);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-flow 8s ease infinite;
+        }
+
+        .tech-subtitle {
+            font-size: clamp(1rem, 1.6vw, 1.15rem);
+            line-height: 1.7;
+            color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .tech-subtitle .word {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(12px);
+            animation: word-rise 0.6s var(--transition) forwards;
+        }
+
+        /* ========== PYRAMID LAYOUT ========== */
+        .tech-pyramid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+            perspective: 1200px;
+        }
+
+        .pyramid-row {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            transition: opacity 0.7s var(--transition), transform 0.7s var(--transition);
+        }
+
+        .pyramid-row.revealed {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* ========== SKILL CARD ========== */
+        .skill-card {
+            position: relative;
+            width: 108px;
+            height: 108px;
+            border-radius: 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(16px) saturate(160%);
+            -webkit-backdrop-filter: blur(16px) saturate(160%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: transform 0.35s var(--transition-bounce), border-color 0.3s var(--transition), box-shadow 0.4s var(--transition);
+            transform-style: preserve-3d;
+            will-change: transform;
+            overflow: visible;
+            z-index: 1;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 20px;
+            background: conic-gradient(from 0deg, transparent, var(--accent), transparent 30%, var(--accent-light) 50%, transparent 70%, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.5s var(--transition);
+            z-index: -1;
+            animation: card-border-spin 4s linear infinite;
+        }
+
+        @keyframes card-border-spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .skill-card:hover::before {
+            opacity: 0.8;
+        }
+
+        .skill-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 18px;
+            background: radial-gradient(circle at 50% 0%, var(--accent-glow), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s var(--transition);
+            pointer-events: none;
+        }
+
+        .skill-card:hover::after {
+            opacity: 0.5;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-4px) scale(1.05);
+            border-color: rgba(168, 85, 247, 0.4);
+            box-shadow: 0 12px 40px rgba(168, 85, 247, 0.15), 0 0 30px rgba(168, 85, 247, 0.08);
+            z-index: 10;
+        }
+
+        .skill-card.glow-relation {
+            border-color: rgba(168, 85, 247, 0.5);
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.2), 0 0 50px rgba(168, 85, 247, 0.1);
+        }
+
+        .skill-card.glow-relation::before {
+            opacity: 0.6;
+        }
+
+        .skill-icon-wrap {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.4s var(--transition-bounce);
+            position: relative;
+            z-index: 1;
+        }
+
+        .skill-card:hover .skill-icon-wrap {
+            transform: scale(1.15);
+        }
+
+        .skill-icon-wrap svg,
+        .skill-icon-wrap img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .skill-icon-wrap .fallback-text {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--accent);
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .skill-name-label {
+            font-size: 9px;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            max-width: 90px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .skill-card:hover .skill-name-label {
+            color: var(--accent-light);
+        }
+
+        /* ========== TOOLTIP ========== */
+        .skill-tooltip {
+            position: fixed;
+            z-index: 10000;
+            padding: 20px 24px;
+            min-width: 240px;
+            max-width: 340px;
+            background: rgba(10, 6, 18, 0.92);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(168, 85, 247, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px) scale(0.96);
+            transition: opacity 0.25s var(--transition), transform 0.3s var(--transition-bounce), visibility 0.25s;
+            pointer-events: none;
+        }
+
+        [data-theme="light"] .skill-tooltip {
+            background: rgba(255, 255, 255, 0.95);
+            border-color: rgba(124, 58, 237, 0.25);
+            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.12);
+        }
+
+        .skill-tooltip.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .tooltip-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .tooltip-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(236, 72, 153, 0.1));
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            flex-shrink: 0;
+        }
+
+        .tooltip-icon svg,
+        .tooltip-icon img {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+        }
+
+        .tooltip-icon .fallback-text {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .tooltip-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        [data-theme="light"] .tooltip-name {
+            color: #0f0a1f;
+        }
+
+        .tooltip-experience {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.04em;
+            margin-left: auto;
+        }
+
+        .tooltip-desc {
+            font-size: 13px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 14px;
+        }
+
+        [data-theme="light"] .tooltip-desc {
+            color: rgba(15, 10, 31, 0.7);
+        }
+
+        .tooltip-related {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .tooltip-related-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-right: 4px;
+            align-self: center;
+        }
+
+        [data-theme="light"] .tooltip-related-label {
+            color: rgba(15, 10, 31, 0.4);
+        }
+
+        .tooltip-related-chip {
+            padding: 3px 10px;
+            background: rgba(168, 85, 247, 0.12);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 100px;
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--accent-light);
+        }
+
+        [data-theme="light"] .tooltip-related-chip {
+            background: rgba(124, 58, 237, 0.08);
+            color: var(--accent);
+        }
+
+        /* ========== SKILL MODAL ========== */
+        .skill-modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 50000;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s var(--transition), visibility 0.4s;
+            padding: 20px;
+        }
+
+        .skill-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .skill-modal {
+            position: relative;
+            width: 100%;
+            max-width: 480px;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 36px 32px;
+            background: rgba(10, 6, 18, 0.95);
+            backdrop-filter: blur(32px) saturate(180%);
+            -webkit-backdrop-filter: blur(32px) saturate(180%);
+            border: 1px solid rgba(168, 85, 247, 0.25);
+            border-radius: 24px;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), 0 0 40px rgba(168, 85, 247, 0.08);
+            transform: scale(0.92) translateY(20px);
+            transition: transform 0.4s var(--transition-bounce);
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) transparent;
+        }
+
+        .skill-modal::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .skill-modal::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .skill-modal::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 4px;
+        }
+
+        [data-theme="light"] .skill-modal {
+            background: rgba(255, 255, 255, 0.97);
+            border-color: rgba(124, 58, 237, 0.2);
+            box-shadow: 0 40px 80px rgba(124, 58, 237, 0.1);
+        }
+
+        .skill-modal-overlay.active .skill-modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s var(--transition);
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg);
+            border-color: var(--accent);
+            color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .modal-close svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .modal-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(236, 72, 153, 0.1));
+            border: 1px solid rgba(168, 85, 247, 0.25);
+            flex-shrink: 0;
+        }
+
+        .modal-icon svg,
+        .modal-icon img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+
+        .modal-icon .fallback-text {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .modal-title-group {
+            flex: 1;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        [data-theme="light"] .modal-title {
+            color: #0f0a1f;
+        }
+
+        .modal-badge {
+            display: inline-block;
+            padding: 2px 10px;
+            background: rgba(34, 197, 94, 0.12);
+            border: 1px solid rgba(34, 197, 94, 0.25);
+            border-radius: 100px;
+            font-size: 10px;
+            font-weight: 600;
+            color: #22c55e;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-top: 4px;
+        }
+
+        .modal-section {
+            margin-bottom: 20px;
+        }
+
+        .modal-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .modal-section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .modal-text {
+            font-size: 14px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        [data-theme="light"] .modal-text {
+            color: rgba(15, 10, 31, 0.7);
+        }
+
+        .modal-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .modal-chip {
+            padding: 5px 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: all 0.3s var(--transition);
+        }
+
+        .modal-chip:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .modal-note {
+            padding: 16px;
+            background: rgba(168, 85, 247, 0.06);
+            border: 1px solid rgba(168, 85, 247, 0.15);
+            border-radius: 12px;
+            font-size: 13px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
+        }
+
+        [data-theme="light"] .modal-note {
+            background: rgba(124, 58, 237, 0.04);
+            color: rgba(15, 10, 31, 0.6);
+        }
+
+        .modal-note::before {
+            content: '"';
+            font-size: 24px;
+            color: var(--accent);
+            font-style: normal;
+            margin-right: 4px;
+        }
+
+        .modal-note::after {
+            content: '"';
+            font-size: 24px;
+            color: var(--accent);
+            font-style: normal;
+            margin-left: 4px;
+            vertical-align: bottom;
+        }
+
+        /* ========== RESPONSIVE PYRAMID ========== */
+        @media (max-width: 1024px) {
+            .skill-card {
+                width: 96px;
+                height: 96px;
+            }
+
+            .skill-icon-wrap {
+                width: 30px;
+                height: 30px;
+            }
+
+            .skill-icon-wrap svg,
+            .skill-icon-wrap img {
+                width: 26px;
+                height: 26px;
+            }
+
+            .skill-name-label {
+                font-size: 8px;
+            }
+
+            .pyramid-row {
+                gap: 12px;
+            }
+
+            .tech-pyramid {
+                gap: 14px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tech-pyramid {
+                gap: 12px;
+            }
+
+            .pyramid-row {
+                gap: 10px;
+            }
+
+            .skill-card {
+                width: 80px;
+                height: 80px;
+                border-radius: 14px;
+            }
+
+            .skill-icon-wrap {
+                width: 26px;
+                height: 26px;
+            }
+
+            .skill-icon-wrap svg,
+            .skill-icon-wrap img {
+                width: 22px;
+                height: 22px;
+            }
+
+            .skill-icon-wrap .fallback-text {
+                font-size: 16px;
+            }
+
+            .skill-name-label {
+                font-size: 7px;
+                max-width: 70px;
+            }
+
+            .skill-tooltip {
+                min-width: 200px;
+                max-width: 280px;
+                padding: 16px 18px;
+            }
+
+            .skill-modal {
+                padding: 28px 24px;
+                max-width: 420px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tech-pyramid {
+                gap: 10px;
+            }
+
+            .pyramid-row {
+                gap: 8px;
+            }
+
+            .skill-card {
+                width: 64px;
+                height: 64px;
+                border-radius: 12px;
+            }
+
+            .skill-icon-wrap {
+                width: 22px;
+                height: 22px;
+            }
+
+            .skill-icon-wrap svg,
+            .skill-icon-wrap img {
+                width: 18px;
+                height: 18px;
+            }
+
+            .skill-icon-wrap .fallback-text {
+                font-size: 13px;
+            }
+
+            .skill-name-label {
+                font-size: 6px;
+                max-width: 56px;
+                letter-spacing: 0.03em;
+            }
+
+            .skill-tooltip {
+                min-width: 180px;
+                max-width: 240px;
+                padding: 14px 16px;
+            }
+
+            .skill-modal {
+                padding: 24px 20px;
+            }
+        }
+
         @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
+
+            *,
+            *::before,
+            *::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
             }
-            .about-spotlight { display: none; }
+
+            .about-spotlight {
+                display: none;
+            }
+
+            .tech-spotlight {
+                display: none;
+            }
+
+            .skill-card {
+                transition: none !important;
+            }
+
+            .skill-card::before {
+                animation: none;
+            }
+        }
+
+        /* ========== REVEAL UTILITIES ========== */
+        .tech-reveal-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+        }
+
+        .tech-reveal-up.revealed {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -1357,7 +2617,8 @@
     <!-- Theme Toggle -->
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
         <span class="theme-toggle-ring"></span>
-        <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
             <g class="sun-icon">
                 <circle cx="12" cy="12" r="4"></circle>
                 <path d="M12 2v2"></path>
@@ -1389,7 +2650,7 @@
             <div class="nav-links">
                 <a href="#">Home</a>
                 <a href="#about-section">About</a>
-                <a href="#">Skills</a>
+                <a href="#tech-section">Skills</a>
                 <a href="#">Projects</a>
                 <a href="#">Contact</a>
             </div>
@@ -1406,17 +2667,21 @@
             <div class="hero-buttons">
                 <a href="#" class="btn-primary">View My Work</a>
                 <a href="#" class="btn-secondary">Contact Me</a>
-                <a href="https://github.com/samarth-maheshwari-dev" target="_blank" rel="noopener noreferrer" class="btn-secondary btn-github" aria-label="GitHub Profile">
+                <a href="https://github.com/samarth-maheshwari-dev" target="_blank" rel="noopener noreferrer"
+                    class="btn-secondary btn-github" aria-label="GitHub Profile">
                     <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.16-.02-2.11-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.96 10.96 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.41.35.78 1.05.78 2.12 0 1.53-.01 2.76-.01 3.13 0 .31.21.68.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/>
+                        <path
+                            d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.16-.02-2.11-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.96 10.96 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.41.35.78 1.05.78 2.12 0 1.53-.01 2.76-.01 3.13 0 .31.21.68.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z" />
                     </svg>
                     <span>GitHub</span>
                 </a>
-                <a href="Samarth_Maheshwari_Resume.docx" download class="btn-secondary btn-resume" aria-label="Download Resume">
-                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                        <polyline points="7 10 12 15 17 10"/>
-                        <line x1="12" y1="15" x2="12" y2="3"/>
+                <a href="Samarth_Maheshwari_Resume.docx" download class="btn-secondary btn-resume"
+                    aria-label="Download Resume">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <line x1="12" y1="15" x2="12" y2="3" />
                     </svg>
                     <span>Resume</span>
                 </a>
@@ -1455,10 +2720,11 @@
                 </div>
                 <h2 class="about-title">
                     Building the Future with<br>
-                    <span class="about-title-accent">Code &amp; AI</span>
+                    <span class="about-title-accent" id="aboutFlipWords">Code &amp; AI</span>
                 </h2>
                 <p class="about-subtitle" id="aboutSubtitle">
-                    Turning ideas into intelligent digital products through Full Stack Engineering, AI Automation and Modern Web Technologies.
+                    Turning ideas into intelligent digital products through Full Stack Engineering, AI Automation and
+                    Modern Web Technologies.
                 </p>
             </header>
 
@@ -1482,7 +2748,9 @@
                             <div class="holo-scanline"></div>
                             <div class="holo-scan-beam"></div>
                             <div class="holo-image-wrap">
-                                <img src="WhatsApp Image 2026-07-19 at 12.44.46 PM.jpeg" alt="Samarth Maheshwari — AI & Full Stack Engineer" class="holo-image" loading="lazy" decoding="async">
+                                <img src="WhatsApp Image 2026-07-19 at 12.44.46 PM.jpeg"
+                                    alt="Samarth Maheshwari — AI & Full Stack Engineer" class="holo-image"
+                                    loading="lazy" decoding="async">
                                 <div class="holo-image-overlay"></div>
                             </div>
                             <div class="holo-status-bar">
@@ -1501,41 +2769,47 @@
                     <h3 class="identity-name">Samarth Maheshwari</h3>
                     <div class="identity-role">AI &amp; Full Stack Engineer</div>
                     <div class="identity-location">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                            <circle cx="12" cy="10" r="3"/>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                            <circle cx="12" cy="10" r="3" />
                         </svg>
                         India
                     </div>
                     <p class="identity-desc">
-                        I build intelligent products, AI automations and modern web experiences that solve real-world problems.
+                        Architecting scalable web applications and intelligent systems. I bridge the gap between complex
+                        technical challenges and production-ready digital experiences that drive business value.
                     </p>
                     <div class="identity-badges">
                         <span class="opp-badge opp-badge-live">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 6v6l4 2" />
+                            </svg>
                             Available Now
                         </span>
                         <span class="opp-badge">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                                <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                            </svg>
                             Internships
                         </span>
                         <span class="opp-badge">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="2" y="7" width="20" height="14" rx="2" />
+                                <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+                            </svg>
                             Freelance Projects
-                        </span>
-                        <span class="opp-badge">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>
-                            Startup Collaborations
-                        </span>
-                        <span class="opp-badge">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-                            Open Source
                         </span>
                     </div>
                 </div>
             </div>
 
-            <!-- What I Build -->
+            <!-- What I Build - Hover Slider -->
             <div class="about-block">
                 <div class="block-header reveal-up">
                     <div>
@@ -1544,54 +2818,126 @@
                     </div>
                     <div class="block-line"></div>
                 </div>
-                <div class="build-grid">
-                    <div class="build-item" data-build>
-                        <div class="build-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+                <div class="build-hover-slider" id="buildHoverSlider">
+                    <div class="build-list" id="buildList">
+                        <div class="build-list-item active" data-build-index="0">
+                            <div class="build-list-top">
+                                <div class="build-list-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 8V4H8" />
+                                        <rect x="4" y="8" width="16" height="12" rx="2" />
+                                        <path d="M2 14h2" />
+                                        <path d="M20 14h2" />
+                                        <path d="M15 13v2" />
+                                        <path d="M9 13v2" />
+                                    </svg>
+                                </div>
+                                <span class="build-list-name">AI Assistants</span>
+                            </div>
+                            <span class="build-list-badge">LLMs &amp; RAG</span>
                         </div>
-                        <div class="build-name">AI Assistants</div>
+                        <div class="build-list-item" data-build-index="1">
+                            <div class="build-list-top">
+                                <div class="build-list-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="2" y="3" width="20" height="14" rx="2" />
+                                        <path d="M8 21h8" />
+                                        <path d="M12 17v4" />
+                                    </svg>
+                                </div>
+                                <span class="build-list-name">Full Stack Apps</span>
+                            </div>
+                            <span class="build-list-badge">React &amp; Node</span>
+                        </div>
+                        <div class="build-list-item" data-build-index="2">
+                            <div class="build-list-top">
+                                <div class="build-list-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                                        <path d="M2 17l10 5 10-5" />
+                                        <path d="M2 12l10 5 10-5" />
+                                    </svg>
+                                </div>
+                                <span class="build-list-name">SaaS Products</span>
+                            </div>
+                            <span class="build-list-badge">Scalable Arch</span>
+                        </div>
+                        <div class="build-list-item" data-build-index="3">
+                            <div class="build-list-top">
+                                <div class="build-list-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path
+                                            d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+                                        <path d="m9 12 2 2 4-4" />
+                                    </svg>
+                                </div>
+                                <span class="build-list-name">Automation Systems</span>
+                            </div>
+                            <span class="build-list-badge">Workflows &amp; Bots</span>
+                        </div>
+                        <div class="build-list-item" data-build-index="4">
+                            <div class="build-list-top">
+                                <div class="build-list-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" />
+                                        <path d="M12 2v2" />
+                                        <path d="M12 20v2" />
+                                        <path d="m4.93 4.93 1.41 1.41" />
+                                        <path d="m17.66 17.66 1.41 1.41" />
+                                        <path d="M2 12h2" />
+                                        <path d="M20 12h2" />
+                                    </svg>
+                                </div>
+                                <span class="build-list-name">AI Agents</span>
+                            </div>
+                            <span class="build-list-badge">Autonomous Logic</span>
+                        </div>
+                        <div class="build-list-item" data-build-index="5">
+                            <div class="build-list-top">
+                                <div class="build-list-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path
+                                            d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
+                                        <path
+                                            d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
+                                    </svg>
+                                </div>
+                                <span class="build-list-name">APIs &amp; Integrations</span>
+                            </div>
+                            <span class="build-list-badge">REST &amp; Webhooks</span>
+                        </div>
                     </div>
-                    <div class="build-item" data-build>
-                        <div class="build-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+                    <div class="build-display" id="buildDisplay">
+                        <div class="build-display-inner" id="buildDisplayInner">
+                            <img class="build-display-img active" src="AI-assistant2.jpg" alt="AI Assistants"
+                                loading="lazy" />
+                            <img class="build-display-img"
+                                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop"
+                                alt="Full Stack Apps" loading="lazy" />
+                            <img class="build-display-img"
+                                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop"
+                                alt="SaaS Products" loading="lazy" />
+                            <img class="build-display-img"
+                                src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop"
+                                alt="Automation Systems" loading="lazy" />
+                            <img class="build-display-img"
+                                src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop"
+                                alt="AI Agents" loading="lazy" />
+                            <img class="build-display-img"
+                                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=800&auto=format&fit=crop"
+                                alt="APIs & Integrations" loading="lazy" />
                         </div>
-                        <div class="build-name">Full Stack Applications</div>
-                    </div>
-                    <div class="build-item" data-build>
-                        <div class="build-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                        <div class="build-display-overlay"></div>
+                        <div class="build-display-label visible" id="buildDisplayLabel">
+                            <span id="buildDisplayLabelText">AI Assistants</span>
+                            <div class="build-display-sub">LLMs &amp; RAG</div>
                         </div>
-                        <div class="build-name">SaaS Products</div>
-                    </div>
-                    <div class="build-item" data-build>
-                        <div class="build-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
-                        </div>
-                        <div class="build-name">Automation Systems</div>
-                    </div>
-                    <div class="build-item" data-build>
-                        <div class="build-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/></svg>
-                        </div>
-                        <div class="build-name">AI Agents</div>
-                    </div>
-                    <div class="build-item" data-build>
-                        <div class="build-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>
-                        </div>
-                        <div class="build-name">Startup Products</div>
-                    </div>
-                    <div class="build-item" data-build>
-                        <div class="build-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-                        </div>
-                        <div class="build-name">APIs &amp; Integrations</div>
-                    </div>
-                    <div class="build-item" data-build>
-                        <div class="build-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-                        </div>
-                        <div class="build-name">Intelligent Web Experiences</div>
                     </div>
                 </div>
             </div>
@@ -1610,27 +2956,32 @@
                         <div class="timeline-step" data-step>
                             <span class="timeline-dot"></span>
                             <div class="timeline-year">Origin</div>
-                            <p class="timeline-text"><strong>Started with curiosity</strong> — fascinated by how technology could solve everyday problems.</p>
+                            <p class="timeline-text"><strong>Started with curiosity</strong> — fascinated by how
+                                technology could solve everyday problems.</p>
                         </div>
                         <div class="timeline-step" data-step>
                             <span class="timeline-dot"></span>
                             <div class="timeline-year">Foundation</div>
-                            <p class="timeline-text"><strong>Learned programming</strong> — building a deep foundation in software engineering and web development.</p>
+                            <p class="timeline-text"><strong>Learned programming</strong> — building a deep foundation
+                                in software engineering and web development.</p>
                         </div>
                         <div class="timeline-step" data-step>
                             <span class="timeline-dot"></span>
                             <div class="timeline-year">Evolution</div>
-                            <p class="timeline-text"><strong>Built intelligent systems</strong> — combining AI with full-stack engineering to create smarter solutions.</p>
+                            <p class="timeline-text"><strong>Built intelligent systems</strong> — combining AI with
+                                full-stack engineering to create smarter solutions.</p>
                         </div>
                         <div class="timeline-step" data-step>
                             <span class="timeline-dot"></span>
                             <div class="timeline-year">Present</div>
-                            <p class="timeline-text"><strong>Building real-world products</strong> — shipping applications that create measurable impact.</p>
+                            <p class="timeline-text"><strong>Building real-world products</strong> — shipping
+                                applications that create measurable impact.</p>
                         </div>
                         <div class="timeline-step" data-step>
                             <span class="timeline-dot"></span>
                             <div class="timeline-year">Vision</div>
-                            <p class="timeline-text"><strong>Creating impactful AI solutions</strong> — working toward technology that genuinely improves lives.</p>
+                            <p class="timeline-text"><strong>Creating impactful AI solutions</strong> — working toward
+                                technology that genuinely improves lives.</p>
                         </div>
                     </div>
                 </div>
@@ -1646,45 +2997,124 @@
                     <div class="focus-orbit">
                         <div class="focus-chip" data-focus>
                             <div class="focus-chip-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect x="4" y="8" width="16" height="12" rx="2"/></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 8V4H8" />
+                                    <rect x="4" y="8" width="16" height="12" rx="2" />
+                                </svg>
                             </div>
                             <span class="focus-chip-label">AI Engineering</span>
                         </div>
                         <div class="focus-chip" data-focus>
                             <div class="focus-chip-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="16 18 22 12 16 6" />
+                                    <polyline points="8 6 2 12 8 18" />
+                                </svg>
                             </div>
                             <span class="focus-chip-label">Full Stack Development</span>
                         </div>
                         <div class="focus-chip" data-focus>
                             <div class="focus-chip-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+                                    <path d="m9 12 2 2 4-4" />
+                                </svg>
                             </div>
                             <span class="focus-chip-label">Automation Systems</span>
                         </div>
                         <div class="focus-chip" data-focus>
                             <div class="focus-chip-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                                    <path d="M2 17l10 5 10-5" />
+                                </svg>
                             </div>
                             <span class="focus-chip-label">Building Products</span>
-                        </div>
-                        <div class="focus-chip" data-focus>
-                            <div class="focus-chip-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-                            </div>
-                            <span class="focus-chip-label">Open Source Contributions</span>
-                        </div>
-                        <div class="focus-chip" data-focus>
-                            <div class="focus-chip-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>
-                            </div>
-                            <span class="focus-chip-label">Startup Ecosystem</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- ========== TECH STACK SECTION ========== -->
+    <section class="tech-section" id="tech-section">
+        <div class="tech-bg">
+            <canvas id="techParticles" aria-hidden="true"></canvas>
+            <div class="tech-grid-lines"></div>
+            <div class="tech-aurora"></div>
+            <div class="tech-spotlight" id="techSpotlight"></div>
+        </div>
+
+        <div class="tech-container">
+            <header class="tech-header tech-reveal-up">
+                <div class="tech-eyebrow">
+                    <span class="tech-eyebrow-dot"></span>
+                    Stack
+                </div>
+                <h2 class="tech-title">
+                    <span class="tech-title-accent">TECH STACK</span>
+                </h2>
+                <p class="tech-subtitle" id="techSubtitle">
+                    The technologies I use to transform ideas into intelligent digital products.
+                </p>
+            </header>
+
+            <div class="tech-pyramid" id="techPyramid"></div>
+        </div>
+    </section>
+
+    <!-- ========== SKILL TOOLTIP ========== -->
+    <div class="skill-tooltip" id="skillTooltip">
+        <div class="tooltip-header">
+            <div class="tooltip-icon" id="ttIcon"></div>
+            <span class="tooltip-name" id="ttName"></span>
+            <span class="tooltip-experience" id="ttExp"></span>
+        </div>
+        <div class="tooltip-desc" id="ttDesc"></div>
+        <div class="tooltip-related" id="ttRelated"></div>
+    </div>
+
+    <!-- ========== SKILL MODAL ========== -->
+    <div class="skill-modal-overlay" id="skillModalOverlay">
+        <div class="skill-modal" id="skillModal">
+            <button class="modal-close" id="modalClose" aria-label="Close">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </button>
+            <div class="modal-header">
+                <div class="modal-icon" id="modalIcon"></div>
+                <div class="modal-title-group">
+                    <div class="modal-title" id="modalTitle"></div>
+                    <span class="modal-badge" id="modalBadge">In Active Use</span>
+                </div>
+            </div>
+            <div class="modal-section">
+                <div class="modal-section-label">Usage</div>
+                <div class="modal-text" id="modalUsage"></div>
+            </div>
+            <div class="modal-section">
+                <div class="modal-section-label">Projects</div>
+                <div class="modal-text" id="modalProjects"></div>
+            </div>
+            <div class="modal-section">
+                <div class="modal-section-label">Related Technologies</div>
+                <div class="modal-chips" id="modalRelated"></div>
+            </div>
+            <div class="modal-section">
+                <div class="modal-section-label">Developer Note</div>
+                <div class="modal-note" id="modalNote"></div>
+            </div>
+        </div>
+    </div>
 
     <script>
         // ========== THEME TOGGLE ==========
@@ -1767,12 +3197,154 @@
         const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+        // ========== FLIP WORDS CLASS ==========
+        class FlipWords {
+            constructor(element, words, duration = 3000) {
+                if (!element) return;
+                this.element = element;
+                this.words = words;
+                this.duration = duration;
+                this.currentIndex = 0;
+                this.isAnimating = false;
+                this.element.flipWordsInstance = this;
+                this.init();
+            }
+
+            createWordMarkup(wordText) {
+                const wordNode = document.createElement('span');
+                wordNode.className = 'flip-word';
+
+                const parts = wordText.split(' ');
+                parts.forEach((part, wordIndex) => {
+                    const subword = document.createElement('span');
+                    subword.className = 'flip-subword';
+
+                    const letters = part.split('');
+                    letters.forEach((letter, letterIndex) => {
+                        const letterSpan = document.createElement('span');
+                        letterSpan.className = 'flip-letter';
+                        letterSpan.textContent = letter;
+
+                        // stagger delay
+                        const delay = wordIndex * 0.15 + letterIndex * 0.04;
+                        letterSpan.style.transitionDelay = `${delay}s`;
+
+                        subword.appendChild(letterSpan);
+                    });
+
+                    wordNode.appendChild(subword);
+
+                    // add space unless it is the last subword
+                    if (wordIndex < parts.length - 1) {
+                        const space = document.createElement('span');
+                        space.className = 'flip-space';
+                        space.innerHTML = '&nbsp;';
+                        wordNode.appendChild(space);
+                    }
+                });
+
+                return wordNode;
+            }
+
+            init() {
+                this.element.classList.add('flip-words-container');
+                this.element.innerHTML = '';
+
+                this.wordNodes = this.words.map((wordText, index) => {
+                    const node = this.createWordMarkup(wordText);
+                    if (index === 0) {
+                        node.classList.add('active');
+                        requestAnimationFrame(() => {
+                            node.querySelectorAll('.flip-letter').forEach(l => l.classList.add('animate-in'));
+                        });
+                    }
+                    this.element.appendChild(node);
+                    return node;
+                });
+
+                // Set initial container width to match first word
+                setTimeout(() => this.updateContainerWidth(), 50);
+                this.scheduleNext();
+            }
+
+            updateContainerWidth() {
+                const activeNode = this.wordNodes[this.currentIndex];
+                if (activeNode) {
+                    this.element.style.width = activeNode.offsetWidth + 'px';
+                }
+            }
+
+            scheduleNext() {
+                setTimeout(() => {
+                    this.flip();
+                }, this.duration);
+            }
+
+            flip() {
+                if (this.isAnimating) return;
+                this.isAnimating = true;
+
+                const currentWordNode = this.wordNodes[this.currentIndex];
+                this.currentIndex = (this.currentIndex + 1) % this.words.length;
+                const nextWordNode = this.wordNodes[this.currentIndex];
+
+                // 1. Current exit
+                currentWordNode.classList.remove('active');
+                currentWordNode.classList.add('exit');
+                currentWordNode.querySelectorAll('.flip-letter').forEach(l => l.classList.remove('animate-in'));
+
+                setTimeout(() => {
+                    currentWordNode.classList.remove('exit');
+                    this.isAnimating = false;
+                }, 500);
+
+                // 2. Next enter
+                nextWordNode.classList.add('active');
+                // Ensure letters start fresh
+                nextWordNode.querySelectorAll('.flip-letter').forEach(l => {
+                    l.classList.remove('animate-in');
+                });
+
+                // Measure width of next word, and animate width of container
+                const tempWidth = nextWordNode.offsetWidth;
+                this.element.style.width = tempWidth + 'px';
+
+                requestAnimationFrame(() => {
+                    nextWordNode.querySelectorAll('.flip-letter').forEach(l => {
+                        l.classList.add('animate-in');
+                    });
+                });
+
+                // Cooldown and run next schedule
+                setTimeout(() => {
+                    this.scheduleNext();
+                }, this.duration);
+            }
+        }
+
+        // Initialize Flip Words
+        const flipWordsEl = document.getElementById('aboutFlipWords');
+        if (flipWordsEl) {
+            new FlipWords(flipWordsEl, [
+                "Code & AI",
+                "Full Stack Web",
+                "Smart Automation",
+                "Elegant UI/UX",
+                "Next-Gen SaaS",
+                "Deep Learning"
+            ], 2600);
+
+            window.addEventListener('load', () => {
+                flipWordsEl.flipWordsInstance.updateContainerWidth();
+            });
+        }
+
         // Animated subtitle word reveal
         (function animateSubtitle() {
             const subtitle = document.getElementById('aboutSubtitle');
             if (!subtitle || prefersReducedMotion) return;
             const text = subtitle.textContent.trim();
-            subtitle.innerHTML = text.split(' ').map((word, i) =>
+            subtitle.innerHTML = text.split(/\s+/).map((word, i) =>
                 `<span class="word" style="animation-delay:${0.3 + i * 0.04}s">${word}</span>`
             ).join(' ');
         })();
@@ -1791,15 +3363,20 @@
             revealObserver.observe(el);
         });
 
-        document.querySelectorAll('[data-build]').forEach((el, i) => {
-            el.style.transitionDelay = `${i * 0.06}s`;
-            revealObserver.observe(el);
-        });
-
         document.querySelectorAll('[data-focus]').forEach((el, i) => {
             el.style.transitionDelay = `${i * 0.07}s`;
             revealObserver.observe(el);
         });
+
+        // Build list scroll reveal
+        document.querySelectorAll('.build-list-item').forEach((el, i) => {
+            el.style.transitionDelay = `${i * 0.07}s`;
+            revealObserver.observe(el);
+        });
+
+        // Build display scroll reveal
+        const buildDisplay = document.getElementById('buildDisplay');
+        if (buildDisplay) revealObserver.observe(buildDisplay);
 
         // Timeline scroll animation
         const timeline = document.getElementById('journeyTimeline');
@@ -1865,6 +3442,42 @@
                 item.style.setProperty('--mouse-y', y + '%');
             });
         });
+
+        // ========== WHAT I BUILD - HOVER SLIDER ==========
+        (function initBuildHoverSlider() {
+            const items = document.querySelectorAll('.build-list-item');
+            const images = document.querySelectorAll('.build-display-img');
+            const labelText = document.getElementById('buildDisplayLabelText');
+            const labelSub = document.querySelector('.build-display-sub');
+            const labelEl = document.getElementById('buildDisplayLabel');
+
+            const slideData = [
+                { name: 'AI Assistants', badge: 'LLMs & RAG' },
+                { name: 'Full Stack Apps', badge: 'React & Node' },
+                { name: 'SaaS Products', badge: 'Scalable Arch' },
+                { name: 'Automation Systems', badge: 'Workflows & Bots' },
+                { name: 'AI Agents', badge: 'Autonomous Logic' },
+                { name: 'APIs & Integrations', badge: 'REST & Webhooks' }
+            ];
+
+            let current = 0;
+
+            function setSlide(index) {
+                if (index === current) return;
+                items[current].classList.remove('active');
+                images[current].classList.remove('active');
+                items[index].classList.add('active');
+                images[index].classList.add('active');
+                labelText.textContent = slideData[index].name;
+                labelSub.textContent = slideData[index].badge;
+                current = index;
+            }
+
+            items.forEach((item, i) => {
+                item.addEventListener('mouseenter', () => setSlide(i));
+                item.addEventListener('click', () => setSlide(i));
+            });
+        })();
 
         // Section cursor spotlight
         const spotlight = document.getElementById('aboutSpotlight');
@@ -1960,6 +3573,1022 @@
                 sectionObserver.observe(aboutSection);
                 window.addEventListener('resize', () => {
                     if (aboutSection.getBoundingClientRect().top < window.innerHeight) start();
+                }, { passive: true });
+            }
+        })();
+
+        // =====================================================================
+        // TECH STACK — SKILLS DATA
+        // =====================================================================
+        const skillsData = [
+            // Programming Languages
+            {
+                id: 'python',
+                name: 'Python',
+                category: 'Programming Languages',
+                experience: 'Advanced',
+                description: 'AI, automation and backend development.',
+                usage: 'The backbone of my AI and automation projects. I use it for machine learning, data analysis, API development, and scripting.',
+                projects: 'AI chatbots, automation pipelines, data analysis tools, backend microservices',
+                note: 'My primary language for AI engineering. Python\'s ecosystem lets me move from idea to production faster than any other language.',
+                related: ['Django', 'Flask', 'FastAPI', 'TensorFlow', 'PyTorch', 'OpenCV', 'NumPy', 'Pandas', 'Scikit Learn', 'Hugging Face'],
+                icon: 'P'
+            },
+            {
+                id: 'javascript',
+                name: 'JavaScript',
+                category: 'Programming Languages',
+                experience: 'Advanced',
+                description: 'Interactive web experiences and full-stack development.',
+                usage: 'Core language for both frontend and backend development. Powers interactive UIs, API integrations, and real-time features.',
+                projects: 'Full-stack web apps, interactive dashboards, browser extensions, API services',
+                note: 'JavaScript is everywhere. From React frontends to Node.js backends — it\'s the glue of the modern web.',
+                related: ['React', 'Next.js', 'Node.js', 'TypeScript', 'Tailwind CSS'],
+                icon: 'JS'
+            },
+            {
+                id: 'typescript',
+                name: 'TypeScript',
+                category: 'Programming Languages',
+                experience: 'Advanced',
+                description: 'Type-safe, scalable application development.',
+                usage: 'My go-to for production applications. Type safety catches bugs early and makes refactoring confident and fast.',
+                projects: 'SaaS platforms, API backends, React/Next.js applications, library development',
+                note: 'Once you go TypeScript, you never go back. It\'s JavaScript with superpowers — especially for team projects.',
+                related: ['JavaScript', 'React', 'Next.js', 'Node.js'],
+                icon: 'TS'
+            },
+            {
+                id: 'c',
+                name: 'C',
+                category: 'Programming Languages',
+                experience: 'Intermediate',
+                description: 'Systems programming and performance-critical applications.',
+                usage: 'Used for understanding low-level computing, memory management, and building efficient algorithms.',
+                projects: 'System tools, algorithm implementations, embedded experiments',
+                note: 'C taught me how computers actually work. Every developer should learn it at least once.',
+                related: ['C++'],
+                icon: 'C'
+            },
+            {
+                id: 'cpp',
+                name: 'C++',
+                category: 'Programming Languages',
+                experience: 'Intermediate',
+                description: 'High-performance applications and game development.',
+                usage: 'Building performance-intensive applications where speed and memory efficiency are critical.',
+                projects: 'Algorithm visualizers, performance benchmarks, competitive programming',
+                note: 'C++ is my choice when Python is too slow and Rust isn\'t an option. Powerful but demands respect.',
+                related: ['C'],
+                icon: 'C++'
+            },
+            {
+                id: 'kotlin',
+                name: 'Kotlin',
+                category: 'Programming Languages',
+                experience: 'Intermediate',
+                description: 'Modern Android and multiplatform development.',
+                usage: 'Building modern Android applications with clean, concise syntax and full Java interoperability.',
+                projects: 'Android apps, multiplatform libraries',
+                note: 'Kotlin makes Android development enjoyable. The coroutines system is a game-changer for async code.',
+                related: [],
+                icon: 'Kt'
+            },
+            {
+                id: 'bash',
+                name: 'Bash',
+                category: 'Programming Languages',
+                experience: 'Intermediate',
+                description: 'Shell scripting and automation.',
+                usage: 'Automating repetitive tasks, CI/CD pipelines, system administration, and developer workflows.',
+                projects: 'Deployment scripts, automation pipelines, developer tooling',
+                note: 'The command line is my happy place. Bash turns hours of work into seconds of automation.',
+                related: ['Linux', 'Docker'],
+                icon: 'Bsh'
+            },
+            // Frontend
+            {
+                id: 'html',
+                name: 'HTML',
+                category: 'Frontend',
+                experience: 'Advanced',
+                description: 'Semantic web structure and accessibility.',
+                usage: 'Building accessible, semantic, and SEO-friendly web structures that form the foundation of every project.',
+                projects: 'Every web project I\'ve ever built',
+                note: 'The foundation of the web. I believe in clean, semantic HTML that works for everyone.',
+                related: ['CSS', 'JavaScript', 'React'],
+                icon: 'HTML'
+            },
+            {
+                id: 'css',
+                name: 'CSS',
+                category: 'Frontend',
+                experience: 'Advanced',
+                description: 'Beautiful, responsive, and animated interfaces.',
+                usage: 'Crafting pixel-perfect, responsive layouts with modern CSS — grids, flexbox, animations, and custom properties.',
+                projects: 'Portfolio sites, SaaS dashboards, landing pages',
+                note: 'CSS is not a design tool — it\'s a programming language for visual expression. Modern CSS is incredibly powerful.',
+                related: ['HTML', 'Tailwind CSS', 'Bootstrap', 'React'],
+                icon: 'CSS'
+            },
+            {
+                id: 'react',
+                name: 'React',
+                category: 'Frontend',
+                experience: 'Advanced',
+                description: 'Building beautiful modern frontends.',
+                usage: 'My go-to library for building interactive user experiences with reusable components and efficient state management.',
+                projects: 'Single-page apps, dashboards, interactive tools, SaaS frontends',
+                note: 'React changed how I think about UI. Component-based architecture is the way forward.',
+                related: ['Next.js', 'JavaScript', 'TypeScript', 'Tailwind CSS', 'Node.js'],
+                icon: '⚛'
+            },
+            {
+                id: 'nextjs',
+                name: 'Next.js',
+                category: 'Frontend',
+                experience: 'Advanced',
+                description: 'Full-stack React framework for production.',
+                usage: 'Building production-ready React applications with SSR, SSG, API routes, and optimized performance out of the box.',
+                projects: 'Portfolio websites, SaaS platforms, e-commerce, blogs',
+                note: 'Next.js is my default choice for any web project. It does everything and does it well.',
+                related: ['React', 'JavaScript', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+                icon: 'N'
+            },
+            {
+                id: 'tailwind',
+                name: 'Tailwind CSS',
+                category: 'Frontend',
+                experience: 'Advanced',
+                description: 'Utility-first CSS framework for rapid UI development.',
+                usage: 'Building custom designs quickly without leaving HTML. Perfect for consistent, responsive interfaces.',
+                projects: 'Almost every recent project — portfolio, dashboards, landing pages',
+                note: 'Tailwind makes me 3x faster at building UIs. Utility-first is the best paradigm shift in CSS.',
+                related: ['CSS', 'React', 'Next.js', 'Bootstrap'],
+                icon: 'TW'
+            },
+            {
+                id: 'bootstrap',
+                name: 'Bootstrap',
+                category: 'Frontend',
+                experience: 'Intermediate',
+                description: 'Rapid prototyping and responsive layouts.',
+                usage: 'Quick prototypes and projects where rapid development with a proven grid system is needed.',
+                projects: 'Admin dashboards, internal tools, MVPs',
+                note: 'Bootstrap was my first CSS framework. Still useful for prototypes and internal tools.',
+                related: ['CSS', 'Tailwind CSS', 'HTML'],
+                icon: 'BS'
+            },
+            // Backend
+            {
+                id: 'nodejs',
+                name: 'Node.js',
+                category: 'Backend',
+                experience: 'Advanced',
+                description: 'Scalable server-side JavaScript runtime.',
+                usage: 'Building fast, scalable backend services, REST APIs, and real-time applications with event-driven architecture.',
+                projects: 'API backends, real-time chat apps, microservices, authentication systems',
+                note: 'Node.js brought JavaScript to the server. The npm ecosystem is unmatched for backend development.',
+                related: ['JavaScript', 'TypeScript', 'Express', 'MongoDB', 'Docker'],
+                icon: 'N'
+            },
+            {
+                id: 'django',
+                name: 'Django',
+                category: 'Backend',
+                experience: 'Intermediate',
+                description: 'Python web framework for rapid development.',
+                usage: 'Building robust, database-driven web applications with Django\'s "batteries-included" philosophy.',
+                projects: 'Content platforms, admin panels, REST APIs',
+                note: 'Django is Python\'s gift to web development. The admin panel alone saves weeks of work.',
+                related: ['Python', 'Flask', 'FastAPI', 'PostgreSQL'],
+                icon: 'Dj'
+            },
+            {
+                id: 'flask',
+                name: 'Flask',
+                category: 'Backend',
+                experience: 'Intermediate',
+                description: 'Lightweight Python web framework.',
+                usage: 'Microservices, lightweight APIs, and projects where simplicity and flexibility are key.',
+                projects: 'REST APIs, microservices, prototyping',
+                note: 'Flask gives me just enough structure without getting in the way. Perfect for APIs and microservices.',
+                related: ['Python', 'Django', 'FastAPI'],
+                icon: 'Fl'
+            },
+            {
+                id: 'fastapi',
+                name: 'FastAPI',
+                category: 'Backend',
+                experience: 'Intermediate',
+                description: 'Modern Python API framework with automatic docs.',
+                usage: 'Building high-performance APIs with automatic OpenAPI documentation and type validation.',
+                projects: 'ML model serving, REST APIs, real-time features',
+                note: 'FastAPI is the future of Python backends. Automatic docs, type safety, and incredible performance.',
+                related: ['Python', 'Django', 'Flask'],
+                icon: 'FA'
+            },
+            // AI & ML
+            {
+                id: 'tensorflow',
+                name: 'TensorFlow',
+                category: 'Artificial Intelligence',
+                experience: 'Intermediate',
+                description: 'Machine learning and deep learning framework.',
+                usage: 'Building and training machine learning models for classification, regression, and neural networks.',
+                projects: 'Image classifiers, NLP models, predictive analytics',
+                note: 'TensorFlow opened the door to deep learning for me. The ecosystem is vast and powerful.',
+                related: ['Python', 'PyTorch', 'OpenCV', 'NumPy', 'Scikit Learn'],
+                icon: 'TF'
+            },
+            {
+                id: 'pytorch',
+                name: 'PyTorch',
+                category: 'Artificial Intelligence',
+                experience: 'Intermediate',
+                description: 'Dynamic deep learning framework.',
+                usage: 'Research-oriented ML projects, dynamic neural networks, and custom model architectures.',
+                projects: 'Custom neural networks, research experiments, AI prototypes',
+                note: 'PyTorch\'s dynamic computation graph makes debugging and experimentation a joy.',
+                related: ['Python', 'TensorFlow', 'NumPy', 'OpenCV'],
+                icon: 'PT'
+            },
+            {
+                id: 'opencv',
+                name: 'OpenCV',
+                category: 'Artificial Intelligence',
+                experience: 'Intermediate',
+                description: 'Real-time computer vision library.',
+                usage: 'Image processing, real-time object detection, face recognition, and video analysis.',
+                projects: 'Face recognition systems, object tracking, image filters',
+                note: 'OpenCV turns camera feeds into actionable data. Computer vision is where AI gets really exciting.',
+                related: ['Python', 'TensorFlow', 'PyTorch', 'NumPy'],
+                icon: 'CV'
+            },
+            {
+                id: 'scikit',
+                name: 'Scikit Learn',
+                category: 'Artificial Intelligence',
+                experience: 'Intermediate',
+                description: 'Machine learning for data mining and analysis.',
+                usage: 'Classic ML algorithms for classification, regression, clustering, and data preprocessing.',
+                projects: 'Predictive models, data analysis pipelines, recommendation systems',
+                note: 'Scikit Learn is my first stop for ML tasks. Simple, consistent, and battle-tested.',
+                related: ['Python', 'NumPy', 'Pandas', 'TensorFlow'],
+                icon: 'SK'
+            },
+            {
+                id: 'numpy',
+                name: 'NumPy',
+                category: 'Artificial Intelligence',
+                experience: 'Advanced',
+                description: 'Numerical computing in Python.',
+                usage: 'Scientific computing, array operations, linear algebra, and numerical data processing.',
+                projects: 'Every data/ML project — from preprocessing to model evaluation',
+                note: 'NumPy is the foundation of Python\'s data stack. Everything in ML builds on it.',
+                related: ['Python', 'Pandas', 'TensorFlow', 'Scikit Learn', 'OpenCV'],
+                icon: 'NP'
+            },
+            {
+                id: 'pandas',
+                name: 'Pandas',
+                category: 'Artificial Intelligence',
+                experience: 'Advanced',
+                description: 'Data manipulation and analysis library.',
+                usage: 'Data cleaning, transformation, analysis, and visualization preparation.',
+                projects: 'Data analysis dashboards, ETL pipelines, reporting tools',
+                note: 'Pandas makes messy data beautiful. Data analysis without it feels impossible.',
+                related: ['Python', 'NumPy', 'Scikit Learn'],
+                icon: 'Pd'
+            },
+            {
+                id: 'huggingface',
+                name: 'Hugging Face',
+                category: 'Artificial Intelligence',
+                experience: 'Intermediate',
+                description: 'State-of-the-art NLP models and tools.',
+                usage: 'Leveraging pre-trained transformers for NLP tasks like text generation, summarization, and translation.',
+                projects: 'AI chatbots, text summarizers, sentiment analysis',
+                note: 'Hugging Face put state-of-the-art NLP in everyone\'s hands. The model hub is incredible.',
+                related: ['Python', 'TensorFlow', 'PyTorch'],
+                icon: 'HF'
+            },
+            // Databases
+            {
+                id: 'mongodb',
+                name: 'MongoDB',
+                category: 'Databases',
+                experience: 'Intermediate',
+                description: 'NoSQL database solutions.',
+                usage: 'Flexible document storage for applications that need to scale horizontally with schema-less data.',
+                projects: 'Real-time apps, content management, IoT data storage',
+                note: 'MongoDB\'s flexibility is perfect for prototyping and applications with evolving data models.',
+                related: ['Node.js', 'Express', 'PostgreSQL', 'Firebase'],
+                icon: 'MDB'
+            },
+            {
+                id: 'postgresql',
+                name: 'PostgreSQL',
+                category: 'Databases',
+                experience: 'Intermediate',
+                description: 'Advanced relational database system.',
+                usage: 'ACID-compliant data storage for applications requiring complex queries, data integrity, and reliability.',
+                projects: 'SaaS backends, analytics platforms, e-commerce databases',
+                note: 'PostgreSQL is the gold standard for relational databases. JSON support makes it even more versatile.',
+                related: ['Django', 'Node.js', 'MongoDB', 'Redis'],
+                icon: 'PG'
+            },
+            {
+                id: 'mysql',
+                name: 'MySQL',
+                category: 'Databases',
+                experience: 'Intermediate',
+                description: 'Popular open-source relational database.',
+                usage: 'Reliable relational data storage for web applications with proven performance and ecosystem support.',
+                projects: 'Web applications, CMS backends, data warehouses',
+                note: 'MySQL is the workhorse of the internet. Reliable, fast, and universally supported.',
+                related: ['PostgreSQL', 'MongoDB'],
+                icon: 'MY'
+            },
+            {
+                id: 'firebase',
+                name: 'Firebase',
+                category: 'Databases',
+                experience: 'Intermediate',
+                description: 'Real-time backend and database platform.',
+                usage: 'Real-time data sync, authentication, serverless functions, and rapid prototyping.',
+                projects: 'Real-time apps, MVPs, mobile backends',
+                note: 'Firebase is my secret weapon for rapid prototyping. Authentication + database in minutes.',
+                related: ['MongoDB', 'Node.js'],
+                icon: 'FB'
+            },
+            {
+                id: 'redis',
+                name: 'Redis',
+                category: 'Databases',
+                experience: 'Intermediate',
+                description: 'In-memory data structure store.',
+                usage: 'Caching, real-time leaderboards, session management, and pub/sub messaging systems.',
+                projects: 'Real-time features, caching layers, rate limiting',
+                note: 'Redis makes everything faster. Caching with Redis is the easiest performance win you can get.',
+                related: ['Node.js', 'PostgreSQL', 'Docker'],
+                icon: 'Re'
+            },
+            // Cloud & DevOps
+            {
+                id: 'docker',
+                name: 'Docker',
+                category: 'Cloud & DevOps',
+                experience: 'Intermediate',
+                description: 'Containerized scalable applications.',
+                usage: 'Containerizing applications for consistent development, testing, and production environments.',
+                projects: 'Microservices architecture, CI/CD pipelines, dev environments',
+                note: 'Docker eliminated "it works on my machine" forever. Containers are the standard.',
+                related: ['AWS', 'Linux', 'Node.js', 'Redis', 'PostgreSQL'],
+                icon: 'D'
+            },
+            {
+                id: 'aws',
+                name: 'AWS',
+                category: 'Cloud & DevOps',
+                experience: 'Intermediate',
+                description: 'Cloud infrastructure and services.',
+                usage: 'Deploying scalable applications using EC2, S3, Lambda, and other AWS services.',
+                projects: 'Cloud-hosted APIs, serverless functions, static site hosting',
+                note: 'AWS has a service for everything. The learning curve is steep but the capabilities are limitless.',
+                related: ['Docker', 'Linux', 'Azure', 'Vercel'],
+                icon: 'AWS'
+            },
+            {
+                id: 'azure',
+                name: 'Azure',
+                category: 'Cloud & DevOps',
+                experience: 'Intermediate',
+                description: 'Microsoft cloud computing platform.',
+                usage: 'Enterprise cloud solutions, AI services, and integration with Microsoft ecosystem.',
+                projects: 'Enterprise applications, AI services deployment',
+                note: 'Azure\'s AI services and enterprise integration make it powerful for corporate environments.',
+                related: ['AWS', 'Docker', 'Linux'],
+                icon: 'Az'
+            },
+            {
+                id: 'linux',
+                name: 'Linux',
+                category: 'Cloud & DevOps',
+                experience: 'Intermediate',
+                description: 'Open-source operating system for development.',
+                usage: 'My daily driver for servers, development environments, and system administration.',
+                projects: 'Server management, CI/CD, dev environments',
+                note: 'Linux is the developer\'s operating system. The terminal is my command center.',
+                related: ['Bash', 'Docker', 'AWS', 'Git'],
+                icon: 'Lx'
+            },
+            {
+                id: 'vercel',
+                name: 'Vercel',
+                category: 'Cloud & DevOps',
+                experience: 'Advanced',
+                description: 'Frontend deployment and serverless platform.',
+                usage: 'Deploying Next.js and frontend applications with automatic CI/CD, previews, and edge functions.',
+                projects: 'This portfolio, SaaS landing pages, Next.js apps',
+                note: 'Vercel makes deployment effortless. Push to GitHub and it\'s live. The developer experience is unmatched.',
+                related: ['Next.js', 'AWS', 'GitHub'],
+                icon: 'V'
+            },
+            // Tools
+            {
+                id: 'git',
+                name: 'Git',
+                category: 'Tools',
+                experience: 'Advanced',
+                description: 'Version control and collaboration.',
+                usage: 'Every project, every day. Branching, merging, rebasing — the foundation of modern development workflows.',
+                projects: 'All projects — from solo experiments to team collaborations',
+                note: 'Git is non-negotiable. Version control is how we build software in the 21st century.',
+                related: ['GitHub', 'VS Code', 'Linux'],
+                icon: 'G'
+            },
+            {
+                id: 'github',
+                name: 'GitHub',
+                category: 'Tools',
+                experience: 'Advanced',
+                description: 'Code hosting and collaboration platform.',
+                usage: 'Hosting repositories, CI/CD with Actions, code reviews, project management, and open source contributions.',
+                projects: 'All repositories, open source contributions, team collaborations',
+                note: 'GitHub is more than version control — it\'s my digital workshop and portfolio rolled into one.',
+                related: ['Git', 'VS Code', 'Vercel'],
+                icon: 'GH'
+            },
+            {
+                id: 'vscode',
+                name: 'VS Code',
+                category: 'Tools',
+                experience: 'Advanced',
+                description: 'My primary code editor — highly customized.',
+                usage: 'All development — from Python scripts to React components. Extensions make it infinitely extensible.',
+                projects: 'Every single project — this is where the magic happens',
+                note: 'VS Code with the right extensions is the best development environment I\'ve ever used.',
+                related: ['Git', 'GitHub'],
+                icon: 'VS'
+            },
+            {
+                id: 'figma',
+                name: 'Figma',
+                category: 'Tools',
+                experience: 'Intermediate',
+                description: 'Collaborative design and prototyping.',
+                usage: 'UI/UX design, wireframing, prototyping, and design handoff for web applications.',
+                projects: 'Portfolio designs, app mockups, design systems',
+                note: 'Figma bridges the gap between design and code. I design in Figma, build in code.',
+                related: ['CSS', 'Tailwind CSS', 'React'],
+                icon: 'Fg'
+            },
+            {
+                id: 'postman',
+                name: 'Postman',
+                category: 'Tools',
+                experience: 'Intermediate',
+                description: 'API testing and documentation.',
+                usage: 'Testing, debugging, and documenting APIs during development and integration.',
+                projects: 'API development, integration testing, documentation',
+                note: 'Postman is indispensable for API development. Automated testing saves so much time.',
+                related: ['Node.js', 'FastAPI', 'Flask'],
+                icon: 'Pm'
+            },
+            {
+                id: 'jupyter',
+                name: 'Jupyter Notebook',
+                category: 'Tools',
+                experience: 'Advanced',
+                description: 'Interactive computing and data exploration.',
+                usage: 'Data analysis, ML experimentation, prototyping algorithms, and sharing results.',
+                projects: 'Data science projects, ML model prototyping, research notebooks',
+                note: 'Jupyter is my lab notebook for data science. The ability to mix code, visuals, and notes is powerful.',
+                related: ['Python', 'NumPy', 'Pandas', 'TensorFlow'],
+                icon: 'JN'
+            },
+            {
+                id: 'photoshop',
+                name: 'Photoshop',
+                category: 'Tools',
+                experience: 'Intermediate',
+                description: 'Image editing and graphic design.',
+                usage: 'Image editing, asset creation, mockups, and visual content for web projects.',
+                projects: 'Social media graphics, UI assets, image optimization',
+                note: 'Photoshop skills are surprisingly useful for a developer. Sometimes you just need to edit an image.',
+                related: ['Figma'],
+                icon: 'PS'
+            },
+            {
+                id: 'msoffice',
+                name: 'MS Office',
+                category: 'Tools',
+                experience: 'Advanced',
+                description: 'Productivity and documentation suite.',
+                usage: 'Documentation, presentations, spreadsheets, and professional communication.',
+                projects: 'Project docs, reports, presentations, data sheets',
+                note: 'MS Office is still the standard for professional documentation. PowerPoint for client pitches, Excel for data.',
+                related: [],
+                icon: 'MS'
+            }
+        ];
+
+        // ========== SKILL ICON RENDERER ==========
+        function renderSkillIcon(skill, size = 32) {
+            if (skill.icon && skill.icon.length <= 3 && !skill.icon.match(/[^a-zA-Z0-9+]/)) {
+                return `<span class="fallback-text">${skill.icon}</span>`;
+            }
+            if (skill.icon && skill.icon.length === 1 && /[^\w]/.test(skill.icon)) {
+                // Emoji or special char
+                return `<span style="font-size:${size * 0.75}px">${skill.icon}</span>`;
+            }
+            return `<span class="fallback-text">${skill.name.charAt(0)}</span>`;
+        }
+
+        // ========== BUILD PYRAMID ==========
+        const pyramidRows = [
+            { items: ['python'], label: 'Core' },
+            { items: ['typescript', 'javascript', 'c'], label: 'Languages' },
+            { items: ['react', 'nextjs', 'nodejs', 'django', 'fastapi'], label: 'Frameworks' },
+            { items: ['tensorflow', 'pytorch', 'opencv', 'scikit', 'mongodb', 'postgresql', 'docker'], label: 'AI & Data' },
+            { items: ['aws', 'linux', 'vercel', 'git', 'github', 'figma', 'postman', 'html', 'css'], label: 'Tools & Cloud' }
+        ];
+
+        // Flatten for quick lookup
+        const skillsMap = {};
+        skillsData.forEach(s => { skillsMap[s.id] = s; });
+
+        // Relation map for glow
+        const relationMap = {};
+        skillsData.forEach(s => {
+            s.related.forEach(relId => {
+                const rel = relId.toLowerCase().replace(/[\s.-]/g, '');
+                if (!relationMap[s.id]) relationMap[s.id] = [];
+                // Find the actual skill id for the related name
+                const found = skillsData.find(sk => sk.name.toLowerCase().replace(/[\s.-]/g, '') === rel);
+                if (found && found.id !== s.id) {
+                    relationMap[s.id].push(found.id);
+                }
+            });
+        });
+
+        // Manual relation additions for critical connections
+        // Python relations
+        relationMap['python'] = ['django', 'flask', 'fastapi', 'tensorflow', 'pytorch', 'opencv', 'scikit', 'numpy', 'pandas', 'huggingface', 'jupyter'];
+        // React relations
+        relationMap['react'] = ['nextjs', 'javascript', 'typescript', 'tailwind', 'nodejs'];
+        // Next.js relations
+        relationMap['nextjs'] = ['react', 'javascript', 'typescript', 'tailwind', 'vercel'];
+        // JavaScript relations
+        relationMap['javascript'] = ['typescript', 'react', 'nextjs', 'nodejs', 'html', 'css'];
+        // TypeScript relations
+        relationMap['typescript'] = ['javascript', 'react', 'nextjs', 'nodejs'];
+        // Node.js relations
+        relationMap['nodejs'] = ['javascript', 'typescript', 'react', 'mongodb', 'docker'];
+
+        function buildPyramid() {
+            const container = document.getElementById('techPyramid');
+            if (!container) return;
+
+            container.innerHTML = '';
+            pyramidRows.forEach((row, rowIdx) => {
+                const rowEl = document.createElement('div');
+                rowEl.className = 'pyramid-row';
+                rowEl.style.transitionDelay = `${rowIdx * 0.1}s`;
+
+                row.items.forEach((itemId) => {
+                    const skill = skillsMap[itemId];
+                    if (!skill) return;
+
+                    const card = document.createElement('div');
+                    card.className = 'skill-card';
+                    card.dataset.skillId = skill.id;
+
+                    const iconWrap = document.createElement('div');
+                    iconWrap.className = 'skill-icon-wrap';
+                    iconWrap.innerHTML = renderSkillIcon(skill, 32);
+
+                    const label = document.createElement('span');
+                    label.className = 'skill-name-label';
+                    label.textContent = skill.name;
+
+                    card.appendChild(iconWrap);
+                    card.appendChild(label);
+                    rowEl.appendChild(card);
+                });
+
+                container.appendChild(rowEl);
+            });
+        }
+
+        buildPyramid();
+
+        // ========== TOOLTIP SYSTEM ==========
+        const tooltip = document.getElementById('skillTooltip');
+        const ttIcon = document.getElementById('ttIcon');
+        const ttName = document.getElementById('ttName');
+        const ttExp = document.getElementById('ttExp');
+        const ttDesc = document.getElementById('ttDesc');
+        const ttRelated = document.getElementById('ttRelated');
+        let tooltipTimeout = null;
+        let tooltipSkillId = null;
+
+        // Track all skill cards
+        const skillCards = document.querySelectorAll('.skill-card');
+
+        function getSkillData(card) {
+            return skillsMap[card.dataset.skillId];
+        }
+
+        function showTooltip(card, event) {
+            const skill = getSkillData(card);
+            if (!skill) return;
+
+            tooltipSkillId = skill.id;
+
+            // Populate
+            ttIcon.innerHTML = renderSkillIcon(skill, 20);
+            ttName.textContent = skill.name;
+            ttExp.textContent = skill.experience;
+            ttDesc.textContent = skill.description;
+
+            ttRelated.innerHTML = '';
+            if (skill.related && skill.related.length > 0) {
+                const label = document.createElement('span');
+                label.className = 'tooltip-related-label';
+                label.textContent = 'Related:';
+                ttRelated.appendChild(label);
+                skill.related.slice(0, 5).forEach(relName => {
+                    const chip = document.createElement('span');
+                    chip.className = 'tooltip-related-chip';
+                    chip.textContent = relName;
+                    ttRelated.appendChild(chip);
+                });
+            }
+
+            // Position
+            const x = event.clientX;
+            const y = event.clientY;
+
+            tooltip.style.left = (x + 20) + 'px';
+            tooltip.style.top = (y - 20) + 'px';
+
+            // Keep in viewport
+            requestAnimationFrame(() => {
+                const rect = tooltip.getBoundingClientRect();
+                const vw = window.innerWidth;
+                const vh = window.innerHeight;
+                if (rect.right > vw - 20) {
+                    tooltip.style.left = (x - rect.width - 20) + 'px';
+                }
+                if (rect.bottom > vh - 20) {
+                    tooltip.style.top = (y - rect.height - 10) + 'px';
+                }
+                // Ensure not off screen left/top
+                const r2 = tooltip.getBoundingClientRect();
+                if (r2.left < 10) tooltip.style.left = '10px';
+                if (r2.top < 10) tooltip.style.top = '10px';
+            });
+
+            tooltip.classList.add('visible');
+
+            // Highlight related skills
+            highlightRelated(skill.id);
+        }
+
+        function hideTooltip() {
+            tooltip.classList.remove('visible');
+            clearRelationGlow();
+            tooltipSkillId = null;
+        }
+
+        function highlightRelated(skillId) {
+            const relatedIds = relationMap[skillId] || [];
+            document.querySelectorAll('.skill-card').forEach(card => {
+                const id = card.dataset.skillId;
+                if (relatedIds.includes(id)) {
+                    card.classList.add('glow-relation');
+                }
+            });
+        }
+
+        function clearRelationGlow() {
+            document.querySelectorAll('.skill-card.glow-relation').forEach(card => {
+                card.classList.remove('glow-relation');
+            });
+        }
+
+        // Event delegation for skill cards
+        document.getElementById('techPyramid').addEventListener('mouseenter', (e) => {
+            const card = e.target.closest('.skill-card');
+            if (card) {
+                clearTimeout(tooltipTimeout);
+                showTooltip(card, e);
+            }
+        }, true);
+
+        document.getElementById('techPyramid').addEventListener('mousemove', (e) => {
+            const card = e.target.closest('.skill-card');
+            if (card) {
+                const skill = getSkillData(card);
+                if (skill && tooltipSkillId !== skill.id) {
+                    clearTimeout(tooltipTimeout);
+                    showTooltip(card, e);
+                } else if (skill) {
+                    // Update position smoothly
+                    const x = e.clientX;
+                    const y = e.clientY;
+                    tooltip.style.left = (x + 20) + 'px';
+                    tooltip.style.top = (y - 20) + 'px';
+                }
+            }
+        }, true);
+
+        document.getElementById('techPyramid').addEventListener('mouseleave', (e) => {
+            const card = e.target.closest('.skill-card');
+            if (!card || !card.contains(e.relatedTarget)) {
+                tooltipTimeout = setTimeout(hideTooltip, 100);
+            }
+        }, true);
+
+        // ========== 3D TILT & MAGNETIC EFFECT ==========
+        if (!isTouchDevice && !prefersReducedMotion) {
+            document.querySelectorAll('.skill-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width - 0.5;
+                    const y = (e.clientY - rect.top) / rect.height - 0.5;
+                    const rotateX = y * -15;
+                    const rotateY = x * 15;
+                    card.style.transform = `translateY(-4px) scale(1.05) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                });
+            });
+        }
+
+        // ========== CLICK -> MODAL ==========
+        const modalOverlay = document.getElementById('skillModalOverlay');
+        const modal = document.getElementById('skillModal');
+        const modalIcon = document.getElementById('modalIcon');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBadge = document.getElementById('modalBadge');
+        const modalUsage = document.getElementById('modalUsage');
+        const modalProjects = document.getElementById('modalProjects');
+        const modalRelated = document.getElementById('modalRelated');
+        const modalNote = document.getElementById('modalNote');
+        const modalClose = document.getElementById('modalClose');
+
+        // Open modal
+        document.getElementById('techPyramid').addEventListener('click', (e) => {
+            const card = e.target.closest('.skill-card');
+            if (!card) return;
+            const skill = getSkillData(card);
+            if (!skill) return;
+
+            // Hide tooltip
+            hideTooltip();
+
+            // Populate modal
+            modalIcon.innerHTML = renderSkillIcon(skill, 28);
+            modalTitle.textContent = skill.name;
+            modalBadge.textContent = skill.experience + ' · Active';
+            modalUsage.textContent = skill.usage || skill.description;
+            modalProjects.textContent = skill.projects || 'Various projects and applications';
+            modalNote.textContent = skill.note || 'A core part of my development stack.';
+
+            // Related chips
+            modalRelated.innerHTML = '';
+            if (skill.related && skill.related.length > 0) {
+                skill.related.forEach(relName => {
+                    const chip = document.createElement('span');
+                    chip.className = 'modal-chip';
+                    chip.textContent = relName;
+                    modalRelated.appendChild(chip);
+                });
+            } else {
+                const chip = document.createElement('span');
+                chip.className = 'modal-chip';
+                chip.textContent = 'Standalone tool';
+                modalRelated.appendChild(chip);
+            }
+
+            // Show modal
+            modalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Close modal
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        modalClose.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // ========== TECH SECTION SPOTLIGHT ==========
+        const techSection = document.getElementById('tech-section');
+        const techSpotlight = document.getElementById('techSpotlight');
+        if (techSection && techSpotlight && !isTouchDevice && !prefersReducedMotion) {
+            techSection.addEventListener('mousemove', (e) => {
+                const rect = techSection.getBoundingClientRect();
+                techSpotlight.style.left = (e.clientX - rect.left) + 'px';
+                techSpotlight.style.top = (e.clientY - rect.top) + 'px';
+            });
+        }
+
+        // ========== SUBTITLE WORD ANIMATION ==========
+        (function animateTechSubtitle() {
+            const subtitle = document.getElementById('techSubtitle');
+            if (!subtitle || prefersReducedMotion) return;
+            const text = subtitle.textContent.trim();
+            subtitle.innerHTML = text.split(/\s+/).map((word, i) =>
+                `<span class="word" style="animation-delay:${0.3 + i * 0.04}s">${word}</span>`
+            ).join(' ');
+        })();
+
+        // ========== SCROLL REVEAL ==========
+        const techRevealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('revealed');
+                techRevealObserver.unobserve(entry.target);
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+
+        document.querySelectorAll('.tech-reveal-up').forEach((el) => {
+            techRevealObserver.observe(el);
+        });
+
+        // Pyramid rows reveal
+        const rowObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('revealed');
+                rowObserver.unobserve(entry.target);
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.pyramid-row').forEach((row, i) => {
+            row.style.transitionDelay = `${i * 0.12}s`;
+            rowObserver.observe(row);
+        });
+
+        // ========== TECH PARTICLES ==========
+        (function initTechParticles() {
+            const canvas = document.getElementById('techParticles');
+            if (!canvas || prefersReducedMotion) return;
+
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            let animId;
+            let w, h;
+            let mouseX = -1000, mouseY = -1000;
+            let hoveredSkillId = null;
+
+            // Track which skill is hovered
+            document.getElementById('techPyramid').addEventListener('mouseenter', (e) => {
+                const card = e.target.closest('.skill-card');
+                if (card) hoveredSkillId = card.dataset.skillId;
+            }, true);
+
+            document.getElementById('techPyramid').addEventListener('mousemove', (e) => {
+                const card = e.target.closest('.skill-card');
+                hoveredSkillId = card ? card.dataset.skillId : null;
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            }, true);
+
+            document.getElementById('techPyramid').addEventListener('mouseleave', () => {
+                hoveredSkillId = null;
+                mouseX = -1000;
+                mouseY = -1000;
+            }, true);
+
+            function resize() {
+                const rect = techSection.getBoundingClientRect();
+                w = canvas.width = rect.width;
+                h = canvas.height = rect.height;
+            }
+
+            function createParticles() {
+                const count = Math.min(50, Math.floor(w / 28));
+                particles = Array.from({ length: count }, () => ({
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    vx: (Math.random() - 0.5) * 0.4,
+                    vy: (Math.random() - 0.5) * 0.4,
+                    r: Math.random() * 2 + 0.8,
+                    a: Math.random() * 0.35 + 0.08,
+                    baseVx: 0,
+                    baseVy: 0
+                }));
+                particles.forEach(p => {
+                    p.baseVx = p.vx;
+                    p.baseVy = p.vy;
+                });
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, w, h);
+                const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+                const color = isLight ? '124, 58, 237' : '168, 85, 247';
+
+                // Get related skill ids for interaction
+                let relatedIds = [];
+                if (hoveredSkillId && relationMap[hoveredSkillId]) {
+                    relatedIds = relationMap[hoveredSkillId];
+                }
+
+                particles.forEach((p, i) => {
+                    // Mouse interaction
+                    const dx = p.x - (mouseX - (techSection?.getBoundingClientRect().left || 0));
+                    const dy = p.y - (mouseY - (techSection?.getBoundingClientRect().top || 0));
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 150 && dist > 0) {
+                        const force = (150 - dist) / 150 * 0.03;
+                        p.vx += dx / dist * force;
+                        p.vy += dy / dist * force;
+                    }
+                    // Restore
+                    p.vx += (p.baseVx - p.vx) * 0.01;
+                    p.vy += (p.baseVy - p.vy) * 0.01;
+
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (p.x < 0) p.x = w;
+                    if (p.x > w) p.x = 0;
+                    if (p.y < 0) p.y = h;
+                    if (p.y > h) p.y = 0;
+
+                    let alpha = p.a;
+                    // Increase alpha for related particles
+                    if (hoveredSkillId && relatedIds.length > 0) {
+                        // Check if near a related skill card
+                        const nearbyRelated = Array.from(document.querySelectorAll('.skill-card')).some(card => {
+                            if (!relatedIds.includes(card.dataset.skillId)) return false;
+                            const rect = card.getBoundingClientRect();
+                            const cx = rect.left + rect.width / 2 - (techSection?.getBoundingClientRect().left || 0);
+                            const cy = rect.top + rect.height / 2 - (techSection?.getBoundingClientRect().top || 0);
+                            const d = Math.sqrt((p.x - cx) ** 2 + (p.y - cy) ** 2);
+                            return d < 200;
+                        });
+                        if (nearbyRelated) alpha = Math.min(1, alpha * 3);
+                    }
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${color}, ${alpha})`;
+                    ctx.fill();
+
+                    // Draw connections
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const p2 = particles[j];
+                        const dx2 = p.x - p2.x;
+                        const dy2 = p.y - p2.y;
+                        const dist2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
+                        if (dist2 < 100) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.strokeStyle = `rgba(${color}, ${0.05 * (1 - dist2 / 100)})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    }
+                });
+
+                animId = requestAnimationFrame(draw);
+            }
+
+            function start() {
+                resize();
+                createParticles();
+                cancelAnimationFrame(animId);
+                draw();
+            }
+
+            const sectionObserver = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    start();
+                } else {
+                    cancelAnimationFrame(animId);
+                }
+            }, { threshold: 0.05 });
+
+            if (techSection) {
+                sectionObserver.observe(techSection);
+                window.addEventListener('resize', () => {
+                    if (techSection.getBoundingClientRect().top < window.innerHeight) start();
                 }, { passive: true });
             }
         })();

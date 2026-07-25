@@ -1,8 +1,45 @@
-# Ignore generated graphify artifacts
+# IDE and OS files
+.DS_Store
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment and Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.cert
+secrets.json
+config.json
+
+# Personal / Sensitive Documents
+*.docx
+*.pdf
+Samarth_Maheshwari_Resume.docx
+Samarth_Maheshwari_Resume.pdf
+
+# Generated or Temporary files
 graphify-out/
 graphipy.md
+dist/
+build/
+coverage/
+.next/
+out/
+tmp/
+temp/
 
-# Ignore large media assets
+# Large Media Files
+*.mp4
 0718 (online-video-cutter.com).mp4
-Samarth_Maheshwari_Resume.docx
 WhatsApp Image 2026-07-19 at 12.44.46 PM.jpeg
