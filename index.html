@@ -322,7 +322,7 @@
         }
 
         .navbar {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -330,7 +330,28 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 10;
+            z-index: 999;
+            transition: transform 0.4s var(--transition), padding 0.4s var(--transition), background 0.4s var(--transition), backdrop-filter 0.4s var(--transition);
+            background: transparent;
+            border-bottom: 1px solid transparent;
+        }
+
+        .navbar.scrolled {
+            padding: 16px 60px;
+            background: rgba(10, 6, 18, 0.45);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="light"] .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.6);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .navbar.hidden-scroll {
+            transform: translateY(-100%);
         }
 
         .logo {
@@ -338,6 +359,12 @@
             font-size: 24px;
             font-weight: 800;
             letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        [data-theme="light"] .navbar.scrolled .logo,
+        [data-theme="light"] .navbar.scrolled .nav-links a {
+            color: #0f0a1f;
         }
 
         .nav-links {
@@ -346,15 +373,17 @@
         }
 
         .nav-links a {
-            color: #fff;
+            color: #d1d5db;
             text-decoration: none;
-            font-size: 16px;
-            font-weight: 400;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
             transition: color 0.3s;
         }
 
         .nav-links a:hover {
-            color: rgba(255, 255, 255, 0.7);
+            color: #ccff00;
         }
 
         .hire-btn {
@@ -364,13 +393,22 @@
             padding: 10px 24px;
             border-radius: 30px;
             text-decoration: none;
-            font-weight: 400;
-            font-size: 15px;
+            font-weight: 500;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: all 0.3s;
         }
 
+        [data-theme="light"] .navbar.scrolled .hire-btn {
+            color: #0f0a1f;
+            border-color: rgba(15, 10, 31, 0.5);
+        }
+
         .hire-btn:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: #ccff00;
+            color: #000 !important;
+            border-color: #ccff00;
         }
 
         .hero-content {
@@ -2615,6 +2653,82 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* ========== CONTINUOUS MARQUEE SKILLS ========== */
+        .marquee-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 40px 0 60px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            gap: 2rem;
+        }
+
+        .marquee-track-right {
+            animation: scroll-right 45s linear infinite;
+        }
+
+        .marquee-track-left {
+            animation: scroll-left 45s linear infinite;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        .marquee-item {
+            font-size: 1.125rem;
+            color: var(--text-tertiary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            white-space: nowrap;
+            transition: color 0.4s var(--transition);
+            cursor: crosshair;
+        }
+
+        .marquee-item:hover {
+            color: var(--text-primary);
+        }
+
+        .marquee-dot {
+            color: var(--accent);
+            opacity: 0.6;
+            font-size: 1.5rem;
+            transform: translateY(1px);
+        }
+
+        @keyframes scroll-left {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(calc(-50% - 1rem));
+            }
+        }
+
+        @keyframes scroll-right {
+            from {
+                transform: translateX(calc(-50% - 1rem));
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
     </style>
 </head>
 
@@ -2656,7 +2770,6 @@
             <div class="nav-links">
                 <a href="#">Home</a>
                 <a href="#about-section">About</a>
-                <a href="#tech-section">Skills</a>
                 <a href="#services-section">Services</a>
                 <a href="#">Projects</a>
                 <a href="#">Contact</a>
@@ -2820,6 +2933,57 @@
                 </div>
             </div>
 
+            <!-- Floating Skills Marquee -->
+            <div class="marquee-wrapper reveal-up">
+                <!-- Row 1 -->
+                <div class="marquee-track marquee-track-left" style="animation-duration: 75s;">
+                    <div class="marquee-item">React.js <span class="marquee-dot">•</span> Next.js <span
+                            class="marquee-dot">•</span> React Native <span class="marquee-dot">•</span> TypeScript
+                        <span class="marquee-dot">•</span> JavaScript <span class="marquee-dot">•</span> Tailwind CSS
+                        <span class="marquee-dot">•</span> Bootstrap <span class="marquee-dot">•</span> Material UI
+                        <span class="marquee-dot">•</span> HTML5</div>
+                    <div class="marquee-item">React.js <span class="marquee-dot">•</span> Next.js <span
+                            class="marquee-dot">•</span> React Native <span class="marquee-dot">•</span> TypeScript
+                        <span class="marquee-dot">•</span> JavaScript <span class="marquee-dot">•</span> Tailwind CSS
+                        <span class="marquee-dot">•</span> Bootstrap <span class="marquee-dot">•</span> Material UI
+                        <span class="marquee-dot">•</span> HTML5</div>
+                </div>
+                <!-- Row 2 -->
+                <div class="marquee-track marquee-track-right" style="animation-duration: 55s;">
+                    <div class="marquee-item">FastAPI <span class="marquee-dot">•</span> Node.js <span
+                            class="marquee-dot">•</span> Express.js <span class="marquee-dot">•</span> REST APIs <span
+                            class="marquee-dot">•</span> Database <span class="marquee-dot">•</span> MongoDB <span
+                            class="marquee-dot">•</span> PostgreSQL <span class="marquee-dot">•</span> Python</div>
+                    <div class="marquee-item">FastAPI <span class="marquee-dot">•</span> Node.js <span
+                            class="marquee-dot">•</span> Express.js <span class="marquee-dot">•</span> REST APIs <span
+                            class="marquee-dot">•</span> Database <span class="marquee-dot">•</span> MongoDB <span
+                            class="marquee-dot">•</span> PostgreSQL <span class="marquee-dot">•</span> Python</div>
+                </div>
+                <!-- Row 3 -->
+                <div class="marquee-track marquee-track-left" style="animation-duration: 75s;">
+                    <div class="marquee-item">Claude <span class="marquee-dot">•</span> Cursor AI <span
+                            class="marquee-dot">•</span> GitHub Copilot <span class="marquee-dot">•</span> Google Gemini
+                        <span class="marquee-dot">•</span> LangChain <span class="marquee-dot">•</span> MCP <span
+                            class="marquee-dot">•</span> Prompt Engineering <span class="marquee-dot">•</span> Agentic
+                        AI <span class="marquee-dot">•</span> ChatGPT</div>
+                    <div class="marquee-item">Claude <span class="marquee-dot">•</span> Cursor AI <span
+                            class="marquee-dot">•</span> GitHub Copilot <span class="marquee-dot">•</span> Google Gemini
+                        <span class="marquee-dot">•</span> LangChain <span class="marquee-dot">•</span> MCP <span
+                            class="marquee-dot">•</span> Prompt Engineering <span class="marquee-dot">•</span> Agentic
+                        AI <span class="marquee-dot">•</span> ChatGPT</div>
+                </div>
+                <!-- Row 4 -->
+                <div class="marquee-track marquee-track-right" style="animation-duration: 35s;">
+                    <div class="marquee-item">VS Code <span class="marquee-dot">•</span> CI/CD <span
+                            class="marquee-dot">•</span> Git <span class="marquee-dot">•</span> GitHub <span
+                            class="marquee-dot">•</span> Docker <span class="marquee-dot">•</span> Postman</div>
+                    <div class="marquee-item">VS Code <span class="marquee-dot">•</span> CI/CD <span
+                            class="marquee-dot">•</span> Git <span class="marquee-dot">•</span> GitHub <span
+                            class="marquee-dot">•</span> Docker <span class="marquee-dot">•</span> Postman</div>
+                </div>
+            </div>
+
+
             <!-- Service Section - WHAT WE CAN DO -->
             <div class="service-list-container" id="services-section">
                 <div class="service-header">
@@ -2950,181 +3114,39 @@
                 </div>
             </div>
 
-            <!-- Journey + Focus -->
-            <div class="about-dual">
-                <div class="about-block">
-                    <div class="block-header reveal-up">
-                        <div>
-                            <div class="block-label">Story</div>
-                            <h3 class="block-title">My Journey</h3>
-                        </div>
-                        <div class="block-line"></div>
-                    </div>
-                    <div class="journey-timeline" id="journeyTimeline">
-                        <div class="timeline-step" data-step>
-                            <span class="timeline-dot"></span>
-                            <div class="timeline-year">Origin</div>
-                            <p class="timeline-text"><strong>Started with curiosity</strong> — fascinated by how
-                                technology could solve everyday problems.</p>
-                        </div>
-                        <div class="timeline-step" data-step>
-                            <span class="timeline-dot"></span>
-                            <div class="timeline-year">Foundation</div>
-                            <p class="timeline-text"><strong>Learned programming</strong> — building a deep foundation
-                                in software engineering and web development.</p>
-                        </div>
-                        <div class="timeline-step" data-step>
-                            <span class="timeline-dot"></span>
-                            <div class="timeline-year">Evolution</div>
-                            <p class="timeline-text"><strong>Built intelligent systems</strong> — combining AI with
-                                full-stack engineering to create smarter solutions.</p>
-                        </div>
-                        <div class="timeline-step" data-step>
-                            <span class="timeline-dot"></span>
-                            <div class="timeline-year">Present</div>
-                            <p class="timeline-text"><strong>Building real-world products</strong> — shipping
-                                applications that create measurable impact.</p>
-                        </div>
-                        <div class="timeline-step" data-step>
-                            <span class="timeline-dot"></span>
-                            <div class="timeline-year">Vision</div>
-                            <p class="timeline-text"><strong>Creating impactful AI solutions</strong> — working toward
-                                technology that genuinely improves lives.</p>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="about-block">
-                    <div class="block-header reveal-up">
-                        <div>
-                            <div class="block-label">Now</div>
-                            <h3 class="block-title">Current Focus</h3>
-                        </div>
-                        <div class="block-line"></div>
-                    </div>
-                    <div class="focus-orbit">
-                        <div class="focus-chip" data-focus>
-                            <div class="focus-chip-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 8V4H8" />
-                                    <rect x="4" y="8" width="16" height="12" rx="2" />
-                                </svg>
-                            </div>
-                            <span class="focus-chip-label">AI Engineering</span>
-                        </div>
-                        <div class="focus-chip" data-focus>
-                            <div class="focus-chip-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="16 18 22 12 16 6" />
-                                    <polyline points="8 6 2 12 8 18" />
-                                </svg>
-                            </div>
-                            <span class="focus-chip-label">Full Stack Development</span>
-                        </div>
-                        <div class="focus-chip" data-focus>
-                            <div class="focus-chip-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path
-                                        d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
-                                    <path d="m9 12 2 2 4-4" />
-                                </svg>
-                            </div>
-                            <span class="focus-chip-label">Automation Systems</span>
-                        </div>
-                        <div class="focus-chip" data-focus>
-                            <div class="focus-chip-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                                    <path d="M2 17l10 5 10-5" />
-                                </svg>
-                            </div>
-                            <span class="focus-chip-label">Building Products</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- ========== TECH STACK SECTION ========== -->
-    <section class="tech-section" id="tech-section">
-        <div class="tech-bg">
-            <canvas id="techParticles" aria-hidden="true"></canvas>
-            <div class="tech-grid-lines"></div>
-            <div class="tech-aurora"></div>
-            <div class="tech-spotlight" id="techSpotlight"></div>
-        </div>
 
-        <div class="tech-container">
-            <header class="tech-header tech-reveal-up">
-                <div class="tech-eyebrow">
-                    <span class="tech-eyebrow-dot"></span>
-                    Stack
-                </div>
-                <h2 class="tech-title">
-                    <span class="tech-title-accent">TECH STACK</span>
-                </h2>
-                <p class="tech-subtitle" id="techSubtitle">
-                    The technologies I use to transform ideas into intelligent digital products.
-                </p>
-            </header>
-
-            <div class="tech-pyramid" id="techPyramid"></div>
-        </div>
-    </section>
-
-    <!-- ========== SKILL TOOLTIP ========== -->
-    <div class="skill-tooltip" id="skillTooltip">
-        <div class="tooltip-header">
-            <div class="tooltip-icon" id="ttIcon"></div>
-            <span class="tooltip-name" id="ttName"></span>
-            <span class="tooltip-experience" id="ttExp"></span>
-        </div>
-        <div class="tooltip-desc" id="ttDesc"></div>
-        <div class="tooltip-related" id="ttRelated"></div>
-    </div>
-
-    <!-- ========== SKILL MODAL ========== -->
-    <div class="skill-modal-overlay" id="skillModalOverlay">
-        <div class="skill-modal" id="skillModal">
-            <button class="modal-close" id="modalClose" aria-label="Close">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <line x1="18" y1="6" x2="6" y2="18" />
-                    <line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
-            </button>
-            <div class="modal-header">
-                <div class="modal-icon" id="modalIcon"></div>
-                <div class="modal-title-group">
-                    <div class="modal-title" id="modalTitle"></div>
-                    <span class="modal-badge" id="modalBadge">In Active Use</span>
-                </div>
-            </div>
-            <div class="modal-section">
-                <div class="modal-section-label">Usage</div>
-                <div class="modal-text" id="modalUsage"></div>
-            </div>
-            <div class="modal-section">
-                <div class="modal-section-label">Projects</div>
-                <div class="modal-text" id="modalProjects"></div>
-            </div>
-            <div class="modal-section">
-                <div class="modal-section-label">Related Technologies</div>
-                <div class="modal-chips" id="modalRelated"></div>
-            </div>
-            <div class="modal-section">
-                <div class="modal-section-label">Developer Note</div>
-                <div class="modal-note" id="modalNote"></div>
-            </div>
-        </div>
-    </div>
 
     <script>
+        // ========== NAVBAR SCROLL ANIMATION ==========
+        (function initNavbar() {
+            const navbar = document.querySelector('.navbar');
+            let lastScrollY = window.scrollY;
+
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+
+                // Add/Remove glassmorphism based on scroll position
+                if (currentScrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+
+                // Hide/Show based on scroll direction
+                if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                    navbar.classList.add('hidden-scroll'); // scrolled down
+                } else {
+                    navbar.classList.remove('hidden-scroll'); // scrolled up
+                }
+
+                lastScrollY = currentScrollY;
+            }, { passive: true });
+        })();
+
         // ========== THEME TOGGLE ==========
         const themeToggle = document.getElementById('themeToggle');
         const root = document.documentElement;
