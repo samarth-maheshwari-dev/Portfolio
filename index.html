@@ -286,6 +286,25 @@
         }
 
         @media (max-width: 768px) {
+            .service-row {
+                padding: 0 20px;
+            }
+
+            .service-row-header {
+                grid-template-columns: 50px 1fr 30px;
+                padding: 24px 0;
+            }
+
+            .service-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .service-row.active .service-content {
+                max-height: 800px;
+                /* enough space for mobile */
+            }
+
             #play-container {
                 bottom: 30px;
                 right: 30px;
@@ -1205,6 +1224,11 @@
             max-width: 520px;
         }
 
+        .identity-desc .word {
+            display: inline-block;
+            will-change: opacity, filter, transform;
+        }
+
         .identity-badges {
             display: flex;
             flex-wrap: wrap;
@@ -1217,40 +1241,52 @@
             align-items: center;
             gap: 8px;
             padding: 10px 16px;
-            background: rgba(168, 85, 247, 0.08);
-            border: 1px solid rgba(168, 85, 247, 0.2);
+            background: #111111;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05), 0 4px 10px rgba(0, 0, 0, 0.3);
             border-radius: 100px;
             font-size: 13px;
             font-weight: 500;
-            color: var(--text-primary);
-            cursor: default;
-            transition: transform 0.35s var(--transition-bounce), background 0.3s var(--transition), box-shadow 0.3s var(--transition), border-color 0.3s var(--transition);
+            color: rgba(255, 255, 255, 0.85);
+            cursor: pointer;
+            transition: all 0.3s var(--transition);
             overflow: hidden;
         }
 
         [data-theme="light"] .opp-badge {
-            background: rgba(124, 58, 237, 0.06);
-            border-color: rgba(124, 58, 237, 0.15);
+            background: #f8f9fa;
+            border-color: rgba(0, 0, 0, 0.1);
+            color: #333;
+            box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .opp-badge::before {
             content: '';
             position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, var(--accent), #ec4899);
-            opacity: 0;
-            transition: opacity 0.35s var(--transition);
+            top: 0;
+            left: -100%;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: skewX(-20deg);
+            transition: 0s;
+        }
+
+        [data-theme="light"] .opp-badge::before {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
         }
 
         .opp-badge:hover {
-            transform: translateY(-3px) scale(1.03);
-            border-color: transparent;
-            box-shadow: 0 8px 28px var(--accent-glow);
-            color: #fff;
+            transform: translateY(-2px);
+            background: #1a1a1a;
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.1), 0 8px 24px rgba(255, 255, 255, 0.05);
+            color: #ffffff;
         }
 
         .opp-badge:hover::before {
-            opacity: 1;
+            left: 150%;
+            transition: 0.5s ease-in-out;
         }
 
         .opp-badge>* {
@@ -1265,16 +1301,16 @@
         }
 
         .opp-badge-live {
-            background: rgba(34, 197, 94, 0.1);
-            border-color: rgba(34, 197, 94, 0.25);
+            background: rgba(34, 197, 94, 0.15);
+            border-color: rgba(34, 197, 94, 0.3);
+            color: #22c55e;
         }
 
         .opp-badge-live:hover {
-            box-shadow: 0 8px 28px rgba(34, 197, 94, 0.25);
-        }
-
-        .opp-badge-live::before {
-            background: linear-gradient(135deg, #22c55e, #16a34a);
+            background: rgba(34, 197, 94, 0.2);
+            border-color: rgba(34, 197, 94, 0.4);
+            box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.1), 0 8px 24px rgba(34, 197, 94, 0.2);
+            color: #4ade80;
         }
 
         /* Section blocks */
@@ -1317,227 +1353,197 @@
             margin-bottom: 8px;
         }
 
-        /* What I Build - Hover Slider */
-        .build-hover-slider {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: clamp(24px, 4vw, 48px);
-            align-items: center;
+        /* ========== SERVICE SECTION ========== */
+        .service-list-container {
+            width: 100%;
+            margin: 60px 0 100px 0;
+            padding: 0;
+            background: transparent;
         }
 
-        .build-list {
+        .service-header {
+            display: flex;
+            justify-content: flex-end;
+            padding: 0 40px 40px;
+        }
+
+        .service-title {
+            text-align: right;
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(2.5rem, 7vw, 6.5rem);
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            .service-title {
+                font-size: clamp(2.2rem, 10vw, 3rem);
+                letter-spacing: -1px;
+                line-height: 1.05;
+            }
+        }
+
+        .service-title-line {
+            display: block;
+            color: #fff;
+        }
+
+        .service-title-line.gradient {
+            background: linear-gradient(180deg, #ffffff 0%, #555555 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .service-list {
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .service-row {
             display: flex;
             flex-direction: column;
-            gap: 4px;
-        }
-
-        .build-list-item {
-            position: relative;
-            padding: 14px 18px;
-            border-radius: 14px;
-            cursor: pointer;
-            transition: background 0.35s var(--transition), transform 0.35s var(--transition-bounce), box-shadow 0.35s var(--transition);
-            background: transparent;
-            border: 1px solid transparent;
-            opacity: 0;
-            transform: translateX(-20px);
-        }
-
-        .build-list-item.revealed {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .build-list-item:hover {
-            background: var(--bg-card);
-            border-color: var(--border-color);
-            transform: translateX(6px);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .build-list-item.active {
-            background: var(--bg-card);
-            border-color: rgba(168, 85, 247, 0.3);
-            box-shadow: 0 0 20px var(--accent-glow);
-        }
-
-        [data-theme="light"] .build-list-item.active {
-            border-color: rgba(124, 58, 237, 0.25);
-        }
-
-        .build-list-top {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 4px;
-        }
-
-        .build-list-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(168, 85, 247, 0.12);
-            border: 1px solid rgba(168, 85, 247, 0.2);
-            color: var(--accent);
-            flex-shrink: 0;
-            transition: all 0.3s var(--transition);
-        }
-
-        .build-list-item.active .build-list-icon,
-        .build-list-item:hover .build-list-icon {
-            background: rgba(168, 85, 247, 0.25);
-            transform: scale(1.08);
-            box-shadow: 0 0 16px var(--accent-glow);
-        }
-
-        .build-list-icon svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        .build-list-name {
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: -0.02em;
-            transition: color 0.3s var(--transition);
-        }
-
-        .build-list-item.active .build-list-name {
-            color: var(--accent-light);
-        }
-
-        .build-list-badge {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
-            font-weight: 500;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--text-tertiary);
-            margin-left: 48px;
-            transition: color 0.3s var(--transition);
-        }
-
-        .build-list-item.active .build-list-badge {
-            color: var(--accent);
-        }
-
-        /* Image display area */
-        .build-display {
-            position: relative;
-            aspect-ratio: 4/3;
-            border-radius: 20px;
-            overflow: hidden;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-md);
-            opacity: 0;
-            transform: scale(0.95);
-            transition: opacity 0.7s var(--transition), transform 0.7s var(--transition);
-        }
-
-        .build-display.revealed {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .build-display-inner {
-            position: absolute;
-            inset: 0;
-        }
-
-        .build-display-img {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transform: scale(1.1);
-            transition: opacity 0.6s var(--transition), transform 0.8s cubic-bezier(0.33, 1, 0.68, 1);
-        }
-
-        .build-display-img.active {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .build-display-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 40%, rgba(10, 6, 18, 0.6) 100%);
-            pointer-events: none;
-        }
-
-        [data-theme="light"] .build-display-overlay {
-            background: linear-gradient(180deg, transparent 40%, rgba(250, 250, 255, 0.5) 100%);
-        }
-
-        .build-display-label {
-            position: absolute;
-            bottom: 20px;
-            left: 24px;
-            right: 24px;
-            z-index: 2;
-            font-family: 'Outfit', sans-serif;
-            font-size: 20px;
-            font-weight: 700;
+            padding: 0 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
             color: #fff;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.4s var(--transition) 0.1s, transform 0.4s var(--transition) 0.1s;
+            background: transparent;
+            transition: all 0.4s var(--transition);
+            font-family: 'Inter', sans-serif;
         }
 
-        .build-display-label.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .service-row-header {
+            display: grid;
+            grid-template-columns: 80px 1fr 40px;
+            align-items: center;
+            padding: 30px 0;
+            width: 100%;
+            cursor: pointer;
         }
 
-        [data-theme="light"] .build-display-label {
-            color: #0f0a1f;
+        .service-row.active,
+        .service-row-header:hover {
+            color: #000 !important;
         }
 
-        .build-display-sub {
-            font-size: 12px;
-            font-weight: 500;
-            opacity: 0.7;
+        .service-row.active {
+            background: #ccff00 !important;
+        }
+
+        .service-row:hover:not(.active) {
+            background: rgba(204, 255, 0, 0.1) !important;
+            color: #ccff00 !important;
+        }
+
+        [data-theme="light"] .service-row {
+            color: #000;
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="light"] .service-title-line {
+            color: #000;
+        }
+
+        .service-num {
+            font-size: 1.1rem;
+            font-weight: 600;
             font-family: 'JetBrains Mono', monospace;
-            letter-spacing: 0.08em;
+        }
+
+        .service-name {
+            font-size: 1.4rem;
+            font-weight: 900;
             text-transform: uppercase;
+            letter-spacing: -0.5px;
         }
 
-        @media (max-width: 900px) {
-            .build-hover-slider {
-                grid-template-columns: 1fr;
-            }
-
-            .build-display {
-                aspect-ratio: 16/9;
-                order: -1;
-            }
-
-            .build-list {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 6px;
-            }
-
-            .build-list-item {
-                padding: 12px 14px;
-            }
-
-            .build-list-badge {
-                margin-left: 0;
-            }
+        .service-arrow {
+            font-size: 1.6rem;
+            font-weight: 300;
+            display: flex;
+            justify-content: flex-end;
+            transition: transform 0.4s var(--transition);
         }
 
-        @media (max-width: 500px) {
-            .build-list {
-                grid-template-columns: 1fr;
-            }
+        .service-row.active .service-arrow,
+        .service-row:hover .service-arrow {
+            transform: translate(6px, 6px);
+        }
+
+        .service-content {
+            display: grid;
+            padding-left: 80px;
+            padding-right: 40px;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            padding-bottom: 0;
+            transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, padding 0.6s ease;
+        }
+
+        .service-row.active .service-content {
+            max-height: 500px;
+            opacity: 1;
+            padding-bottom: 40px;
+        }
+
+        .service-bullets {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .service-bullets li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: rgba(0, 0, 0, 0.8);
+            font-weight: 500;
+        }
+
+        .service-bullets li::before {
+            content: '■';
+            position: absolute;
+            left: 0;
+            top: 1px;
+            font-size: 0.7rem;
+            color: #000;
+        }
+
+        .service-content-right p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: rgba(0, 0, 0, 0.8);
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .view-projects-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #000;
+            color: #ccff00;
+            padding: 12px 24px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: transform 0.3s ease;
+        }
+
+        .view-projects-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .view-projects-btn .bracket {
+            color: #ccff00;
+            font-size: 1rem;
+            font-weight: 300;
         }
 
         /* Journey + Focus row */
@@ -2646,11 +2652,12 @@
         <div id="video-overlay"></div>
 
         <nav class="navbar">
-            <div class="logo">Samarth</div>
+            <div class="logo"></div>
             <div class="nav-links">
                 <a href="#">Home</a>
                 <a href="#about-section">About</a>
                 <a href="#tech-section">Skills</a>
+                <a href="#services-section">Services</a>
                 <a href="#">Projects</a>
                 <a href="#">Contact</a>
             </div>
@@ -2704,20 +2711,21 @@
 
     <!-- ABOUT SECTION — CINEMATIC REDESIGN -->
     <section class="about-section" id="about-section">
-        <div class="about-bg">
-            <canvas id="aboutParticles" aria-hidden="true"></canvas>
-            <div class="about-grid-lines"></div>
-            <div class="about-neural"></div>
-            <div class="about-aurora"></div>
-            <div class="about-spotlight" id="aboutSpotlight"></div>
+        <div class="about-bg" id="liquid-ether-bg"
+            style="position: absolute; inset: 0; z-index: 0; overflow: hidden; width: 100%; height: 100%; touch-action: none;">
+            <canvas id="aboutParticles" aria-hidden="true" style="display: none;"></canvas>
+            <div class="about-grid-lines" style="display: none;"></div>
+            <div class="about-neural" style="display: none;"></div>
+            <div class="about-aurora" style="display: none;"></div>
+            <div class="about-spotlight" id="aboutSpotlight" style="display: none;"></div>
         </div>
 
         <div class="about-container">
             <header class="about-header reveal-up">
-                <div class="about-eyebrow">
-                    <span class="about-eyebrow-dot"></span>
-                    About
-                </div>
+                <h2 class="service-title reveal-up" style="text-align: center; margin-bottom: 30px;">
+                    <span class="service-title-line">ABOUT</span>
+                    <span class="service-title-line gradient">ME</span>
+                </h2>
                 <h2 class="about-title">
                     Building the Future with<br>
                     <span class="about-title-accent" id="aboutFlipWords">Code &amp; AI</span>
@@ -2777,8 +2785,11 @@
                         India
                     </div>
                     <p class="identity-desc">
-                        Architecting scalable web applications and intelligent systems. I bridge the gap between complex
-                        technical challenges and production-ready digital experiences that drive business value.
+                        Hey, I'm Samarth. An enthusiastic AI full-stack developer who loves to build state-of-the-art
+                        web and mobile applications. I love turning concepts into scalable products using tech stack
+                        like React, FastAPI, Node.js, and artificial intelligence technologies. I always strive to keep
+                        my code clean and design great user experience along with learning new technologies like LLMs,
+                        Langchain, and MCP.
                     </p>
                     <div class="identity-badges">
                         <span class="opp-badge opp-badge-live">
@@ -2787,7 +2798,7 @@
                                 <circle cx="12" cy="12" r="10" />
                                 <path d="M12 6v6l4 2" />
                             </svg>
-                            Available Now
+                            <span>Available Now</span>
                         </span>
                         <span class="opp-badge">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -2795,7 +2806,7 @@
                                 <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
                                 <path d="M6 12v5c3 3 9 3 12 0v-5" />
                             </svg>
-                            Internships
+                            <span>Internships</span>
                         </span>
                         <span class="opp-badge">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -2803,140 +2814,137 @@
                                 <rect x="2" y="7" width="20" height="14" rx="2" />
                                 <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
                             </svg>
-                            Freelance Projects
+                            <span>Freelance Projects</span>
                         </span>
                     </div>
                 </div>
             </div>
 
-            <!-- What I Build - Hover Slider -->
-            <div class="about-block">
-                <div class="block-header reveal-up">
-                    <div>
-                        <div class="block-label">Capabilities</div>
-                        <h3 class="block-title">What I Build</h3>
-                    </div>
-                    <div class="block-line"></div>
+            <!-- Service Section - WHAT WE CAN DO -->
+            <div class="service-list-container" id="services-section">
+                <div class="service-header">
+                    <h2 class="service-title reveal-up">
+                        <span class="service-title-line">WHAT WE</span>
+                        <span class="service-title-line gradient">CAN DO</span>
+                    </h2>
                 </div>
-                <div class="build-hover-slider" id="buildHoverSlider">
-                    <div class="build-list" id="buildList">
-                        <div class="build-list-item active" data-build-index="0">
-                            <div class="build-list-top">
-                                <div class="build-list-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M12 8V4H8" />
-                                        <rect x="4" y="8" width="16" height="12" rx="2" />
-                                        <path d="M2 14h2" />
-                                        <path d="M20 14h2" />
-                                        <path d="M15 13v2" />
-                                        <path d="M9 13v2" />
-                                    </svg>
-                                </div>
-                                <span class="build-list-name">AI Assistants</span>
-                            </div>
-                            <span class="build-list-badge">LLMs &amp; RAG</span>
+                <div class="service-list reveal-up">
+                    <div class="service-row active">
+                        <div class="service-row-header">
+                            <div class="service-num">01</div>
+                            <div class="service-name">AI FULL STACK DEVELOPMENT</div>
+                            <div class="service-arrow">↘</div>
                         </div>
-                        <div class="build-list-item" data-build-index="1">
-                            <div class="build-list-top">
-                                <div class="build-list-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <rect x="2" y="3" width="20" height="14" rx="2" />
-                                        <path d="M8 21h8" />
-                                        <path d="M12 17v4" />
-                                    </svg>
-                                </div>
-                                <span class="build-list-name">Full Stack Apps</span>
+                        <div class="service-content">
+                            <div class="service-content-left">
+                                <ul class="service-bullets">
+                                    <li>Develop responsive web applications with React.js &amp; Next.js</li>
+                                    <li>Build secure REST APIs using FastAPI &amp; Node.js</li>
+                                    <li>Design scalable backend architecture and databases</li>
+                                    <li>Integrate AI-powered features and automation</li>
+                                    <li>Deliver clean, maintainable, production-ready code</li>
+                                </ul>
                             </div>
-                            <span class="build-list-badge">React &amp; Node</span>
-                        </div>
-                        <div class="build-list-item" data-build-index="2">
-                            <div class="build-list-top">
-                                <div class="build-list-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                                        <path d="M2 17l10 5 10-5" />
-                                        <path d="M2 12l10 5 10-5" />
-                                    </svg>
-                                </div>
-                                <span class="build-list-name">SaaS Products</span>
+                            <div class="service-content-right">
+                                <p>I build scalable, high-performance web applications by combining modern frontend
+                                    frameworks, robust backend systems, and AI-powered solutions. From planning and
+                                    architecture to deployment, I create secure, responsive, and production-ready
+                                    digital experiences.</p>
+                                <a href="#" class="view-projects-btn"><span class="bracket">┌</span> VIEW PROJECTS <span
+                                        class="bracket">┘</span></a>
                             </div>
-                            <span class="build-list-badge">Scalable Arch</span>
-                        </div>
-                        <div class="build-list-item" data-build-index="3">
-                            <div class="build-list-top">
-                                <div class="build-list-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <path
-                                            d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
-                                        <path d="m9 12 2 2 4-4" />
-                                    </svg>
-                                </div>
-                                <span class="build-list-name">Automation Systems</span>
-                            </div>
-                            <span class="build-list-badge">Workflows &amp; Bots</span>
-                        </div>
-                        <div class="build-list-item" data-build-index="4">
-                            <div class="build-list-top">
-                                <div class="build-list-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" />
-                                        <path d="M12 2v2" />
-                                        <path d="M12 20v2" />
-                                        <path d="m4.93 4.93 1.41 1.41" />
-                                        <path d="m17.66 17.66 1.41 1.41" />
-                                        <path d="M2 12h2" />
-                                        <path d="M20 12h2" />
-                                    </svg>
-                                </div>
-                                <span class="build-list-name">AI Agents</span>
-                            </div>
-                            <span class="build-list-badge">Autonomous Logic</span>
-                        </div>
-                        <div class="build-list-item" data-build-index="5">
-                            <div class="build-list-top">
-                                <div class="build-list-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <path
-                                            d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
-                                        <path
-                                            d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
-                                    </svg>
-                                </div>
-                                <span class="build-list-name">APIs &amp; Integrations</span>
-                            </div>
-                            <span class="build-list-badge">REST &amp; Webhooks</span>
                         </div>
                     </div>
-                    <div class="build-display" id="buildDisplay">
-                        <div class="build-display-inner" id="buildDisplayInner">
-                            <img class="build-display-img active" src="AI-assistant2.jpg" alt="AI Assistants"
-                                loading="lazy" />
-                            <img class="build-display-img"
-                                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop"
-                                alt="Full Stack Apps" loading="lazy" />
-                            <img class="build-display-img"
-                                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop"
-                                alt="SaaS Products" loading="lazy" />
-                            <img class="build-display-img"
-                                src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop"
-                                alt="Automation Systems" loading="lazy" />
-                            <img class="build-display-img"
-                                src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop"
-                                alt="AI Agents" loading="lazy" />
-                            <img class="build-display-img"
-                                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=800&auto=format&fit=crop"
-                                alt="APIs & Integrations" loading="lazy" />
+                    <div class="service-row">
+                        <div class="service-row-header">
+                            <div class="service-num">02</div>
+                            <div class="service-name">FRONTEND DEVELOPMENT</div>
+                            <div class="service-arrow">↘</div>
                         </div>
-                        <div class="build-display-overlay"></div>
-                        <div class="build-display-label visible" id="buildDisplayLabel">
-                            <span id="buildDisplayLabelText">AI Assistants</span>
-                            <div class="build-display-sub">LLMs &amp; RAG</div>
+                        <div class="service-content">
+                            <div class="service-content-left">
+                                <ul class="service-bullets">
+                                    <li>React.js</li>
+                                    <li>Next.js</li>
+                                    <li>TypeScript</li>
+                                    <li>Tailwind CSS</li>
+                                    <li>GSAP Animations</li>
+                                    <li>Responsive Design</li>
+                                </ul>
+                            </div>
+                            <div class="service-content-right">
+                                <p>I create fast, responsive, and visually engaging user interfaces that provide
+                                    seamless user experiences across desktop, tablet, and mobile devices.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-row">
+                        <div class="service-row-header">
+                            <div class="service-num">03</div>
+                            <div class="service-name">BACKEND &amp; API DEVELOPMENT</div>
+                            <div class="service-arrow">↘</div>
+                        </div>
+                        <div class="service-content">
+                            <div class="service-content-left">
+                                <ul class="service-bullets">
+                                    <li>FastAPI</li>
+                                    <li>Node.js</li>
+                                    <li>Express.js</li>
+                                    <li>MongoDB</li>
+                                    <li>PostgreSQL</li>
+                                    <li>JWT Authentication</li>
+                                </ul>
+                            </div>
+                            <div class="service-content-right">
+                                <p>I develop secure and scalable backend systems with well-structured APIs, efficient
+                                    databases, and authentication mechanisms to power modern web applications.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-row">
+                        <div class="service-row-header">
+                            <div class="service-num">04</div>
+                            <div class="service-name">AI &amp; AUTOMATION</div>
+                            <div class="service-arrow">↘</div>
+                        </div>
+                        <div class="service-content">
+                            <div class="service-content-left">
+                                <ul class="service-bullets">
+                                    <li>OpenAI Integration</li>
+                                    <li>LangChain</li>
+                                    <li>MCP</li>
+                                    <li>Prompt Engineering</li>
+                                    <li>AI Chatbots</li>
+                                    <li>Workflow Automation</li>
+                                </ul>
+                            </div>
+                            <div class="service-content-right">
+                                <p>I integrate artificial intelligence into applications to automate workflows, improve
+                                    productivity, and create intelligent user experiences using modern AI technologies.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-row">
+                        <div class="service-row-header">
+                            <div class="service-num">05</div>
+                            <div class="service-name">MOBILE DEVELOPMENT</div>
+                            <div class="service-arrow">↘</div>
+                        </div>
+                        <div class="service-content">
+                            <div class="service-content-left">
+                                <ul class="service-bullets">
+                                    <li>React Native</li>
+                                    <li>API Integration</li>
+                                    <li>Responsive UI</li>
+                                    <li>State Management</li>
+                                    <li>Performance Optimization</li>
+                                </ul>
+                            </div>
+                            <div class="service-content-right">
+                                <p>I build responsive cross-platform mobile applications with smooth performance,
+                                    intuitive interfaces, and seamless integration with backend services.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -3443,39 +3451,24 @@
             });
         });
 
-        // ========== WHAT I BUILD - HOVER SLIDER ==========
-        (function initBuildHoverSlider() {
-            const items = document.querySelectorAll('.build-list-item');
-            const images = document.querySelectorAll('.build-display-img');
-            const labelText = document.getElementById('buildDisplayLabelText');
-            const labelSub = document.querySelector('.build-display-sub');
-            const labelEl = document.getElementById('buildDisplayLabel');
+        // ========== SERVICE SECTION ACCORDION ==========
+        (function initServiceAccordion() {
+            const rows = document.querySelectorAll('.service-row');
+            const headers = document.querySelectorAll('.service-row-header');
 
-            const slideData = [
-                { name: 'AI Assistants', badge: 'LLMs & RAG' },
-                { name: 'Full Stack Apps', badge: 'React & Node' },
-                { name: 'SaaS Products', badge: 'Scalable Arch' },
-                { name: 'Automation Systems', badge: 'Workflows & Bots' },
-                { name: 'AI Agents', badge: 'Autonomous Logic' },
-                { name: 'APIs & Integrations', badge: 'REST & Webhooks' }
-            ];
+            headers.forEach((header, index) => {
+                header.addEventListener('click', () => {
+                    const row = rows[index];
+                    const isActive = row.classList.contains('active');
 
-            let current = 0;
+                    // Close all
+                    rows.forEach(r => r.classList.remove('active'));
 
-            function setSlide(index) {
-                if (index === current) return;
-                items[current].classList.remove('active');
-                images[current].classList.remove('active');
-                items[index].classList.add('active');
-                images[index].classList.add('active');
-                labelText.textContent = slideData[index].name;
-                labelSub.textContent = slideData[index].badge;
-                current = index;
-            }
-
-            items.forEach((item, i) => {
-                item.addEventListener('mouseenter', () => setSlide(i));
-                item.addEventListener('click', () => setSlide(i));
+                    // If it wasn't active, open it
+                    if (!isActive) {
+                        row.classList.add('active');
+                    }
+                });
             });
         })();
 
@@ -4592,6 +4585,565 @@
                 }, { passive: true });
             }
         })();
+    </script>
+
+    <!-- LiquidEther Vanilla JS Implementation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            if (typeof THREE === 'undefined') return;
+            const container = document.getElementById('liquid-ether-bg');
+            if (!container) return;
+
+            const opts = {
+                colors: ['#5227FF', '#FF9FFC', '#B497CF'],
+                mouseForce: 20, cursorSize: 100, isViscous: false, viscous: 30,
+                iterationsViscous: 32, iterationsPoisson: 32, dt: 0.014, BFECC: true,
+                resolution: 0.5, isBounce: false, autoDemo: true, autoSpeed: 0.5,
+                autoIntensity: 2.2, takeoverDuration: 0.25, autoResumeDelay: 3000, autoRampDuration: 0.6
+            };
+
+            function makePaletteTexture(stops) {
+                let arr;
+                if (Array.isArray(stops) && stops.length > 0) {
+                    arr = stops.length === 1 ? [stops[0], stops[0]] : stops;
+                } else arr = ['#ffffff', '#ffffff'];
+
+                const w = arr.length;
+                const data = new Uint8Array(w * 4);
+                for (let i = 0; i < w; i++) {
+                    const c = new THREE.Color(arr[i]);
+                    data[i * 4 + 0] = Math.round(c.r * 255);
+                    data[i * 4 + 1] = Math.round(c.g * 255);
+                    data[i * 4 + 2] = Math.round(c.b * 255);
+                    data[i * 4 + 3] = 255;
+                }
+                const tex = new THREE.DataTexture(data, w, 1, THREE.RGBAFormat);
+                tex.magFilter = THREE.LinearFilter;
+                tex.minFilter = THREE.LinearFilter;
+                tex.wrapS = THREE.ClampToEdgeWrapping;
+                tex.wrapT = THREE.ClampToEdgeWrapping;
+                tex.generateMipmaps = false;
+                tex.needsUpdate = true;
+                return tex;
+            }
+
+            const paletteTex = makePaletteTexture(opts.colors);
+            const bgVec4 = new THREE.Vector4(0, 0, 0, 0);
+
+            class CommonClass {
+                constructor() {
+                    this.width = 0; this.height = 0; this.aspect = 1; this.pixelRatio = 1;
+                    this.time = 0; this.delta = 0; this.container = null; this.renderer = null; this.clock = null;
+                }
+                init(container) {
+                    this.container = container;
+                    this.pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+                    this.resize();
+                    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+                    this.renderer.autoClear = false;
+                    this.renderer.setClearColor(new THREE.Color(0x000000), 0);
+                    this.renderer.setPixelRatio(this.pixelRatio);
+                    this.renderer.setSize(this.width, this.height);
+                    this.renderer.domElement.style.width = '100%';
+                    this.renderer.domElement.style.height = '100%';
+                    this.renderer.domElement.style.display = 'block';
+                    this.clock = new THREE.Clock();
+                    this.clock.start();
+                }
+                resize() {
+                    if (!this.container) return;
+                    const rect = this.container.getBoundingClientRect();
+                    this.width = Math.max(1, Math.floor(rect.width));
+                    this.height = Math.max(1, Math.floor(rect.height));
+                    this.aspect = this.width / this.height;
+                    if (this.renderer) this.renderer.setSize(this.width, this.height, false);
+                }
+                update() {
+                    this.delta = this.clock.getDelta();
+                    this.time += this.delta;
+                }
+            }
+            const Common = new CommonClass();
+
+            class MouseClass {
+                constructor() {
+                    this.mouseMoved = false; this.coords = new THREE.Vector2(); this.coords_old = new THREE.Vector2();
+                    this.diff = new THREE.Vector2(); this.timer = null; this.container = null;
+                    this.listenerTarget = null; this.isHoverInside = false; this.hasUserControl = false;
+                    this.isAutoActive = false; this.autoIntensity = 2.0; this.takeoverActive = false;
+                    this.takeoverStartTime = 0; this.takeoverDuration = 0.25;
+                    this.takeoverFrom = new THREE.Vector2(); this.takeoverTo = new THREE.Vector2();
+                    this._onMouseMove = this.onDocumentMouseMove.bind(this);
+                    this._onTouchStart = this.onDocumentTouchStart.bind(this);
+                    this._onTouchMove = this.onDocumentTouchMove.bind(this);
+                    this._onTouchEnd = this.onTouchEnd.bind(this);
+                }
+                init(container) {
+                    this.container = container;
+                    this.listenerTarget = window;
+                    this.listenerTarget.addEventListener('mousemove', this._onMouseMove);
+                    this.listenerTarget.addEventListener('touchstart', this._onTouchStart, { passive: true });
+                    this.listenerTarget.addEventListener('touchmove', this._onTouchMove, { passive: true });
+                    this.listenerTarget.addEventListener('touchend', this._onTouchEnd);
+                }
+                isPointInside(clientX, clientY) {
+                    if (!this.container) return false;
+                    const rect = this.container.getBoundingClientRect();
+                    if (rect.width === 0 || rect.height === 0) return false;
+                    return clientX >= rect.left && clientX <= rect.right && clientY >= rect.top && clientY <= rect.bottom;
+                }
+                setCoords(x, y) {
+                    if (!this.container) return;
+                    if (this.timer) window.clearTimeout(this.timer);
+                    const rect = this.container.getBoundingClientRect();
+                    if (rect.width === 0 || rect.height === 0) return;
+                    const nx = (x - rect.left) / rect.width;
+                    const ny = (y - rect.top) / rect.height;
+                    this.coords.set(nx * 2 - 1, -(ny * 2 - 1));
+                    this.mouseMoved = true;
+                    this.timer = window.setTimeout(() => { this.mouseMoved = false; }, 100);
+                }
+                setNormalized(nx, ny) { this.coords.set(nx, ny); this.mouseMoved = true; }
+                onDocumentMouseMove(event) {
+                    this.isHoverInside = this.isPointInside(event.clientX, event.clientY);
+                    if (!this.isHoverInside) return;
+                    if (this.onInteract) this.onInteract();
+                    if (this.isAutoActive && !this.hasUserControl && !this.takeoverActive) {
+                        const rect = this.container.getBoundingClientRect();
+                        const nx = (event.clientX - rect.left) / rect.width;
+                        const ny = (event.clientY - rect.top) / rect.height;
+                        this.takeoverFrom.copy(this.coords);
+                        this.takeoverTo.set(nx * 2 - 1, -(ny * 2 - 1));
+                        this.takeoverStartTime = performance.now();
+                        this.takeoverActive = true;
+                        this.hasUserControl = true;
+                        this.isAutoActive = false;
+                        return;
+                    }
+                    this.setCoords(event.clientX, event.clientY);
+                    this.hasUserControl = true;
+                }
+                onDocumentTouchStart(event) {
+                    const t = event.touches[0];
+                    this.isHoverInside = this.isPointInside(t.clientX, t.clientY);
+                    if (!this.isHoverInside) return;
+                    if (this.onInteract) this.onInteract();
+                    this.setCoords(t.clientX, t.clientY);
+                    this.hasUserControl = true;
+                }
+                onDocumentTouchMove(event) {
+                    const t = event.touches[0];
+                    if (!this.isPointInside(t.clientX, t.clientY)) return;
+                    if (this.onInteract) this.onInteract();
+                    this.setCoords(t.clientX, t.clientY);
+                }
+                onTouchEnd() { this.isHoverInside = false; }
+                update() {
+                    if (this.takeoverActive) {
+                        const t = (performance.now() - this.takeoverStartTime) / (this.takeoverDuration * 1000);
+                        if (t >= 1) {
+                            this.takeoverActive = false;
+                            this.coords.copy(this.takeoverTo);
+                            this.coords_old.copy(this.coords);
+                            this.diff.set(0, 0);
+                        } else {
+                            const k = t * t * (3 - 2 * t);
+                            this.coords.copy(this.takeoverFrom).lerp(this.takeoverTo, k);
+                        }
+                    }
+                    this.diff.subVectors(this.coords, this.coords_old);
+                    this.coords_old.copy(this.coords);
+                    if (this.coords_old.x === 0 && this.coords_old.y === 0) this.diff.set(0, 0);
+                    if (this.isAutoActive && !this.takeoverActive) this.diff.multiplyScalar(this.autoIntensity);
+                }
+            }
+            const Mouse = new MouseClass();
+
+            class AutoDriver {
+                constructor(mouse, manager, opts) {
+                    this.mouse = mouse; this.manager = manager; this.enabled = opts.enabled;
+                    this.speed = opts.speed; this.resumeDelay = opts.resumeDelay || 3000;
+                    this.rampDurationMs = (opts.rampDuration || 0) * 1000;
+                    this.active = false; this.current = new THREE.Vector2(0, 0);
+                    this.target = new THREE.Vector2(); this.lastTime = performance.now();
+                    this.activationTime = 0; this.margin = 0.2; this._tmpDir = new THREE.Vector2();
+                    this.pickNewTarget();
+                }
+                pickNewTarget() {
+                    const r = Math.random;
+                    this.target.set((r() * 2 - 1) * (1 - this.margin), (r() * 2 - 1) * (1 - this.margin));
+                }
+                forceStop() { this.active = false; this.mouse.isAutoActive = false; }
+                update() {
+                    if (!this.enabled) return;
+                    const now = performance.now();
+                    if (now - this.manager.lastUserInteraction < this.resumeDelay || this.mouse.isHoverInside) {
+                        this.forceStop(); return;
+                    }
+                    if (!this.active) {
+                        this.active = true; this.current.copy(this.mouse.coords);
+                        this.lastTime = now; this.activationTime = now;
+                    }
+                    this.mouse.isAutoActive = true;
+                    let dtSec = Math.min((now - this.lastTime) / 1000, 0.016);
+                    this.lastTime = now;
+                    const dir = this._tmpDir.subVectors(this.target, this.current);
+                    const dist = dir.length();
+                    if (dist < 0.01) { this.pickNewTarget(); return; }
+                    dir.normalize();
+                    let ramp = this.rampDurationMs > 0 ? (t => t * t * (3 - 2 * t))(Math.min(1, (now - this.activationTime) / this.rampDurationMs)) : 1;
+                    this.current.addScaledVector(dir, Math.min(this.speed * dtSec * ramp, dist));
+                    this.mouse.setNormalized(this.current.x, this.current.y);
+                }
+            }
+
+            const face_vert = `attribute vec3 position; uniform vec2 px; uniform vec2 boundarySpace; varying vec2 uv; precision highp float; void main(){ vec3 pos = position; vec2 scale = 1.0 - boundarySpace * 2.0; pos.xy = pos.xy * scale; uv = vec2(0.5)+(pos.xy)*0.5; gl_Position = vec4(pos, 1.0); }`;
+            const line_vert = `attribute vec3 position; uniform vec2 px; precision highp float; varying vec2 uv; void main(){ vec3 pos = position; uv = 0.5 + pos.xy * 0.5; vec2 n = sign(pos.xy); pos.xy = abs(pos.xy) - px * 1.0; pos.xy *= n; gl_Position = vec4(pos, 1.0); }`;
+            const mouse_vert = `precision highp float; attribute vec3 position; attribute vec2 uv; uniform vec2 center; uniform vec2 scale; uniform vec2 px; varying vec2 vUv; void main(){ vec2 pos = position.xy * scale * 2.0 * px + center; vUv = uv; gl_Position = vec4(pos, 0.0, 1.0); }`;
+            const advection_frag = `precision highp float; uniform sampler2D velocity; uniform float dt; uniform bool isBFECC; uniform vec2 fboSize; uniform vec2 px; varying vec2 uv; void main(){ vec2 ratio = max(fboSize.x, fboSize.y) / fboSize; if(isBFECC == false){ vec2 vel = texture2D(velocity, uv).xy; vec2 uv2 = uv - vel * dt * ratio; vec2 newVel = texture2D(velocity, uv2).xy; gl_FragColor = vec4(newVel, 0.0, 0.0); } else { vec2 spot_new = uv; vec2 vel_old = texture2D(velocity, uv).xy; vec2 spot_old = spot_new - vel_old * dt * ratio; vec2 vel_new1 = texture2D(velocity, spot_old).xy; vec2 spot_new2 = spot_old + vel_new1 * dt * ratio; vec2 error = spot_new2 - spot_new; vec2 spot_new3 = spot_new - error / 2.0; vec2 vel_2 = texture2D(velocity, spot_new3).xy; vec2 spot_old2 = spot_new3 - vel_2 * dt * ratio; vec2 newVel2 = texture2D(velocity, spot_old2).xy; gl_FragColor = vec4(newVel2, 0.0, 0.0); } }`;
+            const color_frag = `precision highp float; uniform sampler2D velocity; uniform sampler2D palette; uniform vec4 bgColor; varying vec2 uv; void main(){ vec2 vel = texture2D(velocity, uv).xy; float lenv = clamp(length(vel), 0.0, 1.0); vec3 c = texture2D(palette, vec2(lenv, 0.5)).rgb; vec3 outRGB = mix(bgColor.rgb, c, lenv); float outA = mix(bgColor.a, 1.0, lenv); gl_FragColor = vec4(outRGB, outA); }`;
+            const divergence_frag = `precision highp float; uniform sampler2D velocity; uniform float dt; uniform vec2 px; varying vec2 uv; void main(){ float x0 = texture2D(velocity, uv-vec2(px.x, 0.0)).x; float x1 = texture2D(velocity, uv+vec2(px.x, 0.0)).x; float y0 = texture2D(velocity, uv-vec2(0.0, px.y)).y; float y1 = texture2D(velocity, uv+vec2(0.0, px.y)).y; float divergence = (x1 - x0 + y1 - y0) / 2.0; gl_FragColor = vec4(divergence / dt); }`;
+            const externalForce_frag = `precision highp float; uniform vec2 force; uniform vec2 center; uniform vec2 scale; uniform vec2 px; varying vec2 vUv; void main(){ vec2 circle = (vUv - 0.5) * 2.0; float d = 1.0 - min(length(circle), 1.0); d *= d; gl_FragColor = vec4(force * d, 0.0, 1.0); }`;
+            const poisson_frag = `precision highp float; uniform sampler2D pressure; uniform sampler2D divergence; uniform vec2 px; varying vec2 uv; void main(){ float p0 = texture2D(pressure, uv + vec2(px.x * 2.0, 0.0)).r; float p1 = texture2D(pressure, uv - vec2(px.x * 2.0, 0.0)).r; float p2 = texture2D(pressure, uv + vec2(0.0, px.y * 2.0)).r; float p3 = texture2D(pressure, uv - vec2(0.0, px.y * 2.0)).r; float div = texture2D(divergence, uv).r; float newP = (p0 + p1 + p2 + p3) / 4.0 - div; gl_FragColor = vec4(newP); }`;
+            const pressure_frag = `precision highp float; uniform sampler2D pressure; uniform sampler2D velocity; uniform vec2 px; uniform float dt; varying vec2 uv; void main(){ float step = 1.0; float p0 = texture2D(pressure, uv + vec2(px.x * step, 0.0)).r; float p1 = texture2D(pressure, uv - vec2(px.x * step, 0.0)).r; float p2 = texture2D(pressure, uv + vec2(0.0, px.y * step)).r; float p3 = texture2D(pressure, uv - vec2(0.0, px.y * step)).r; vec2 v = texture2D(velocity, uv).xy; vec2 gradP = vec2(p0 - p1, p2 - p3) * 0.5; v = v - gradP * dt; gl_FragColor = vec4(v, 0.0, 1.0); }`;
+            const viscous_frag = `precision highp float; uniform sampler2D velocity; uniform sampler2D velocity_new; uniform float v; uniform vec2 px; uniform float dt; varying vec2 uv; void main(){ vec2 old = texture2D(velocity, uv).xy; vec2 new0 = texture2D(velocity_new, uv + vec2(px.x * 2.0, 0.0)).xy; vec2 new1 = texture2D(velocity_new, uv - vec2(px.x * 2.0, 0.0)).xy; vec2 new2 = texture2D(velocity_new, uv + vec2(0.0, px.y * 2.0)).xy; vec2 new3 = texture2D(velocity_new, uv - vec2(0.0, px.y * 2.0)).xy; vec2 newv = 4.0 * old + v * dt * (new0 + new1 + new2 + new3); newv /= 4.0 * (1.0 + v * dt); gl_FragColor = vec4(newv, 0.0, 0.0); }`;
+
+            class ShaderPass {
+                constructor(props) { this.props = props || {}; this.uniforms = this.props.material?.uniforms; }
+                init() { this.scene = new THREE.Scene(); this.camera = new THREE.Camera(); if (this.uniforms) { this.material = new THREE.RawShaderMaterial(this.props.material); this.geometry = new THREE.PlaneGeometry(2.0, 2.0); this.plane = new THREE.Mesh(this.geometry, this.material); this.scene.add(this.plane); } }
+                update() { Common.renderer.setRenderTarget(this.props.output || null); Common.renderer.render(this.scene, this.camera); Common.renderer.setRenderTarget(null); }
+            }
+            class Advection extends ShaderPass {
+                constructor(p) { super({ material: { vertexShader: face_vert, fragmentShader: advection_frag, uniforms: { boundarySpace: { value: p.cellScale }, px: { value: p.cellScale }, fboSize: { value: p.fboSize }, velocity: { value: p.src.texture }, dt: { value: p.dt }, isBFECC: { value: true } } }, output: p.dst }); this.uniforms = this.props.material.uniforms; this.init(); }
+                init() { super.init(); const b = new THREE.BufferGeometry(); b.setAttribute('position', new THREE.BufferAttribute(new Float32Array([-1, -1, 0, -1, 1, 0, -1, 1, 0, 1, 1, 0, 1, 1, 0, 1, -1, 0, 1, -1, 0, -1, -1, 0]), 3)); this.line = new THREE.LineSegments(b, new THREE.RawShaderMaterial({ vertexShader: line_vert, fragmentShader: advection_frag, uniforms: this.uniforms })); this.scene.add(this.line); }
+                update(p) { this.uniforms.dt.value = p.dt; this.line.visible = p.isBounce; this.uniforms.isBFECC.value = p.BFECC; super.update(); }
+            }
+            class ExternalForce extends ShaderPass {
+                constructor(p) { super({ output: p.dst }); this.init(p); }
+                init(p) { super.init(); this.mouse = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.RawShaderMaterial({ vertexShader: mouse_vert, fragmentShader: externalForce_frag, blending: THREE.AdditiveBlending, depthWrite: false, uniforms: { px: { value: p.cellScale }, force: { value: new THREE.Vector2() }, center: { value: new THREE.Vector2() }, scale: { value: new THREE.Vector2(p.cursor_size, p.cursor_size) } } })); this.scene.add(this.mouse); }
+                update(p) { const fX = (Mouse.diff.x / 2) * p.mouse_force; const fY = (Mouse.diff.y / 2) * p.mouse_force; const cX = p.cursor_size * p.cellScale.x; const cY = p.cursor_size * p.cellScale.y; const centerX = Math.min(Math.max(Mouse.coords.x, -1 + cX + p.cellScale.x * 2), 1 - cX - p.cellScale.x * 2); const centerY = Math.min(Math.max(Mouse.coords.y, -1 + cY + p.cellScale.y * 2), 1 - cY - p.cellScale.y * 2); const u = this.mouse.material.uniforms; u.force.value.set(fX, fY); u.center.value.set(centerX, centerY); u.scale.value.set(p.cursor_size, p.cursor_size); super.update(); }
+            }
+            class Viscous extends ShaderPass {
+                constructor(p) { super({ material: { vertexShader: face_vert, fragmentShader: viscous_frag, uniforms: { boundarySpace: { value: p.boundarySpace }, velocity: { value: p.src.texture }, velocity_new: { value: p.dst_.texture }, v: { value: p.viscous }, px: { value: p.cellScale }, dt: { value: p.dt } } }, output: p.dst, output0: p.dst_, output1: p.dst }); this.init(); }
+                update(p) { this.uniforms.v.value = p.viscous; let fi, fo; for (let i = 0; i < p.iterations; i++) { fi = i % 2 === 0 ? this.props.output0 : this.props.output1; fo = i % 2 === 0 ? this.props.output1 : this.props.output0; this.uniforms.velocity_new.value = fi.texture; this.props.output = fo; this.uniforms.dt.value = p.dt; super.update(); } return fo; }
+            }
+            class Divergence extends ShaderPass {
+                constructor(p) { super({ material: { vertexShader: face_vert, fragmentShader: divergence_frag, uniforms: { boundarySpace: { value: p.boundarySpace }, velocity: { value: p.src.texture }, px: { value: p.cellScale }, dt: { value: p.dt } } }, output: p.dst }); this.init(); }
+                update(p) { this.uniforms.velocity.value = p.vel.texture; super.update(); }
+            }
+            class Poisson extends ShaderPass {
+                constructor(p) { super({ material: { vertexShader: face_vert, fragmentShader: poisson_frag, uniforms: { boundarySpace: { value: p.boundarySpace }, pressure: { value: p.dst_.texture }, divergence: { value: p.src.texture }, px: { value: p.cellScale } } }, output: p.dst, output0: p.dst_, output1: p.dst }); this.init(); }
+                update(p) { let pi, po; for (let i = 0; i < p.iterations; i++) { pi = i % 2 === 0 ? this.props.output0 : this.props.output1; po = i % 2 === 0 ? this.props.output1 : this.props.output0; this.uniforms.pressure.value = pi.texture; this.props.output = po; super.update(); } return po; }
+            }
+            class Pressure extends ShaderPass {
+                constructor(p) { super({ material: { vertexShader: face_vert, fragmentShader: pressure_frag, uniforms: { boundarySpace: { value: p.boundarySpace }, pressure: { value: p.src_p.texture }, velocity: { value: p.src_v.texture }, px: { value: p.cellScale }, dt: { value: p.dt } } }, output: p.dst }); this.init(); }
+                update(p) { this.uniforms.velocity.value = p.vel.texture; this.uniforms.pressure.value = p.pressure.texture; super.update(); }
+            }
+
+            class Simulation {
+                constructor() {
+                    this.options = { ...opts };
+                    this.fboSize = new THREE.Vector2(); this.cellScale = new THREE.Vector2(); this.boundarySpace = new THREE.Vector2();
+                    this.fbos = { vel_0: null, vel_1: null, vel_viscous0: null, vel_viscous1: null, div: null, pressure_0: null, pressure_1: null };
+                    this.init();
+                }
+                init() { this.calcSize(); const t = /(iPad|iPhone|iPod)/i.test(navigator.userAgent) ? THREE.HalfFloatType : THREE.FloatType; const o = { type: t, depthBuffer: false, stencilBuffer: false, minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, wrapS: THREE.ClampToEdgeWrapping, wrapT: THREE.ClampToEdgeWrapping }; for (let k in this.fbos) this.fbos[k] = new THREE.WebGLRenderTarget(this.fboSize.x, this.fboSize.y, o); this.createShaderPass(); }
+                createShaderPass() {
+                    this.advection = new Advection({ cellScale: this.cellScale, fboSize: this.fboSize, dt: this.options.dt, src: this.fbos.vel_0, dst: this.fbos.vel_1 });
+                    this.externalForce = new ExternalForce({ cellScale: this.cellScale, cursor_size: this.options.cursorSize, dst: this.fbos.vel_1 });
+                    this.viscous = new Viscous({ cellScale: this.cellScale, boundarySpace: this.boundarySpace, viscous: this.options.viscous, src: this.fbos.vel_1, dst: this.fbos.vel_viscous1, dst_: this.fbos.vel_viscous0, dt: this.options.dt });
+                    this.divergence = new Divergence({ cellScale: this.cellScale, boundarySpace: this.boundarySpace, src: this.fbos.vel_viscous0, dst: this.fbos.div, dt: this.options.dt });
+                    this.poisson = new Poisson({ cellScale: this.cellScale, boundarySpace: this.boundarySpace, src: this.fbos.div, dst: this.fbos.pressure_1, dst_: this.fbos.pressure_0 });
+                    this.pressure = new Pressure({ cellScale: this.cellScale, boundarySpace: this.boundarySpace, src_p: this.fbos.pressure_0, src_v: this.fbos.vel_viscous0, dst: this.fbos.vel_0, dt: this.options.dt });
+                }
+                calcSize() { const w = Math.max(1, Math.round(this.options.resolution * Common.width)); const h = Math.max(1, Math.round(this.options.resolution * Common.height)); this.cellScale.set(1.0 / w, 1.0 / h); this.fboSize.set(w, h); }
+                resize() { this.calcSize(); for (let k in this.fbos) this.fbos[k].setSize(this.fboSize.x, this.fboSize.y); }
+                update() {
+                    window.props = this.options;
+                    if (this.options.isBounce) this.boundarySpace.set(0, 0); else this.boundarySpace.copy(this.cellScale);
+                    this.advection.update({ dt: this.options.dt, isBounce: this.options.isBounce, BFECC: this.options.BFECC });
+                    this.externalForce.update({ cursor_size: this.options.cursorSize, mouse_force: this.options.mouseForce, cellScale: this.cellScale });
+                    let vel = this.fbos.vel_1;
+                    if (this.options.isViscous) vel = this.viscous.update({ viscous: this.options.viscous, iterations: this.options.iterationsViscous, dt: this.options.dt });
+                    this.divergence.update({ vel });
+                    const pressure = this.poisson.update({ iterations: this.options.iterationsPoisson });
+                    this.pressure.update({ vel, pressure });
+                }
+            }
+            class Output {
+                constructor() {
+                    this.simulation = new Simulation(); this.scene = new THREE.Scene(); this.camera = new THREE.Camera();
+                    this.output = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.RawShaderMaterial({ vertexShader: face_vert, fragmentShader: color_frag, transparent: true, depthWrite: false, uniforms: { velocity: { value: this.simulation.fbos.vel_0.texture }, boundarySpace: { value: new THREE.Vector2() }, palette: { value: paletteTex }, bgColor: { value: bgVec4 } } }));
+                    this.scene.add(this.output);
+                }
+                resize() { this.simulation.resize(); }
+                update() { this.simulation.update(); Common.renderer.setRenderTarget(null); Common.renderer.render(this.scene, this.camera); }
+            }
+
+            class WebGLManager {
+                constructor() {
+                    Common.init(container); Mouse.init(container); Mouse.autoIntensity = opts.autoIntensity; Mouse.takeoverDuration = opts.takeoverDuration;
+                    this.lastUserInteraction = performance.now();
+                    Mouse.onInteract = () => { this.lastUserInteraction = performance.now(); if (this.autoDriver) this.autoDriver.forceStop(); };
+                    this.autoDriver = new AutoDriver(Mouse, this, { enabled: opts.autoDemo, speed: opts.autoSpeed, resumeDelay: opts.autoResumeDelay, rampDuration: opts.autoRampDuration });
+                    container.prepend(Common.renderer.domElement); this.output = new Output();
+                    this.running = false; this.raf = null;
+                    this.loop = () => { if (!this.running) return; if (this.autoDriver) this.autoDriver.update(); Mouse.update(); Common.update(); this.output.update(); this.raf = requestAnimationFrame(this.loop); };
+                    window.addEventListener('resize', () => { Common.resize(); this.output.resize(); });
+                }
+                start() { if (this.running) return; this.running = true; this.loop(); }
+            }
+            const webgl = new WebGLManager(); webgl.start();
+        });
+    </script>
+
+    <!-- WarpText Vanilla JS Implementation -->
+    <script src="https://unpkg.com/ogl"></script>
+    <script>
+        const vertex = `#version 300 es
+        in vec2 position;
+        in vec2 uv;
+        out vec2 vUv;
+        void main() { vUv = uv; gl_Position = vec4(position, 0.0, 1.0); }`;
+
+        const fragment = `#version 300 es
+        precision highp float;
+        uniform sampler2D uTextTexture;
+        uniform vec2 uResolution;
+        uniform vec2 uPointer;
+        uniform float uPointerActive;
+        uniform float uTime;
+        uniform float uWarpStrength;
+        uniform float uWarpScale;
+        uniform float uSpeed;
+        uniform float uPointerInfluence;
+        uniform float uPointerStrength;
+        uniform float uRefraction;
+        uniform float uRipple;
+        uniform float uMotion;
+        in vec2 vUv;
+        out vec4 fragColor;
+        
+        float hash(vec2 p) { p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }
+        float noise(vec2 p) { vec2 i = floor(p); vec2 f = fract(p); vec2 u = f * f * (3.0 - 2.0 * f); float a = hash(i); float b = hash(i + vec2(1.0, 0.0)); float c = hash(i + vec2(0.0, 1.0)); float d = hash(i + vec2(1.0, 1.0)); return mix(mix(a, b, u.x), mix(c, d, u.x), u.y); }
+        float fbm(vec2 p) { float value = 0.0; float amplitude = 0.5; for (int i = 0; i < 4; i++) { value += amplitude * noise(p); p *= 2.02; amplitude *= 0.5; } return value; }
+        
+        vec4 sampleText(vec2 uv) { if (uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0 || uv.y > 1.0) { return vec4(0.0); } return texture(uTextTexture, uv); }
+        
+        void main() {
+          vec2 uv = vUv;
+          float aspect = uResolution.x / max(uResolution.y, 1.0);
+          float time = uTime * uSpeed;
+          float scale = max(uWarpScale, 0.001);
+          vec2 drift = vec2(time * 0.055, -time * 0.045);
+          float n1 = fbm(uv * scale * 3.1 + drift);
+          float n2 = fbm((uv + 19.17) * scale * 3.4 - drift.yx);
+          vec2 ambient = (vec2(n1, n2) - 0.5) * uWarpStrength * 0.045 * uMotion;
+          vec2 pointerDelta = uv - uPointer;
+          vec2 aspectDelta = vec2(pointerDelta.x * aspect, pointerDelta.y);
+          float dist = length(aspectDelta);
+          float radius = max(uPointerInfluence, 0.001);
+          float t = clamp(dist / radius, 0.0, 1.0);
+          float lens = smoothstep(radius, 0.0, dist) * uPointerActive;
+          float bulge = t * (1.0 - t) * (1.0 - t) * 6.75 * uPointerActive;
+          vec2 dir = dist > 0.0001 ? vec2(aspectDelta.x / aspect, aspectDelta.y) / dist : vec2(0.0);
+          float rippleWave = sin(dist * 28.0 - time * 4.2) * 0.5 + 0.5;
+          float rippleRing = (rippleWave - 0.5) * uRipple;
+          vec2 pointerWarp = -dir * bulge * uPointerStrength * 0.045;
+          pointerWarp += dir * rippleRing * bulge * uPointerStrength * 0.016;
+          vec2 displaced = uv + ambient + pointerWarp;
+          vec2 splitDir = ambient + pointerWarp;
+          float splitLen = length(splitDir);
+          splitDir = splitLen > 0.00001 ? splitDir / splitLen : vec2(0.7071, 0.7071);
+          vec2 split = splitDir * uRefraction * 0.16 * (0.35 + lens * 1.65);
+          vec4 base = sampleText(displaced);
+          float r = sampleText(displaced + split).r;
+          float g = base.g;
+          float b = sampleText(displaced - split).b;
+          float a = max(max(sampleText(displaced + split).a, base.a), sampleText(displaced - split).a);
+          vec3 color = vec3(r, g, b) + lens * base.a * 0.055;
+          fragColor = vec4(color, a);
+        }`;
+
+        const getFontValue = value => (typeof value === 'number' ? `${value}px` : value);
+        const measureLine = (ctx, line, letterSpacing) => {
+            const chars = Array.from(line);
+            const textWidth = chars.reduce((width, char) => width + ctx.measureText(char).width, 0);
+            return textWidth + Math.max(0, chars.length - 1) * letterSpacing;
+        };
+        const drawLine = (ctx, line, x, y, letterSpacing) => {
+            const chars = Array.from(line);
+            let cursor = x - measureLine(ctx, line, letterSpacing) / 2;
+            chars.forEach((char, index) => {
+                ctx.fillText(char, cursor, y);
+                cursor += ctx.measureText(char).width + (index === chars.length - 1 ? 0 : letterSpacing);
+            });
+        };
+
+        const buildTextCanvas = ({ container, width, height, dpr, props }) => {
+            const canvas = document.createElement('canvas');
+            canvas.width = Math.max(1, Math.floor(width * dpr));
+            canvas.height = Math.max(1, Math.floor(height * dpr));
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return canvas;
+
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            ctx.clearRect(0, 0, width, height);
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'middle';
+            ctx.fillStyle = props.color;
+            ctx.imageSmoothingEnabled = true;
+
+            const fontSizePx = parseFloat(props.fontSize) || 16;
+            const letterSpacing = props.letterSpacing || 0;
+            const lineHeight = props.lineHeight || fontSizePx * 1.75;
+            ctx.font = `${props.fontWeight} ${fontSizePx}px ${props.fontFamily}`;
+
+            // Auto-wrap text logic for non-newline text
+            const maxWidth = width * 1.0;
+            const words = String(props.text || '').replace(/\s+/g, ' ').split(' ');
+            const lines = [];
+            let currentLine = '';
+
+            words.forEach(word => {
+                const testLine = currentLine + word + ' ';
+                const testWidth = measureLine(ctx, testLine, letterSpacing);
+                if (testWidth > maxWidth && currentLine !== '') {
+                    lines.push(currentLine.trim());
+                    currentLine = word + ' ';
+                } else {
+                    currentLine = testLine;
+                }
+            });
+            lines.push(currentLine.trim());
+
+            // Left alignment adjustment for the canvas text
+            const startY = height / 2 - (lineHeight * (lines.length - 1)) / 2;
+            lines.forEach((line, index) => {
+                // To align left rather than center (math adapted)
+                let xPos = measureLine(ctx, line, letterSpacing) / 2;
+                drawLine(ctx, line, xPos, startY + index * lineHeight, letterSpacing)
+            });
+
+            return canvas;
+        };
+
+        class WarpText {
+            constructor(container, props) {
+                this.container = container;
+                this.props = Object.assign({
+                    text: 'Bend the moment', color: '#f8f5ff', warpStrength: 0.08, warpScale: 1.7,
+                    speed: 0.55, pointerInfluence: 0.42, pointerStrength: 0.38, refraction: 0.018, ripple: true,
+                    fontSize: '32', fontWeight: 400, fontFamily: 'inherit', letterSpacing: 0, lineHeight: null
+                }, props);
+                this.init();
+            }
+            init() {
+                this.container.classList.add('warp-text');
+                this.container.style.position = 'relative';
+                this.container.style.overflow = 'hidden';
+                this.container.style.minHeight = '240px';
+
+                const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                try {
+                    this.renderer = new ogl.Renderer({ webgl: 2, alpha: true, premultipliedAlpha: false, antialias: true, dpr });
+                    this.gl = this.renderer.gl;
+                } catch (e) { return; }
+                this.gl.clearColor(0, 0, 0, 0);
+                const canvas = this.gl.canvas;
+                canvas.style.position = 'absolute';
+                canvas.style.inset = '0';
+                canvas.style.width = '100%';
+                canvas.style.height = '100%';
+                canvas.style.display = 'block';
+                this.container.appendChild(canvas);
+
+                this.texture = new ogl.Texture(this.gl, { generateMipmaps: false, minFilter: this.gl.LINEAR, magFilter: this.gl.LINEAR, wrapS: this.gl.CLAMP_TO_EDGE, wrapT: this.gl.CLAMP_TO_EDGE });
+                this.geometry = new ogl.Triangle(this.gl);
+                this.program = new ogl.Program(this.gl, {
+                    vertex, fragment, transparent: true, depthTest: false, depthWrite: false,
+                    uniforms: {
+                        uTextTexture: { value: this.texture }, uResolution: { value: new Float32Array([1, 1]) },
+                        uPointer: { value: new Float32Array([0.5, 0.5]) }, uPointerActive: { value: 0 },
+                        uTime: { value: 0 }, uWarpStrength: { value: this.props.warpStrength },
+                        uWarpScale: { value: this.props.warpScale }, uSpeed: { value: this.props.speed },
+                        uPointerInfluence: { value: this.props.pointerInfluence }, uPointerStrength: { value: this.props.pointerStrength },
+                        uRefraction: { value: this.props.refraction }, uRipple: { value: this.props.ripple ? 1 : 0 },
+                        uMotion: { value: 1 }
+                    }
+                });
+                this.mesh = new ogl.Mesh(this.gl, { geometry: this.geometry, program: this.program });
+
+                this.pointer = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5, active: 0, activeTarget: 0 };
+                this.startTime = performance.now();
+
+                // Allow fonts to load before first render
+                document.fonts?.ready.then(() => this.resize());
+
+                canvas.addEventListener('pointermove', e => {
+                    const rect = canvas.getBoundingClientRect();
+                    this.pointer.tx = (e.clientX - rect.left) / rect.width;
+                    this.pointer.ty = 1 - (e.clientY - rect.top) / rect.height;
+                    this.pointer.activeTarget = 1;
+                });
+                canvas.addEventListener('pointerleave', () => this.pointer.activeTarget = 0);
+                if (window.ResizeObserver) {
+                    new ResizeObserver(() => this.resize()).observe(this.container);
+                }
+                this.raf = requestAnimationFrame((now) => this.loop(now));
+            }
+            rasterize() {
+                const rect = this.container.getBoundingClientRect();
+                const textCanvas = buildTextCanvas({ container: this.container, width: rect.width, height: rect.height, dpr: this.renderer.dpr, props: this.props });
+                this.texture.image = textCanvas;
+                this.texture.needsUpdate = true;
+            }
+            resize() {
+                const rect = this.container.getBoundingClientRect();
+                if (rect.width <= 0) return;
+                this.renderer.setSize(rect.width, rect.height);
+                this.program.uniforms.uResolution.value[0] = this.gl.drawingBufferWidth;
+                this.program.uniforms.uResolution.value[1] = this.gl.drawingBufferHeight;
+                this.rasterize();
+            }
+            loop(now) {
+                const elapsed = (now - this.startTime) * 0.001;
+                const idleX = 0.5 + Math.sin(elapsed * 0.33) * 0.12;
+                const idleY = 0.5 + Math.cos(elapsed * 0.27) * 0.1;
+                this.pointer.x += ((this.pointer.activeTarget > 0 ? this.pointer.tx : idleX) - this.pointer.x) * (this.pointer.activeTarget > 0 ? 0.12 : 0.035);
+                this.pointer.y += ((this.pointer.activeTarget > 0 ? this.pointer.ty : idleY) - this.pointer.y) * (this.pointer.activeTarget > 0 ? 0.12 : 0.035);
+                this.pointer.active += ((this.pointer.activeTarget > 0 ? 1 : 0.18) - this.pointer.active) * 0.06;
+
+                this.program.uniforms.uPointer.value[0] = this.pointer.x;
+                this.program.uniforms.uPointer.value[1] = this.pointer.y;
+                this.program.uniforms.uPointerActive.value = this.pointer.active;
+                this.program.uniforms.uTime.value = elapsed;
+
+                this.renderer.render({ scene: this.mesh });
+                this.raf = requestAnimationFrame((n) => this.loop(n));
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const target = document.querySelector('.identity-desc');
+            // Ensure ogl is defined from the CDN
+            if (target && typeof ogl !== 'undefined') {
+                const text = target.textContent.trim().replace(/\s+/g, ' ');
+                target.innerHTML = ''; // Keep it empty, render on WebGL Canvas
+
+                const styles = window.getComputedStyle(target);
+                new WarpText(target, {
+                    text: text,
+                    color: styles.color || '#a1a1aa',
+                    fontSize: parseFloat(styles.fontSize) || 16,
+                    fontWeight: styles.fontWeight || 400,
+                    fontFamily: styles.fontFamily || 'Inter',
+                    warpStrength: 0.05,
+                    ripple: true
+                });
+            }
+        });
     </script>
 </body>
 
