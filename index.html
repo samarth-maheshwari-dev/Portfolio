@@ -2734,6 +2734,504 @@
                 transform: translateX(0);
             }
         }
+
+        /* ========== CONTACT SECTION ========== */
+
+        /* Config variable for WhatsApp — filled in JS below */
+        /* REQUIRES: Set WHATSAPP_NUMBER in the initContactSection() function below */
+
+        .contact-section {
+            position: relative;
+            padding: clamp(80px, 10vw, 130px) clamp(20px, 6vw, 80px) clamp(80px, 10vw, 120px);
+            background: var(--bg-primary);
+            overflow: hidden;
+            transition: background 0.5s var(--transition);
+        }
+
+        .contact-container {
+            position: relative;
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+
+        /* ── Header ── */
+        .contact-header {
+            margin-bottom: clamp(56px, 8vw, 88px);
+        }
+
+        .contact-label {
+            display: block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.20em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            margin-bottom: 20px;
+        }
+
+        .contact-name {
+            display: block;
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(36px, 5.5vw, 60px);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.025em;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+
+        .contact-role {
+            display: block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(13px, 1.2vw, 15px);
+            font-weight: 400;
+            color: var(--accent-light);
+            letter-spacing: 0.04em;
+            margin-bottom: 24px;
+        }
+
+        .contact-intro {
+            max-width: 520px;
+            font-size: clamp(15px, 1.3vw, 17px);
+            color: var(--text-tertiary);
+            line-height: 1.65;
+        }
+
+        /* ── Two-column grid ── */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: clamp(32px, 5vw, 64px);
+            align-items: start;
+        }
+
+        /* ── Left: contact info column ── */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .contact-info-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            margin-bottom: 20px;
+        }
+
+        /* ── Contact rows (email / linkedin / github / whatsapp) ── */
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--border-color);
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: color 0.25s var(--transition);
+            cursor: pointer;
+        }
+
+        .contact-row:first-of-type {
+            border-top: 1px solid var(--border-color);
+        }
+
+        .contact-row:hover {
+            color: var(--accent-light);
+        }
+
+        .contact-row:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        .contact-row-icon {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-tertiary);
+            transition: color 0.25s var(--transition), border-color 0.25s var(--transition), background 0.25s var(--transition);
+        }
+
+        .contact-row:hover .contact-row-icon {
+            color: var(--accent-light);
+            border-color: var(--accent);
+            background: var(--bg-card-hover);
+        }
+
+        .contact-row-icon svg {
+            width: 17px;
+            height: 17px;
+        }
+
+        .contact-row-text {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .contact-row-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            margin-bottom: 3px;
+        }
+
+        .contact-row-value {
+            font-size: 14px;
+            font-weight: 500;
+            color: inherit;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .contact-row-arrow {
+            flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+            color: var(--text-tertiary);
+            opacity: 0;
+            transform: translateX(-4px);
+            transition: opacity 0.2s var(--transition), transform 0.2s var(--transition);
+        }
+
+        .contact-row:hover .contact-row-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ── Right: form card ── */
+        .contact-form-card {
+            padding: clamp(28px, 3.5vw, 44px);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            transition: border-color 0.3s var(--transition);
+        }
+
+        .contact-form-card:focus-within {
+            border-color: rgba(168, 85, 247, 0.3);
+        }
+
+        [data-theme="light"] .contact-form-card {
+            background: rgba(255, 255, 255, 0.75);
+        }
+
+        .form-heading {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(18px, 2vw, 22px);
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+            margin-bottom: 24px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-field {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .form-field label {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            margin-bottom: 7px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .form-field input,
+        .form-field textarea,
+        .form-field select {
+            width: 100%;
+            padding: 12px 14px;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.5;
+            outline: none;
+            transition: border-color 0.25s var(--transition), box-shadow 0.25s var(--transition);
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        [data-theme="light"] .form-field input,
+        [data-theme="light"] .form-field textarea,
+        [data-theme="light"] .form-field select {
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-field input::placeholder,
+        .form-field textarea::placeholder {
+            color: var(--text-tertiary);
+            opacity: 0.6;
+        }
+
+        .form-field input:hover,
+        .form-field textarea:hover,
+        .form-field select:hover {
+            border-color: rgba(168, 85, 247, 0.35);
+        }
+
+        .form-field input:focus,
+        .form-field textarea:focus,
+        .form-field select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .form-field textarea {
+            resize: vertical;
+            min-height: 130px;
+            max-height: 280px;
+        }
+
+        .form-field select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 36px;
+            cursor: pointer;
+        }
+
+        .form-field select option {
+            background: #0a0612;
+            color: #fff;
+        }
+
+        [data-theme="light"] .form-field select option {
+            background: #ffffff;
+            color: #0f0a1f;
+        }
+
+        .form-field--invalid input,
+        .form-field--invalid textarea,
+        .form-field--invalid select {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+        }
+
+        .form-field__error {
+            display: block;
+            margin-top: 5px;
+            font-size: 12px;
+            color: #ef4444;
+            opacity: 0;
+            transform: translateY(-4px);
+            transition: opacity 0.25s var(--transition), transform 0.25s var(--transition);
+        }
+
+        .form-field--invalid .form-field__error {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Submit button ── */
+        .form-submit {
+            position: relative;
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border: 1px solid var(--accent);
+            border-radius: 10px;
+            background: transparent;
+            color: var(--accent-light);
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            cursor: pointer;
+            transition: background 0.25s var(--transition), color 0.25s var(--transition), box-shadow 0.25s var(--transition);
+            margin-top: 8px;
+        }
+
+        .form-submit:hover {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(168, 85, 247, 0.3);
+        }
+
+        .form-submit:active {
+            transform: translateY(1px);
+        }
+
+        .form-submit:disabled {
+            opacity: 0.6;
+            cursor: progress;
+        }
+
+        .form-submit:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .form-submit svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.25s var(--transition);
+        }
+
+        .form-submit:hover svg {
+            transform: translateX(3px);
+        }
+
+        .form-submit__spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid currentColor;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .form-submit.is-loading .form-submit__spinner {
+            display: inline-block;
+        }
+
+        .form-submit.is-loading .form-submit__text,
+        .form-submit.is-loading svg {
+            display: none;
+        }
+
+        /* ── Toast ── */
+        .form-status {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 20px;
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+            transform: translateY(120%);
+            opacity: 0;
+            transition: transform 0.45s var(--transition-bounce), opacity 0.35s var(--transition);
+            max-width: calc(100vw - 56px);
+        }
+
+        .form-status.is-visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .form-status--success {
+            border-color: rgba(34, 197, 94, 0.4);
+        }
+
+        .form-status--error {
+            border-color: rgba(239, 68, 68, 0.4);
+        }
+
+        .form-status__icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .form-status--success .form-status__icon {
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+        }
+
+        .form-status--error .form-status__icon {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+        }
+
+        .form-status__icon svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* ── Reveal ── */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s var(--transition), transform 0.7s var(--transition);
+        }
+
+        .reveal-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 860px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .contact-form-card {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-section {
+                padding-bottom: 60px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal-up {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+        }
     </style>
 </head>
 
@@ -2777,7 +3275,7 @@
                 <a href="#about-section">About</a>
                 <a href="#services-section">Services</a>
                 <a href="#">Projects</a>
-                <a href="#">Contact</a>
+                <a href="#contact-section">Contact</a>
             </div>
             <a href="#" class="hire-btn">Hire Me</a>
         </nav>
@@ -2791,7 +3289,7 @@
             </p>
             <div class="hero-buttons">
                 <a href="#" class="btn-primary">View My Work</a>
-                <a href="#" class="btn-secondary">Contact Me</a>
+                <a href="#contact-section" class="btn-secondary">Contact Me</a>
                 <a href="https://github.com/samarth-maheshwari-dev" target="_blank" rel="noopener noreferrer"
                     class="btn-secondary btn-github" aria-label="GitHub Profile">
                     <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -3232,6 +3730,172 @@
 
         </div>
     </section>
+
+    <!-- ========== CONTACT SECTION ========== -->
+    <section class="contact-section" id="contact-section" aria-label="Contact Samarth Maheshwari">
+
+        <div class="contact-container">
+
+            <!-- Section header -->
+            <header class="contact-header reveal-up">
+                <h2 class="service-title" style="margin-bottom: 32px; text-align: left;">
+                    <span class="service-title-line" style="font-size: clamp(48px, 8vw, 96px);">CONTACT</span>
+                    <span class="service-title-line gradient" style="font-size: clamp(48px, 8vw, 96px);">ME</span>
+                </h2>
+                <span class="contact-name">Samarth Maheshwari</span>
+                <span class="contact-role">Full Stack Engineer · AI &amp; Automation Builder</span>
+                <p class="contact-intro">
+                    I'm open to internships, technical collaboration, and interesting projects.
+                    If you have something worth building, I'd like to hear about it.
+                </p>
+            </header>
+
+            <!-- Two-column layout -->
+            <div class="contact-grid">
+
+                <!-- Left: direct contact methods -->
+                <aside class="contact-info reveal-up" aria-label="Contact details">
+                    <p class="contact-info-title">Reach me directly</p>
+
+                    <a class="contact-row" href="mailto:samarthmaheshwari54321@gmail.com"
+                        aria-label="Send email to Samarth Maheshwari">
+                        <span class="contact-row-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="4" width="20" height="16" rx="2" />
+                                <path d="m22 7-10 6L2 7" />
+                            </svg>
+                        </span>
+                        <span class="contact-row-text">
+                            <span class="contact-row-label">Email</span>
+                            <span class="contact-row-value">samarthmaheshwari54321@gmail.com</span>
+                        </span>
+                        <svg class="contact-row-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+
+                    <a class="contact-row" id="whatsappLink" href="#" target="_blank" rel="noopener noreferrer"
+                        aria-label="Message Samarth on WhatsApp">
+                        <span class="contact-row-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                            </svg>
+                        </span>
+                        <span class="contact-row-text">
+                            <span class="contact-row-label">WhatsApp</span>
+                            <span class="contact-row-value">Message on WhatsApp</span>
+                        </span>
+                        <svg class="contact-row-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+
+                    <a class="contact-row" href="https://www.linkedin.com/in/samarth-maheshwari-71a152326/"
+                        target="_blank" rel="noopener noreferrer"
+                        aria-label="Samarth Maheshwari on LinkedIn (opens in new tab)">
+                        <span class="contact-row-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z" />
+                            </svg>
+                        </span>
+                        <span class="contact-row-text">
+                            <span class="contact-row-label">LinkedIn</span>
+                            <span class="contact-row-value">samarth-maheshwari</span>
+                        </span>
+                        <svg class="contact-row-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+
+                    <a class="contact-row" href="https://github.com/samarth-maheshwari-dev" target="_blank"
+                        rel="noopener noreferrer" aria-label="Samarth Maheshwari on GitHub (opens in new tab)">
+                        <span class="contact-row-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.16-.02-2.11-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.96 10.96 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.41.35.78 1.05.78 2.12 0 1.53-.01 2.76-.01 3.13 0 .31.21.68.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z" />
+                            </svg>
+                        </span>
+                        <span class="contact-row-text">
+                            <span class="contact-row-label">GitHub</span>
+                            <span class="contact-row-value">samarth-maheshwari-dev</span>
+                        </span>
+                        <svg class="contact-row-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+
+                </aside>
+
+                <!-- Right: contact form -->
+                <div class="contact-form-card reveal-up">
+                    <p class="form-heading">Send a message</p>
+                    <form id="contactForm" novalidate>
+
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="contactName">Name</label>
+                                <input type="text" id="contactName" name="name" placeholder="Your name"
+                                    autocomplete="name" required minlength="2" maxlength="80">
+                                <span class="form-field__error" role="alert">Please enter your name (2+
+                                    characters)</span>
+                            </div>
+                            <div class="form-field">
+                                <label for="contactEmail">Email</label>
+                                <input type="email" id="contactEmail" name="email" placeholder="you@example.com"
+                                    autocomplete="email" required>
+                                <span class="form-field__error" role="alert">Please enter a valid email address</span>
+                            </div>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="contactTopic">Reason</label>
+                            <select id="contactTopic" name="topic" required>
+                                <option value="" disabled selected>What's this about?</option>
+                                <option value="internship">Internship opportunity</option>
+                                <option value="project">Project collaboration</option>
+                                <option value="freelance">Freelance / contract</option>
+                                <option value="fulltime">Full-time role</option>
+                                <option value="other">Something else</option>
+                            </select>
+                            <span class="form-field__error" role="alert">Please choose a reason</span>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="contactMessage">Message</label>
+                            <textarea id="contactMessage" name="message"
+                                placeholder="Tell me what you'd like to discuss…" required minlength="10"
+                                maxlength="2000"></textarea>
+                            <span class="form-field__error" role="alert">Message should be at least 10 characters</span>
+                        </div>
+
+                        <button type="submit" class="form-submit" id="contactSubmit">
+                            <span class="form-submit__text">Send Message</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                            <span class="form-submit__spinner" aria-hidden="true"></span>
+                        </button>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact status toast -->
+    <div class="form-status" id="formStatus" role="status" aria-live="polite">
+        <span class="form-status__icon" id="formStatusIcon" aria-hidden="true"></span>
+        <span id="formStatusText">Message sent</span>
+    </div>
 
 
     <script>
@@ -5280,6 +5944,174 @@
                 });
             }
         });
+    </script>
+
+    <script>
+        // ========== CONTACT SECTION — INTERACTIONS ==========
+        (function initContactSection() {
+
+            // ── REQUIRES: Add your WhatsApp number here (digits only, with country code) ──
+            // Example: '919876543210' for +91 98765 43210
+            // IMPORTANT: This is the ONLY place the number appears. It is never rendered as visible text.
+            const WHATSAPP_NUMBER = ''; // REDACTED FOR GITHUB PRIVACY
+
+            // Set WhatsApp link href based on device
+            const whatsappLink = document.getElementById('whatsappLink');
+            if (whatsappLink && WHATSAPP_NUMBER) {
+                const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+                // mobile: wa.me deep-link opens app; desktop: web.whatsapp.com
+                const url = isMobile
+                    ? `https://wa.me/${WHATSAPP_NUMBER}`
+                    : `https://web.whatsapp.com/send?phone=${WHATSAPP_NUMBER}`;
+                whatsappLink.href = url;
+            } else if (whatsappLink && !WHATSAPP_NUMBER) {
+                // No number configured — disable link gracefully
+                whatsappLink.href = '#';
+                whatsappLink.addEventListener('click', (e) => { e.preventDefault(); });
+                whatsappLink.title = 'WhatsApp not yet configured';
+            }
+            const section = document.getElementById('contact-section');
+            if (!section) return;
+
+            const form = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('contactSubmit');
+            const status = document.getElementById('formStatus');
+            const statusIcon = document.getElementById('formStatusIcon');
+            const statusText = document.getElementById('formStatusText');
+            const spotlight = document.getElementById('contactSpotlight');
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            // 1. Spotlight cursor effect (mirrors the about-section behavior)
+            if (spotlight && !isTouchDevice && !prefersReducedMotion) {
+                section.addEventListener('mousemove', (e) => {
+                    const rect = section.getBoundingClientRect();
+                    spotlight.style.left = (e.clientX - rect.left) + 'px';
+                    spotlight.style.top = (e.clientY - rect.top) + 'px';
+                });
+            }
+
+            // 2. Reveal-on-scroll for the contact content
+            const revealTargets = section.querySelectorAll('.reveal-up');
+            if ('IntersectionObserver' in window && !prefersReducedMotion) {
+                const revealObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            revealObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
+
+                revealTargets.forEach((el, i) => {
+                    el.style.transitionDelay = (i * 80) + 'ms';
+                    revealObserver.observe(el);
+                });
+            } else {
+                revealTargets.forEach((el) => el.classList.add('is-visible'));
+            }
+
+            // 3. Field-level validation
+            const validators = {
+                contactName: (v) => v.trim().length >= 2,
+                contactEmail: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()),
+                contactTopic: (v) => v !== '' && v != null,
+                contactMessage: (v) => v.trim().length >= 10
+            };
+
+            Object.keys(validators).forEach((id) => {
+                const input = document.getElementById(id);
+                if (!input) return;
+                const field = input.closest('.form-field');
+
+                const validate = () => {
+                    const ok = validators[id](input.value);
+                    field.classList.toggle('form-field--invalid', !ok);
+                    return ok;
+                };
+
+                input.addEventListener('blur', validate);
+                input.addEventListener('input', () => {
+                    if (field.classList.contains('form-field--invalid')) validate();
+                });
+            });
+
+            // 4. Toast helper
+            let statusTimer = null;
+            const showStatus = (kind, message) => {
+                if (!status) return;
+                status.classList.remove('form-status--success', 'form-status--error');
+                status.classList.add('form-status--' + kind, 'is-visible');
+                statusText.textContent = message;
+                statusIcon.innerHTML = kind === 'success'
+                    ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+                    : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+                clearTimeout(statusTimer);
+                statusTimer = setTimeout(() => status.classList.remove('is-visible'), 4500);
+            };
+
+            // 5. Submit handling (mocked — wire up your backend / Formspree / etc. here)
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    // Validate every required field first
+                    let allValid = true;
+                    Object.keys(validators).forEach((id) => {
+                        const input = document.getElementById(id);
+                        if (!input) return;
+                        const field = input.closest('.form-field');
+                        const ok = validators[id](input.value);
+                        field.classList.toggle('form-field--invalid', !ok);
+                        if (!ok) allValid = false;
+                    });
+
+                    if (!allValid) {
+                        showStatus('error', 'Please fix the highlighted fields');
+                        const firstInvalid = form.querySelector('.form-field--invalid input, .form-field--invalid textarea, .form-field--invalid select');
+                        if (firstInvalid) firstInvalid.focus();
+                        return;
+                    }
+
+                    // Send to FormSubmit via AJAX
+                    submitBtn.classList.add('is-loading');
+                    submitBtn.disabled = true;
+
+                    fetch('https://formsubmit.co/ajax/samarthmaheshwari54321@gmail.com', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            name: document.getElementById('contactName').value,
+                            email: document.getElementById('contactEmail').value,
+                            reason: document.getElementById('contactTopic').value,
+                            message: document.getElementById('contactMessage').value,
+                            _subject: "New Portfolio Message from " + document.getElementById('contactName').value
+                        })
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            submitBtn.classList.remove('is-loading');
+                            submitBtn.disabled = false;
+
+                            if (data.success) {
+                                form.reset();
+                                form.querySelectorAll('.form-field--invalid').forEach((f) => f.classList.remove('form-field--invalid'));
+                                showStatus('success', 'Message sent successfully! Check your email for confirmation.');
+                            } else {
+                                showStatus('error', 'Something went wrong. Please try emailing directly.');
+                            }
+                        })
+                        .catch(error => {
+                            submitBtn.classList.remove('is-loading');
+                            submitBtn.disabled = false;
+                            showStatus('error', 'Network error. Please try emailing directly.');
+                        });
+                });
+            }
+        })();
     </script>
 </body>
 
