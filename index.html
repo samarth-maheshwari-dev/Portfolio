@@ -3360,17 +3360,19 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            width: max-content;
+            width: 90%;
+            max-width: 1400px;
         }
 
         @media (max-width: 768px) {
             .hero-container {
                 align-items: center;
+                width: 95%;
             }
         }
 
         .hero-main-text {
-            font-size: clamp(3rem, 10vw, 9rem);
+            font-size: clamp(2.5rem, 8vw, 8rem);
             font-weight: 900;
             letter-spacing: -0.02em;
             color: transparent;
@@ -3378,20 +3380,17 @@
             -webkit-background-clip: text;
             background-image: linear-gradient(to bottom, var(--text-primary), var(--text-tertiary), transparent);
             filter: drop-shadow(0 25px 25px var(--shadow-sm));
-            line-height: 1;
+            line-height: 1.1;
             text-transform: uppercase;
-            padding-right: 2rem;
             margin: 0;
+            text-wrap: balance;
         }
 
         @media (max-width: 768px) {
             .hero-main-text {
-                padding-right: 0;
-                font-size: clamp(2.5rem, 12vw, 4rem);
+                font-size: clamp(2rem, 10vw, 4rem);
                 text-align: center;
-                word-wrap: normal;
-                word-break: break-word;
-                /* Allow break if absolutely needed on super small devices */
+                word-wrap: break-word;
             }
         }
 
