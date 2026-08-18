@@ -3232,10 +3232,203 @@
                 transition: none;
             }
         }
+
+        /* ========== SKILLS MARQUEE ========== */
+        .marquee-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 24px 0;
+            /* Fade edges */
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            gap: 0;
+            will-change: transform;
+        }
+
+        .marquee-track-left {
+            animation: marquee-scroll-left var(--dur, 45s) linear infinite;
+        }
+
+        .marquee-track-right {
+            animation: marquee-scroll-right var(--dur, 45s) linear infinite;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        .marquee-item {
+            display: inline-flex;
+            align-items: center;
+            padding: 0 8px;
+            font-family: 'JetBrains Mono', 'Outfit', monospace;
+            font-size: clamp(13px, 1.4vw, 16px);
+            font-weight: 500;
+            color: var(--text-tertiary);
+            white-space: nowrap;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+        }
+
+        .marquee-item:hover {
+            color: var(--accent-light);
+        }
+
+        .marquee-item span:first-child {
+            padding: 0 10px;
+        }
+
+        .marquee-dot {
+            color: var(--accent);
+            font-size: 20px;
+            line-height: 1;
+            opacity: 0.5;
+        }
+
+        @keyframes marquee-scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes marquee-scroll-right {
+            0% {
+                transform: translateX(-50%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        /* OVERRIDE TO REMOVE ALL GRID LINES AND SECTION BORDERS */
+        [class*="grid-lines"] {
+            display: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+
+        /* Remove section separating borders to make website continuous */
+        section,
+        .about-section,
+        .services-section,
+        .projects-section,
+        .contact-section {
+            border-top: none !important;
+            border-bottom: none !important;
+        }
+
+        /* ========== GSAP HERO SECTION ========== */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            background: radial-gradient(circle, var(--bg-primary) 0%, var(--bg-secondary) 80%);
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .hero-bg-overlay {
+            position: absolute;
+            inset: 0;
+            background: var(--bg-card);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+        }
+
+        .hero-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: max-content;
+        }
+
+        @media (max-width: 768px) {
+            .hero-container {
+                align-items: center;
+            }
+        }
+
+        .hero-main-text {
+            font-size: clamp(4rem, 14vw, 14rem);
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            color: transparent;
+            background-clip: text;
+            -webkit-background-clip: text;
+            background-image: linear-gradient(to bottom, var(--text-primary), var(--text-tertiary), transparent);
+            filter: drop-shadow(0 25px 25px var(--shadow-sm));
+            line-height: 1;
+            text-transform: uppercase;
+            padding-right: 2rem;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero-main-text {
+                padding-right: 0;
+                font-size: clamp(2.5rem, 12vw, 4rem);
+                text-align: center;
+                word-wrap: normal;
+                word-break: break-word;
+                /* Allow break if absolutely needed on super small devices */
+            }
+        }
+
+        .hero-subtitle {
+            position: absolute;
+            bottom: -3rem;
+            left: 2rem;
+            color: var(--text-primary);
+            font-size: clamp(1rem, 3vw, 2.5rem);
+            z-index: 10;
+            opacity: 0;
+            width: max-content;
+        }
+
+        @media (max-width: 768px) {
+            .hero-subtitle {
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: -2rem;
+            }
+        }
     </style>
 </head>
 
 <body>
+
+    <!-- HERO SECTION -->
+    <section id="hero-section" class="hero-section">
+        <div class="hero-bg-overlay"></div>
+        <div class="hero-container" id="heroContainer">
+            <h1 id="heroText" class="hero-main-text">SAMARTH</h1>
+            <p id="heroSubtitle" class="hero-subtitle">
+                <span style="font-weight: bold;">Software</span> <span
+                    style="font-weight: 300; font-style: italic; color: var(--text-tertiary);">Developer</span>
+            </p>
+        </div>
+    </section>
 
     <!-- Theme Toggle -->
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
@@ -3259,71 +3452,17 @@
         </svg>
     </button>
 
-    <!-- HOME SECTION -->
-    <section id="home-section">
-        <video id="bg-video" autoplay playsinline muted loop>
-            <source src="0718 (online-video-cutter.com).mp4" type="video/mp4">
-            Your browser does not support HTML5 video.
-        </video>
-
-        <div id="video-overlay"></div>
-
-        <nav class="navbar">
-            <div class="logo"></div>
-            <div class="nav-links">
-                <a href="#">Home</a>
-                <a href="#about-section">About</a>
-                <a href="#services-section">Services</a>
-                <a href="#">Projects</a>
-                <a href="#contact-section">Contact</a>
-            </div>
-            <a href="#" class="hire-btn">Hire Me</a>
-        </nav>
-
-        <div class="hero-content">
-            <h2 class="greeting">Hi, I'm a</h2>
-            <h1 class="title">Full Stack Developer</h1>
-            <p class="description">
-                I build fast, scalable and modern web applications<br>
-                using React, Node.js and Tailwind CSS.
-            </p>
-            <div class="hero-buttons">
-                <a href="#" class="btn-primary">View My Work</a>
-                <a href="#contact-section" class="btn-secondary">Contact Me</a>
-                <a href="https://github.com/samarth-maheshwari-dev" target="_blank" rel="noopener noreferrer"
-                    class="btn-secondary btn-github" aria-label="GitHub Profile">
-                    <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path
-                            d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.16-.02-2.11-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.96 10.96 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.41.35.78 1.05.78 2.12 0 1.53-.01 2.76-.01 3.13 0 .31.21.68.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z" />
-                    </svg>
-                    <span>GitHub</span>
-                </a>
-                <a href="Samarth_Maheshwari_Resume.docx" download class="btn-secondary btn-resume"
-                    aria-label="Download Resume">
-                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                        <polyline points="7 10 12 15 17 10" />
-                        <line x1="12" y1="15" x2="12" y2="3" />
-                    </svg>
-                    <span>Resume</span>
-                </a>
-            </div>
+    <nav class="navbar">
+        <div class="logo"></div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#about-section">About</a>
+            <a href="#services-section">Services</a>
+            <a href="#">Projects</a>
+            <a href="#contact-section">Contact</a>
         </div>
-
-        <div id="play-container">
-            <div class="play-button" id="ctrl-btn">
-                <svg class="play-icon" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                </svg>
-                <svg class="pause-icon" viewBox="0 0 24 24">
-                    <rect x="6" y="4" width="4" height="16" />
-                    <rect x="14" y="4" width="4" height="16" />
-                </svg>
-            </div>
-            <div class="play-text" id="ctrl-text">PLAY</div>
-        </div>
-    </section>
+        <a href="#contact-section" class="hire-btn">Hire Me</a>
+    </nav>
 
     <!-- ABOUT SECTION — CINEMATIC REDESIGN -->
     <section class="about-section" id="about-section">
@@ -3416,22 +3555,16 @@
                             </svg>
                             <span>Available Now</span>
                         </span>
-                        <span class="opp-badge">
+                        <a href="Samarth_Maheshwari_Resume.docx" download class="opp-badge"
+                            style="text-decoration: none; cursor: pointer;">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-                                <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <polyline points="7 10 12 15 17 10" />
+                                <line x1="12" y1="15" x2="12" y2="3" />
                             </svg>
-                            <span>Internships</span>
-                        </span>
-                        <span class="opp-badge">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <rect x="2" y="7" width="20" height="14" rx="2" />
-                                <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
-                            </svg>
-                            <span>Freelance Projects</span>
-                        </span>
+                            <span>Resume</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -3944,44 +4077,7 @@
             setTimeout(() => { themeToggle.style.transform = ''; }, 200);
         });
 
-        // ========== HOME VIDEO CONTROLS ==========
-        const video = document.getElementById('bg-video');
-        const playContainer = document.getElementById('play-container');
-        const ctrlBtn = document.getElementById('ctrl-btn');
-        const ctrlText = document.getElementById('ctrl-text');
 
-        // Autoplay is handled by HTML 'muted' attribute to comply with browser policies
-        const playPromise = video.play();
-
-        if (playPromise !== undefined) {
-            playPromise.then(() => {
-                ctrlBtn.classList.add('playing');
-                ctrlText.innerText = 'Pause';
-            }).catch(() => {
-                ctrlBtn.classList.remove('playing');
-                ctrlText.innerText = 'Play';
-            });
-        }
-
-        playContainer.addEventListener('click', () => {
-            if (video.muted) {
-                video.muted = false;
-                video.currentTime = 0;
-                video.play();
-                ctrlBtn.classList.add('playing');
-                ctrlText.innerText = 'Pause';
-            } else {
-                if (video.paused) {
-                    video.play();
-                    ctrlBtn.classList.add('playing');
-                    ctrlText.innerText = 'Pause';
-                } else {
-                    video.pause();
-                    ctrlBtn.classList.remove('playing');
-                    ctrlText.innerText = 'Play';
-                }
-            }
-        });
 
         // ========== ABOUT SECTION — INTERACTIONS ==========
         const aboutSection = document.getElementById('about-section');
@@ -6094,6 +6190,83 @@
                         });
                 });
             }
+        })();
+
+        // ========== GSAP HERO ANIMATION LOGIC ==========
+        (function () {
+            const runHeroAnimation = () => {
+                const container = document.getElementById('heroContainer');
+                const textElem = document.getElementById('heroText');
+                const subtitle = document.getElementById('heroSubtitle');
+
+                if (!container || !textElem) return;
+
+                // Lock scroll during intro animation
+                document.body.style.overflow = 'hidden';
+                window.scrollTo(0, 0);
+
+                const target = "PORTFOLIO";
+                const start = "SAMARTH  ";
+                let iterations = 0;
+
+                setTimeout(() => {
+                    const intervalId = setInterval(() => {
+                        let newText = target.split("").map((letter, index) => {
+                            if (index < Math.floor(iterations)) return target[index];
+                            if (index < start.length) return start[index];
+                            return "";
+                        }).join("");
+
+                        textElem.innerText = newText;
+
+                        if (iterations >= target.length) {
+                            clearInterval(intervalId);
+
+                            // GSAP Slide Up
+                            gsap.timeline({
+                                onComplete: () => {
+                                    document.body.style.overflow = ''; // Unlock scroll
+                                }
+                            })
+                                .to(container, {
+                                    top: window.innerWidth < 768 ? "30%" : "40%",
+                                    duration: 1.5,
+                                    ease: "power3.inOut"
+                                }, "+=0.2")
+                                .fromTo(subtitle,
+                                    { y: 50, opacity: 0 },
+                                    { y: 0, opacity: 1, duration: 1.2, ease: "power3.out" },
+                                    "-=1.0"
+                                );
+                        }
+                        iterations += 1 / 3;
+                    }, 50); // Scramble speed
+                }, 500); // Initial delay
+
+                // Native performant scroll parallax animation using gsap.set
+                let ticking = false;
+                window.addEventListener('scroll', () => {
+                    if (!ticking) {
+                        window.requestAnimationFrame(() => {
+                            const scrolled = window.scrollY;
+                            if (scrolled <= window.innerHeight) {
+                                gsap.set(container, {
+                                    y: scrolled * 0.5,
+                                    opacity: Math.max(0, 1 - (scrolled / window.innerHeight) * 1.5)
+                                });
+                            }
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                }, { passive: true });
+            };
+
+            // Dynamically load GSAP
+            const script = document.createElement('script');
+            script.src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js";
+            script.onload = runHeroAnimation;
+            document.body.appendChild(script);
         })();
     </script>
 </body>
