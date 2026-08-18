@@ -1459,8 +1459,7 @@
             cursor: pointer;
         }
 
-        .service-row.active,
-        .service-row-header:hover {
+        .service-row.active {
             color: #000 !important;
         }
 
@@ -1471,6 +1470,10 @@
         .service-row:hover:not(.active) {
             background: rgba(204, 255, 0, 0.1) !important;
             color: #ccff00 !important;
+        }
+
+        .service-list:hover .service-row:not(:hover) {
+            opacity: 0.3;
         }
 
         [data-theme="light"] .service-row {
@@ -3261,9 +3264,7 @@
             animation: marquee-scroll-right var(--dur, 45s) linear infinite;
         }
 
-        .marquee-track:hover {
-            animation-play-state: paused;
-        }
+
 
         .marquee-item {
             display: inline-flex;
@@ -3337,17 +3338,13 @@
             display: flex;
             align-items: flex-end;
             justify-content: center;
-            background: radial-gradient(circle, var(--bg-primary) 0%, var(--bg-secondary) 80%);
+            background: transparent;
             overflow: hidden;
             z-index: 10;
         }
 
         .hero-bg-overlay {
-            position: absolute;
-            inset: 0;
-            background: var(--bg-card);
-            backdrop-filter: blur(2px);
-            -webkit-backdrop-filter: blur(2px);
+            display: none;
         }
 
         .hero-container {
@@ -3734,7 +3731,7 @@
                     </h2>
                 </div>
                 <div class="service-list reveal-up">
-                    <div class="service-row active">
+                    <div class="service-row">
                         <div class="service-row-header">
                             <div class="service-num">01</div>
                             <div class="service-name">AI FULL STACK DEVELOPMENT</div>
@@ -4338,9 +4335,12 @@
                     // Close all
                     rows.forEach(r => r.classList.remove('active'));
 
-                    // If it wasn't active, open it
                     if (!isActive) {
                         row.classList.add('active');
+                    }
+
+                    if (window.lenis && typeof window.lenis.resize === 'function') {
+                        setTimeout(() => window.lenis.resize(), 600); // Wait for transition
                     }
                 });
             });
@@ -6258,7 +6258,7 @@
                 const lenisScript = document.createElement('script');
                 lenisScript.src = "https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js";
                 lenisScript.onload = () => {
-                    const lenis = new Lenis({
+                    const lenis = window.lenis = new Lenis({
                         duration: 1.2,
                         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
                         direction: 'vertical',
