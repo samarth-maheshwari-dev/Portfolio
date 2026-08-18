@@ -3422,10 +3422,6 @@
         <div class="hero-bg-overlay"></div>
         <div class="hero-container" id="heroContainer">
             <h1 id="heroText" class="hero-main-text">SAMARTH</h1>
-            <p id="heroSubtitle" class="hero-subtitle">
-                <span style="font-weight: bold;">Software</span> <span
-                    style="font-weight: 300; font-style: italic; color: var(--text-tertiary);">Developer</span>
-            </p>
         </div>
     </section>
 
@@ -6196,7 +6192,6 @@
             const runHeroAnimation = () => {
                 const container = document.getElementById('heroContainer');
                 const textElem = document.getElementById('heroText');
-                const subtitle = document.getElementById('heroSubtitle');
 
                 if (!container || !textElem) return;
 
@@ -6231,12 +6226,7 @@
                                     top: window.innerWidth < 768 ? "30%" : "40%",
                                     duration: 1.5,
                                     ease: "power3.inOut"
-                                }, "+=0.2")
-                                .fromTo(subtitle,
-                                    { y: 50, opacity: 0 },
-                                    { y: 0, opacity: 1, duration: 1.2, ease: "power3.out" },
-                                    "-=1.0"
-                                );
+                                }, "+=0.2");
                         }
                         iterations += 1 / 3;
                     }, 50); // Scramble speed
@@ -6261,10 +6251,35 @@
                 }, { passive: true });
             };
 
-            // Dynamically load GSAP
+            // Dynamically load GSAP and Lenis for smooth scrolling
             const script = document.createElement('script');
             script.src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js";
-            script.onload = runHeroAnimation;
+            script.onload = () => {
+                const lenisScript = document.createElement('script');
+                lenisScript.src = "https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js";
+                lenisScript.onload = () => {
+                    const lenis = new Lenis({
+                        duration: 1.2,
+                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                        direction: 'vertical',
+                        gestureDirection: 'vertical',
+                        smooth: true,
+                        mouseMultiplier: 1,
+                        smoothTouch: false,
+                        touchMultiplier: 2,
+                        infinite: false,
+                    });
+
+                    function raf(time) {
+                        lenis.raf(time);
+                        requestAnimationFrame(raf);
+                    }
+                    requestAnimationFrame(raf);
+
+                    runHeroAnimation();
+                };
+                document.body.appendChild(lenisScript);
+            };
             document.body.appendChild(script);
         })();
     </script>
