@@ -3832,6 +3832,15 @@
                 bottom: 30px;
             }
         }
+
+        #samarth-ai-orb:focus-visible,
+        #sai-close:focus-visible,
+        .sai-chip:focus-visible,
+        .sai-action-btn:focus-visible,
+        #sai-input:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
     </style>
 </head>
 
@@ -6755,7 +6764,7 @@
         </div>
 
         <div id="sai-input-area">
-            <input type="text" id="sai-input" placeholder="Ask about Samarth..." autocomplete="off">
+            <input type="text" id="sai-input" placeholder="Ask about Samarth..." autocomplete="off" maxlength="500">
             <button id="sai-send" disabled aria-label="Send message">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
@@ -6769,8 +6778,10 @@
 
     <script>
         (function initSamarthAI() {
-            // URL points to local worker instance in dev
-            const WORKER_URL = 'http://127.0.0.1:8787';
+            // Dynamic worker url based on environment
+            const WORKER_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+                ? 'http://127.0.0.1:8787'
+                : 'https://samarth-ai-worker.samarthmaheshwari54321.workers.dev';
 
             const orb = document.getElementById('samarth-ai-orb');
             const win = document.getElementById('samarth-ai-window');
@@ -6800,6 +6811,7 @@
                 const isOpen = win.classList.contains('open');
                 if (isOpen) {
                     win.classList.remove('open');
+                    orb.focus();
                 } else {
                     win.classList.add('open');
                     inputField.focus();
@@ -6836,8 +6848,21 @@
                 }
             });
 
+            function escapeHTML(str) {
+                return str.replace(/[&<>'"]/g,
+                    tag => ({
+                        '&': '&amp;',
+                        '<': '&lt;',
+                        '>': '&gt;',
+                        "'": '&#39;',
+                        '"': '&quot;'
+                    }[tag] || tag)
+                );
+            }
+
             function parseMarkdown(text) {
-                let parsed = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                let parsed = escapeHTML(text);
+                parsed = parsed.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
                 parsed = parsed.replace(/\*(.*?)\*/g, '<em>$1</em>');
                 parsed = parsed.replace(/\n\n/g, '</p><p>');
                 parsed = parsed.replace(/\n/g, '<br>');
@@ -6944,13 +6969,18 @@
                 showTyping();
                 setState('thinking');
 
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 seconds max
+
                 try {
                     const response = await fetch(`${WORKER_URL}/api/ask`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ message: text })
+                        body: JSON.stringify({ message: text }),
+                        signal: controller.signal
                     });
 
+                    clearTimeout(timeoutId);
                     hideTyping();
 
                     const data = await response.json();
@@ -6963,8 +6993,13 @@
                         setState('error');
                     }
                 } catch (err) {
+                    clearTimeout(timeoutId);
                     hideTyping();
-                    appendMessage('ai', 'Samarth AI is offline or unreachable block locally.');
+                    if (err.name === 'AbortError') {
+                        appendMessage('ai', 'Request timed out. Please try again.');
+                    } else {
+                        appendMessage('ai', 'Samarth AI is offline or unreachable block locally.');
+                    }
                     setState('error');
                 } finally {
                     isThinking = false;
