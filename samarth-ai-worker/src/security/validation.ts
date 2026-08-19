@@ -45,8 +45,8 @@ export function validateRequest(body: unknown): ValidationResult {
     }
 
     // Reject if message contains only special characters
-    const alphanumericCount = (message.match(/[a-zA-Z0-9]/g) || []).length;
-    if (alphanumericCount < 2) {
+    const validCharCount = (message.match(/\p{L}|\p{N}/gu) || []).length;
+    if (validCharCount < 2) {
         return { valid: false, error: 'Please ask a meaningful question.' };
     }
 

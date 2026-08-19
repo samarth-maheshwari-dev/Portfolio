@@ -188,4 +188,7 @@ async function buildIndex() {
     console.log(`Saved to ${OUTPUT_FILE}`);
 }
 
-buildIndex().catch(console.error);
+buildIndex().catch((err) => {
+    console.error('Fatal error building index:', err);
+    process.exit(1);
+});

@@ -135,10 +135,8 @@ export function checkFaqCache(query: string): AskResponse | null {
 
     for (const entry of FAQ_CACHE) {
         for (const keyword of entry.keywords) {
-            if (
-                normalized.includes(keyword) ||
-                keyword.includes(normalized)
-            ) {
+            const regex = new RegExp(`\\b${keyword}\\b`, 'i');
+            if (regex.test(normalized)) {
                 return entry.response;
             }
         }

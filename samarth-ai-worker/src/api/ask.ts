@@ -43,7 +43,7 @@ export async function handleAsk(request: Request, env: Env): Promise<Response> {
         const query = data.message;
 
         // 3. Rate Limiting Check
-        const rateLimit = checkRateLimit(ip);
+        const rateLimit = await checkRateLimit(ip, env);
         if (!rateLimit.allowed) {
             return errorResponse(rateLimit.error || 'Rate limit exceeded', 429);
         }

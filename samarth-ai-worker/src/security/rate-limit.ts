@@ -5,6 +5,7 @@
 // ============================================================
 
 import { CONFIG } from '../config';
+import type { Env } from '../types';
 
 interface RateBucket {
     count: number;
@@ -48,16 +49,30 @@ export interface RateLimitResult {
  * Check rate limits for a given IP.
  * Returns whether the request is allowed.
  */
-export function checkRateLimit(ip: string): RateLimitResult {
+export async function checkRateLimit(ip: string, env?: Env): Promise<RateLimitResult> {
     const now = Date.now();
 
-    // Reset global daily counter if past midnight
+    // 1. Check Durable Shared Storage if configured (Cloudflare Rate Limiting API)
+    if (env && env.RATE_LIMITER) {
+        try {
+            const { success } = await (env.RATE_LIMITER as any).limit({ key: ip });
+            if (!success) {
+                return {
+                    allowed: false,
+                    error: 'Rate limit exceeded (Durable Storage). Please wait before asking again.',
+                };
+            }
+        } catch (e) {
+            console.error('Durable rate limit check failed', e);
+        }
+    }
+
+    // 2. Fallback to Local In-Memory Checks
     if (now >= globalDailyResetAt) {
         globalDailyCount = 0;
         globalDailyResetAt = getNextMidnightUTC();
     }
 
-    // Global daily cap (hard stop — never auto-upgrade to paid)
     if (globalDailyCount >= CONFIG.MAX_GLOBAL_AI_REQUESTS_PER_DAY) {
         return {
             allowed: false,
@@ -67,7 +82,6 @@ export function checkRateLimit(ip: string): RateLimitResult {
         };
     }
 
-    // Per-IP per-minute
     const minuteBucket = getBucket(minuteBuckets, ip, 60_000);
     if (minuteBucket.count >= CONFIG.MAX_REQUESTS_PER_IP_PER_MINUTE) {
         return {
@@ -77,7 +91,6 @@ export function checkRateLimit(ip: string): RateLimitResult {
         };
     }
 
-    // Per-IP per-hour
     const hourBucket = getBucket(hourBuckets, ip, 3_600_000);
     if (hourBucket.count >= CONFIG.MAX_REQUESTS_PER_IP_PER_HOUR) {
         return {
@@ -88,12 +101,10 @@ export function checkRateLimit(ip: string): RateLimitResult {
         };
     }
 
-    // All passed — increment counters
     minuteBucket.count++;
     hourBucket.count++;
     globalDailyCount++;
 
-    // Occasional cleanup of stale data (approx 1% of requests)
     if (Math.random() < 0.01) {
         for (const [key, b] of minuteBuckets) {
             if (now >= b.resetAt) minuteBuckets.delete(key);

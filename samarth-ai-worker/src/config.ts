@@ -20,6 +20,7 @@ export const CONFIG = {
 
     // AI Provider
     OPENCODE_BASE_URL: 'https://opencode.ai/zen/v1',
+    AI_MODEL: 'deepseek-v4-flash-free',
 
     // Response Cache TTL (seconds)
     CACHE_TTL: 3600,

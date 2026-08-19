@@ -16,17 +16,18 @@ export default {
         const url = new URL(request.url);
         const origin = request.headers.get('Origin') || '';
 
-        // Determine allowed origin (allow localhost automatically for dev)
+        // Determine allowed origin (allow localhost strictly for dev)
         const allowedOrigin = env.ALLOWED_ORIGIN || '*';
-        const isLocalhost = origin.includes('localhost') || origin.includes('127.0.0.1');
+        const isLocalhost = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
         const isAllowed = allowedOrigin === '*' || origin === allowedOrigin || isLocalhost;
 
         // CORS Headers
-        const corsHeaders = {
+        const corsHeaders: Record<string, string> = {
             'Access-Control-Allow-Origin': isAllowed ? origin : allowedOrigin,
             'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
             'Access-Control-Allow-Headers': 'Content-Type, Authorization',
             'Access-Control-Max-Age': '86400',
+            'Vary': 'Origin',
         };
 
         // Handle CORS preflight options

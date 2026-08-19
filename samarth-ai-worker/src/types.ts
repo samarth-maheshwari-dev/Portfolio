@@ -7,6 +7,7 @@ export interface Env {
     AI_ENABLED: string;
     AI_MODEL: string;
     ALLOWED_ORIGIN: string;
+    RATE_LIMITER?: any;
 }
 
 export interface AskRequest {
