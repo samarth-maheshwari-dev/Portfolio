@@ -6913,6 +6913,16 @@
                                     }
                                 };
                                 msgDiv.appendChild(btn);
+                            } else if (act.type === 'RETRY') {
+                                const btn = document.createElement('button');
+                                btn.className = 'sai-action-btn';
+                                btn.textContent = act.label || 'Retry';
+                                btn.onclick = () => {
+                                    if (act.retryText) {
+                                        sendMessage(act.retryText);
+                                    }
+                                };
+                                msgDiv.appendChild(btn);
                             }
                         });
                     }
@@ -6958,8 +6968,8 @@
                 }
             }
 
-            async function sendMessage() {
-                const text = inputField.value.trim();
+            async function sendMessage(retryText) {
+                const text = (typeof retryText === 'string') ? retryText : inputField.value.trim();
                 if (!text || isThinking) return;
 
                 inputField.value = '';
@@ -6996,9 +7006,9 @@
                     clearTimeout(timeoutId);
                     hideTyping();
                     if (err.name === 'AbortError') {
-                        appendMessage('ai', 'Request timed out. Please try again.');
+                        appendMessage('ai', 'Request timed out. Please try again.', [], [{ type: 'RETRY', label: 'Retry', retryText: text }]);
                     } else {
-                        appendMessage('ai', 'Samarth AI is offline or unreachable block locally.');
+                        appendMessage('ai', 'Samarth AI is offline or unreachable block locally.', [], [{ type: 'RETRY', label: 'Retry', retryText: text }]);
                     }
                     setState('error');
                 } finally {

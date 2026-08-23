@@ -98,7 +98,7 @@ export async function handleAsk(request: Request, env: Env): Promise<Response> {
 Your job is to answer questions about Samarth's skills, projects, and professional background.
 You must ONLY use the provided context to answer. If the context does not contain the answer, say you don't have that information.
 NEVER invent facts.
-Keep answers concise, professional, friendly, and structured.
+Keep answers concise, professional, friendly, and structured. Always try to answer accurately using bullet points. Use good, simple and easy-to-understand language.
 Respond with plain text formatted with Markdown. Don't use JSON format for your reply.`;
 
         // Ensure API Key exists
