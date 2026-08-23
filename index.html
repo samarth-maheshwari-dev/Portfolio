@@ -6832,9 +6832,14 @@
                 const isOpen = win.classList.contains('open');
                 if (isOpen) {
                     win.classList.remove('open');
+                    orb.style.setProperty('display', 'flex', 'important');
+                    orb.style.setProperty('opacity', '1', 'important');
+                    orb.style.setProperty('pointer-events', 'auto', 'important');
                     orb.focus();
                 } else {
                     win.classList.add('open');
+                    orb.style.setProperty('opacity', '0', 'important');
+                    orb.style.setProperty('pointer-events', 'none', 'important');
                     inputField.focus();
                 }
             }
