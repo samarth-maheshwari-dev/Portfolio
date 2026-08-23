@@ -4,7 +4,7 @@ compatibility_date = "2024-08-06"
 
 [vars]
 AI_ENABLED = "true"
-AI_MODEL = "deepseek-v4-flash-free"
+AI_MODEL = "x-preview-f-free"
 ALLOWED_ORIGIN = "https://samarth-maheshwari-dev.vercel.app"
 
 # Secrets (set via `wrangler secret put`):

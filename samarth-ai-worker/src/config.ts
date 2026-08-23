@@ -16,11 +16,11 @@ export const CONFIG = {
 
     // RAG
     TOP_K: 3,
-    CONFIDENCE_THRESHOLD: 0.15,
+    CONFIDENCE_THRESHOLD: 0.05,
 
     // AI Provider
     OPENCODE_BASE_URL: 'https://opencode.ai/zen/v1',
-    AI_MODEL: 'deepseek-v4-flash-free',
+    AI_MODEL: 'x-preview-f-free',
 
     // Response Cache TTL (seconds)
     CACHE_TTL: 3600,

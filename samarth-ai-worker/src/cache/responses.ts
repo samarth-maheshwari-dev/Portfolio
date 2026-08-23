@@ -87,7 +87,7 @@ const FAQ_CACHE: CacheEntry[] = [
         keywords: ['projects', 'what has he built', 'work', 'portfolio projects'],
         response: {
             message:
-                "Samarth has built several notable projects:\n\n**JARVIS** — A personal AI assistant with system control, automation, and voice interaction capabilities, built with Python.\n\n**RepoLens** — An AI-powered tool that analyzes GitHub repositories, providing intelligent code summaries and architecture insights.\n\n**Portfolio** — This very website — a premium, animated portfolio featuring GSAP animations, WebGL effects, and now an AI representative (me!).\n\nWant to know more about any specific project?",
+                "Samarth has built several notable projects:\n\n**Project Aion** — An Industrial Knowledge Intelligence Platform built for the ET AI Hackathon 2026.\n\n**JARVIS** — A personal AI assistant with system control, automation, and voice interaction.\n\n**Snaptrace AI** — An AI platform helping students find and claim lost items.\n\n**Dotnet AI Game** — An AI-integrated multiplayer game.\n\n**Portfolio** — This animated website featuring GSAP, WebGL, and me (an AI)!\n\nWant to know more about any specific project?",
             sources: ['Projects'],
             actions: [
                 {

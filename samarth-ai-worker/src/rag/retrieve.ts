@@ -38,7 +38,29 @@ function buildTfVector(tokens: string[]): Record<string, number> {
     return tf;
 }
 
-/** Cosine similarity between two sparse vectors */
+/** Helper to determine Levenshtein distance for typos */
+function levenshtein(a: string, b: string): number {
+    const matrix: number[][] = [];
+    for (let i = 0; i <= b.length; i++) matrix[i] = [i];
+    for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+
+    for (let i = 1; i <= b.length; i++) {
+        for (let j = 1; j <= a.length; j++) {
+            if (b.charAt(i - 1) === a.charAt(j - 1)) {
+                matrix[i][j] = matrix[i - 1][j - 1];
+            } else {
+                matrix[i][j] = Math.min(
+                    matrix[i - 1][j - 1] + 1,
+                    matrix[i][j - 1] + 1,
+                    matrix[i - 1][j] + 1
+                );
+            }
+        }
+    }
+    return matrix[b.length][a.length];
+}
+
+/** Cosine similarity with typo-tolerance (fuzzy matching) */
 function cosineSimilarity(
     a: Record<string, number>,
     b: Record<string, number>
@@ -47,14 +69,33 @@ function cosineSimilarity(
     let normA = 0;
     let normB = 0;
 
-    for (const key in a) {
-        normA += a[key] * a[key];
-        if (key in b) {
-            dotProduct += a[key] * b[key];
+    for (const keyA in a) {
+        normA += a[keyA] * a[keyA];
+        let bestMatchScore = 0;
+
+        for (const keyB in b) {
+            if (keyA === keyB) {
+                bestMatchScore = Math.max(bestMatchScore, a[keyA] * b[keyB]);
+            } else {
+                const maxLen = Math.max(keyA.length, keyB.length);
+                if (maxLen > 3) {
+                    const dist = levenshtein(keyA, keyB);
+                    if (dist <= 2) {
+                        const sim = 1 - (dist / maxLen);
+                        if (sim >= 0.6) {
+                            bestMatchScore = Math.max(bestMatchScore, a[keyA] * b[keyB] * sim);
+                        }
+                    } else if (keyA.includes(keyB) || keyB.includes(keyA)) {
+                        bestMatchScore = Math.max(bestMatchScore, a[keyA] * b[keyB] * 0.7);
+                    }
+                }
+            }
         }
+        dotProduct += bestMatchScore;
     }
-    for (const key in b) {
-        normB += b[key] * b[key];
+
+    for (const keyB in b) {
+        normB += b[keyB] * b[keyB];
     }
 
     if (normA === 0 || normB === 0) return 0;
