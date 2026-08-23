@@ -63,14 +63,16 @@
 
         html {
             scroll-behavior: smooth;
+            background-color: var(--bg-primary);
+            transition: background-color 0.5s var(--transition);
         }
 
         body {
             font-family: 'Inter', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background-color: var(--bg-primary);
+            background-color: transparent;
             color: var(--text-primary);
             overflow-x: hidden;
-            transition: background-color 0.5s var(--transition), color 0.5s var(--transition);
+            transition: color 0.5s var(--transition);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -587,9 +589,8 @@
             position: relative;
             min-height: 100vh;
             padding: clamp(100px, 12vw, 140px) clamp(20px, 5vw, 80px) clamp(80px, 10vw, 120px);
-            background: var(--bg-primary);
+            background: transparent;
             overflow: hidden;
-            transition: background 0.5s var(--transition);
         }
 
         .about-bg {
@@ -3845,6 +3846,14 @@
 </head>
 
 <body>
+    <div id="liquid-ether-bg"
+        style="position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; touch-action: none;">
+        <canvas id="aboutParticles" aria-hidden="true" style="display: none;"></canvas>
+        <div class="about-grid-lines" style="display: none;"></div>
+        <div class="about-neural" style="display: none;"></div>
+        <div class="about-aurora" style="display: none;"></div>
+        <div class="about-spotlight" id="aboutSpotlight" style="display: none;"></div>
+    </div>
 
     <!-- HERO SECTION -->
     <section id="hero-section" class="hero-section">
@@ -3890,15 +3899,6 @@
 
     <!-- ABOUT SECTION — CINEMATIC REDESIGN -->
     <section class="about-section" id="about-section">
-        <div class="about-bg" id="liquid-ether-bg"
-            style="position: absolute; inset: 0; z-index: 0; overflow: hidden; width: 100%; height: 100%; touch-action: none;">
-            <canvas id="aboutParticles" aria-hidden="true" style="display: none;"></canvas>
-            <div class="about-grid-lines" style="display: none;"></div>
-            <div class="about-neural" style="display: none;"></div>
-            <div class="about-aurora" style="display: none;"></div>
-            <div class="about-spotlight" id="aboutSpotlight" style="display: none;"></div>
-        </div>
-
         <div class="about-container">
             <header class="about-header reveal-up">
                 <h2 class="service-title reveal-up" style="text-align: center; margin-bottom: 30px;">
