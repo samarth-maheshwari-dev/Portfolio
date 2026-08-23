@@ -5,7 +5,7 @@ compatibility_date = "2024-08-06"
 [vars]
 AI_ENABLED = "true"
 AI_MODEL = "x-preview-f-free"
-ALLOWED_ORIGIN = "https://samarth-maheshwari-dev.vercel.app"
+ALLOWED_ORIGIN = "*"
 
 # Secrets (set via `wrangler secret put`):
 # OPENCODE_API_KEY — never committed, never in source
