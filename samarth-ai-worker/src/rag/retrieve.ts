@@ -69,29 +69,50 @@ function cosineSimilarity(
     let normA = 0;
     let normB = 0;
 
+    const usedB = new Set<string>();
+
     for (const keyA in a) {
         normA += a[keyA] * a[keyA];
         let bestMatchScore = 0;
+        let bestKeyB = "";
 
         for (const keyB in b) {
+            if (usedB.has(keyB)) continue;
+
+            let currentScore = 0;
             if (keyA === keyB) {
-                bestMatchScore = Math.max(bestMatchScore, a[keyA] * b[keyB]);
+                currentScore = a[keyA] * b[keyB];
             } else {
                 const maxLen = Math.max(keyA.length, keyB.length);
                 if (maxLen > 3) {
+                    let simLevel = 0;
+
                     const dist = levenshtein(keyA, keyB);
                     if (dist <= 2) {
                         const sim = 1 - (dist / maxLen);
-                        if (sim >= 0.6) {
-                            bestMatchScore = Math.max(bestMatchScore, a[keyA] * b[keyB] * sim);
-                        }
-                    } else if (keyA.includes(keyB) || keyB.includes(keyA)) {
-                        bestMatchScore = Math.max(bestMatchScore, a[keyA] * b[keyB] * 0.7);
+                        if (sim >= 0.6) simLevel = Math.max(simLevel, sim);
+                    }
+
+                    if (keyA.includes(keyB) || keyB.includes(keyA)) {
+                        simLevel = Math.max(simLevel, 0.7);
+                    }
+
+                    if (simLevel > 0) {
+                        currentScore = a[keyA] * b[keyB] * simLevel;
                     }
                 }
             }
+
+            if (currentScore > bestMatchScore) {
+                bestMatchScore = currentScore;
+                bestKeyB = keyB;
+            }
         }
-        dotProduct += bestMatchScore;
+
+        if (bestKeyB !== "") {
+            usedB.add(bestKeyB);
+            dotProduct += bestMatchScore;
+        }
     }
 
     for (const keyB in b) {
