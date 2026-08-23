@@ -1,9 +1,0 @@
-Aion-project-for-Economic-Times: 🏭 Project Aion — Industrial Knowledge Intelligence Platform  Transforms disconnected industrial documents (OEM manuals, SOPs, P&IDs, incident reports) into an AI-powered, continuously evolving knowledge system. Built for the ET AI Hackathon 2026.  Features semantic search (FAISS + sentence-transformers), SQLite knowledge graph, cross-document reas
-ANIMATED-WEBSITE-FOR-ANIMATED-WEBSITE: full website
-Dotnet-Project: A basic ai integrated game with multiplayer option 
-hi-there: null
-Leet-code: A collection of LeetCode questions to ace the coding interview! - Created using [LeetHub v2](https://github.com/arunbhardwaj/LeetHub-2.0)
-Personal-Ai-ASISTANT: 🤖 AI-powered desktop assistant built with ⚛️ React, 🖥️ Electron, ⚡ FastAPI, and 🧠 Ollama — combining 💬 natural-language interaction, 🔄 multi-model AI orchestration, 🎙️ speech, and 🪟 Windows automation.
-Portfolio: null
-samarth-maheshwari-dev: null
-Snaptrace_Ai: A ai website which help students to find the lost item and claim it
