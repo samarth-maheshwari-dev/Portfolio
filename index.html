@@ -3842,6 +3842,27 @@
             outline: 2px solid var(--accent);
             outline-offset: 2px;
         }
+
+        /* Fix for mobile service text hiding */
+        @media (max-width: 768px) {
+            .service-content {
+                grid-template-columns: 1fr !important;
+                padding-left: 10px !important;
+                padding-right: 10px !important;
+                gap: 20px !important;
+            }
+
+            .service-row.active .service-content {
+                max-height: 1200px !important;
+                /* ensure content doesn't get clipped vertically */
+                padding-bottom: 20px !important;
+            }
+
+            .service-content-left,
+            .service-content-right {
+                width: 100% !important;
+            }
+        }
     </style>
 </head>
 
