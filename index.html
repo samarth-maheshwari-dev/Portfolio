@@ -3863,6 +3863,445 @@
                 width: 100% !important;
             }
         }
+
+        /* ========== PROJECTS SECTION ========== */
+        #projects-section {
+            position: relative;
+            padding: clamp(80px, 12vw, 140px) clamp(20px, 5vw, 80px);
+            background: transparent;
+            overflow: hidden;
+        }
+
+        .projects-bg-grain {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .projects-container {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            z-index: 2;
+        }
+
+        /* Section Header */
+        .projects-header {
+            margin-bottom: clamp(48px, 7vw, 80px);
+        }
+
+        .projects-eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #ccff00;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .projects-eyebrow::before {
+            content: '';
+            width: 32px;
+            height: 1px;
+            background: #ccff00;
+            display: block;
+        }
+
+        .projects-section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 800;
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            text-transform: uppercase;
+        }
+
+        .projects-section-title .title-outline {
+            color: transparent;
+            -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.25);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(16px, 2vw, 28px);
+        }
+
+        /* Project Card */
+        .proj-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .proj-card:hover {
+            border-color: rgba(255, 255, 255, 0.16);
+            transform: translateY(-6px);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45),
+                0 0 0 1px rgba(204, 255, 0, 0.08);
+        }
+
+        /* Featured card — spans 2 cols */
+        .proj-card.featured {
+            grid-column: span 2;
+        }
+
+        /* Hero Image */
+        .proj-img-wrap {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 16px 16px 0 0;
+        }
+
+        .proj-card.featured .proj-img-wrap {
+            aspect-ratio: 21/9;
+        }
+
+        .proj-img-inner {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0d0d20, #1a0a2e, #0a1a20);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .proj-card:hover .proj-img-inner {
+            transform: scale(1.04);
+        }
+
+        /* Emoji icon overlays for mockup look */
+        .proj-img-inner::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(204, 255, 0, 0.03) 0%, rgba(168, 85, 247, 0.05) 50%, transparent 100%);
+        }
+
+        /* Action buttons overlaid on image */
+        .proj-img-actions {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            display: flex;
+            gap: 8px;
+            z-index: 4;
+            opacity: 0;
+            transform: translateY(-8px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .proj-card:hover .proj-img-actions {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .proj-action-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 15px;
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.25s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .proj-action-btn:hover {
+            transform: scale(1.15);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .proj-action-btn.live {
+            background: #ccff00;
+            color: #000;
+        }
+
+        .proj-action-btn.github {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+        }
+
+        /* Card Body */
+        .proj-body {
+            padding: clamp(18px, 2.5vw, 28px);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .proj-year {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            color: #ccff00;
+            text-transform: uppercase;
+        }
+
+        .proj-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.15rem, 2vw, 1.45rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+            margin: 0;
+        }
+
+        .proj-subtitle {
+            font-size: 0.82rem;
+            color: var(--text-tertiary);
+            font-style: italic;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        .proj-desc {
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.7;
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .proj-card.featured .proj-desc {
+            -webkit-line-clamp: 3;
+        }
+
+        /* Badges */
+        .proj-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 2px;
+        }
+
+        .proj-badge {
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            white-space: nowrap;
+        }
+
+        .proj-badge.hackathon {
+            background: rgba(245, 158, 11, 0.12);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.25);
+        }
+
+        .proj-badge.ai {
+            background: rgba(204, 255, 0, 0.1);
+            color: #ccff00;
+            border: 1px solid rgba(204, 255, 0, 0.2);
+        }
+
+        .proj-badge.freelance {
+            background: rgba(16, 185, 129, 0.1);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.25);
+        }
+
+        .proj-badge.personal {
+            background: rgba(168, 85, 247, 0.1);
+            color: #c084fc;
+            border: 1px solid rgba(168, 85, 247, 0.25);
+        }
+
+        .proj-badge.game {
+            background: rgba(236, 72, 153, 0.1);
+            color: #f472b6;
+            border: 1px solid rgba(236, 72, 153, 0.25);
+        }
+
+        .proj-badge.saas {
+            background: rgba(6, 182, 212, 0.1);
+            color: #22d3ee;
+            border: 1px solid rgba(6, 182, 212, 0.25);
+        }
+
+        /* Tech tags */
+        .proj-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 4px;
+        }
+
+        .proj-tag {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 0.72rem;
+            font-family: 'JetBrains Mono', monospace;
+            padding: 3px 10px;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        /* CTA link */
+        .proj-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #ccff00;
+            text-decoration: none;
+            margin-top: 2px;
+            transition: gap 0.25s ease, opacity 0.25s ease;
+        }
+
+        .proj-cta:hover {
+            gap: 10px;
+            opacity: 0.8;
+        }
+
+        .proj-cta svg {
+            transition: transform 0.25s ease;
+        }
+
+        .proj-cta:hover svg {
+            transform: translate(3px, -3px);
+        }
+
+        /* Additional projects heading */
+        .projects-subheading {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            margin: clamp(48px, 6vw, 72px) 0 clamp(20px, 3vw, 32px);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .projects-subheading::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--border-color), transparent);
+        }
+
+        /* Inner decorative line for project card */
+        .proj-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(204, 255, 0, 0) 0%, rgba(204, 255, 0, 0.3) 50%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .proj-card:hover::before {
+            opacity: 1;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .proj-card.featured {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .proj-card.featured {
+                grid-column: span 1;
+            }
+
+            .proj-card.featured .proj-img-wrap {
+                aspect-ratio: 16/9;
+            }
+
+            .projects-section-title {
+                font-size: clamp(2.5rem, 12vw, 4rem);
+            }
+        }
+
+        /* Light theme overrides */
+        [data-theme="light"] .proj-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: rgba(0, 0, 0, 0.08);
+        }
+
+        [data-theme="light"] .proj-card:hover {
+            border-color: rgba(0, 0, 0, 0.15);
+        }
+
+        [data-theme="light"] .proj-desc {
+            color: rgba(15, 10, 31, 0.55);
+        }
+
+        [data-theme="light"] .proj-tag {
+            background: rgba(0, 0, 0, 0.04);
+            border-color: rgba(0, 0, 0, 0.1);
+            color: rgba(15, 10, 31, 0.45);
+        }
+
+        [data-theme="light"] .proj-year {
+            color: #5a2d00;
+        }
+
+        [data-theme="light"] .proj-cta {
+            color: #5a2d00;
+        }
+
+        [data-theme="light"] .proj-badge.ai {
+            background: rgba(90, 45, 0, 0.08);
+            color: #7a3d00;
+            border-color: rgba(90, 45, 0, 0.2);
+        }
     </style>
 </head>
 
@@ -3912,7 +4351,7 @@
             <a href="#">Home</a>
             <a href="#about-section">About</a>
             <a href="#services-section">Services</a>
-            <a href="#">Projects</a>
+            <a href="#projects-section">Projects</a>
             <a href="#contact-section">Contact</a>
         </div>
         <a href="#contact-section" class="hire-btn">Hire Me</a>
@@ -4308,6 +4747,444 @@
 
         </div>
     </section>
+
+    <!-- ========== PROJECTS SECTION ========== -->
+    <section id="projects-section" aria-label="Featured Projects by Samarth Maheshwari">
+        <div class="projects-bg-grain"></div>
+        <div class="projects-container">
+
+            <!-- Section Header -->
+            <header class="projects-header reveal-up">
+                <p class="projects-eyebrow">My recent works</p>
+                <h2 class="projects-section-title">
+                    FEATURED<br>
+                    <span class="title-outline">PROJECTS</span>
+                </h2>
+            </header>
+
+            <!-- Featured Projects Grid -->
+            <div class="projects-grid">
+
+                <!-- PROJECT 1 — JARVIS (FEATURED) -->
+                <article class="proj-card featured reveal-up">
+                    <div class="proj-img-wrap">
+                        <div class="proj-img-inner"
+                            style="background: linear-gradient(135deg, #0a0014, #1a0030, #001a10, #0a0014); background-size: 400% 400%; animation: aurora-drift 8s ease-in-out infinite alternate;">
+                            <div
+                                style="position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; gap:12px;">
+                                <div style="font-size: 3.5rem; filter: drop-shadow(0 0 24px rgba(168,85,247,0.8));">🤖
+                                </div>
+                                <div
+                                    style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.2em; color:rgba(204,255,0,0.8); text-transform:uppercase; text-align:center;">
+                                    JARVIS · Local AI · Full Stack</div>
+                                <div
+                                    style="display:flex; gap:8px; flex-wrap:wrap; justify-content:center; max-width:320px;">
+                                    <span
+                                        style="background:rgba(168,85,247,0.2); border:1px solid rgba(168,85,247,0.4); color:#c084fc; padding:3px 10px; border-radius:6px; font-size:0.65rem; font-family:'JetBrains Mono',monospace;">FastAPI</span>
+                                    <span
+                                        style="background:rgba(204,255,0,0.1); border:1px solid rgba(204,255,0,0.25); color:#ccff00; padding:3px 10px; border-radius:6px; font-size:0.65rem; font-family:'JetBrains Mono',monospace;">Electron</span>
+                                    <span
+                                        style="background:rgba(6,182,212,0.15); border:1px solid rgba(6,182,212,0.3); color:#22d3ee; padding:3px 10px; border-radius:6px; font-size:0.65rem; font-family:'JetBrains Mono',monospace;">Ollama</span>
+                                    <span
+                                        style="background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.3); color:#34d399; padding:3px 10px; border-radius:6px; font-size:0.65rem; font-family:'JetBrains Mono',monospace;">React
+                                        18</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Overlay action buttons -->
+                        <div class="proj-img-actions">
+                            <a href="https://jarvis-ai-agent-sigma.vercel.app" target="_blank" rel="noopener"
+                                class="proj-action-btn live" title="Live Demo" aria-label="View JARVIS live demo">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                    <polyline points="15 3 21 3 21 9" />
+                                    <line x1="10" y1="14" x2="21" y2="3" />
+                                </svg>
+                            </a>
+                            <a href="https://github.com/samarth-maheshwari-dev/Personal-Ai-ASISTANT" target="_blank"
+                                rel="noopener" class="proj-action-btn github" title="View on GitHub"
+                                aria-label="View JARVIS source code on GitHub">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="proj-body">
+                        <span class="proj-year">2025 – PRESENT · Flagship</span>
+                        <h3 class="proj-title">JARVIS — AI Desktop Assistant</h3>
+                        <p class="proj-subtitle">Full-Stack desktop AI with multi-model orchestration, Hinglish NLP &
+                            neural TTS</p>
+                        <div class="proj-badges">
+                            <span class="proj-badge ai">AI · Flagship</span>
+                            <span class="proj-badge personal">Personal</span>
+                        </div>
+                        <p class="proj-desc">
+                            A fully local, production-grade AI desktop assistant for Windows 11. JARVIS runs as an
+                            Electron desktop app with a React 18 dashboard, backed by FastAPI and an autonomous 5-model
+                            LLM fallback chain (cloud → local). Features a custom Hinglish NLP parser, neural Indian
+                            TTS, Win32 OS automation, and real-time WebSocket logs.
+                        </p>
+                        <div class="proj-tags">
+                            <span class="proj-tag">Python 3.13</span>
+                            <span class="proj-tag">FastAPI</span>
+                            <span class="proj-tag">Electron 30</span>
+                            <span class="proj-tag">React 18</span>
+                            <span class="proj-tag">Ollama</span>
+                            <span class="proj-tag">edge-tts</span>
+                            <span class="proj-tag">pywin32</span>
+                            <span class="proj-tag">WebSocket</span>
+                        </div>
+                        <a href="https://github.com/samarth-maheshwari-dev/Personal-Ai-ASISTANT" target="_blank"
+                            rel="noopener" class="proj-cta">
+                            VIEW ON GITHUB
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7" />
+                                <polyline points="7 7 17 7 17 17" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- PROJECT 2 — SNAPTRACE AI -->
+                <article class="proj-card reveal-up">
+                    <div class="proj-img-wrap">
+                        <div class="proj-img-inner"
+                            style="background: linear-gradient(135deg, #001a10, #002a18, #0a2000);">
+                            <div style="position:relative; z-index:2; text-align:center;">
+                                <div style="font-size: 3.2rem; filter: drop-shadow(0 0 20px rgba(16,185,129,0.7));">📍
+                                </div>
+                                <div
+                                    style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; color:rgba(52,211,153,0.8); margin-top:8px; text-transform:uppercase;">
+                                    AI Vision · Lost &amp; Found</div>
+                            </div>
+                        </div>
+                        <div class="proj-img-actions">
+                            <a href="https://snaptrace-ai.vercel.app" target="_blank" rel="noopener"
+                                class="proj-action-btn live" title="Live Demo" aria-label="View SnapTrace AI live">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                    <polyline points="15 3 21 3 21 9" />
+                                    <line x1="10" y1="14" x2="21" y2="3" />
+                                </svg>
+                            </a>
+                            <a href="https://github.com/samarth-maheshwari-dev/Snaptrace_Ai" target="_blank"
+                                rel="noopener" class="proj-action-btn github" title="GitHub"
+                                aria-label="View SnapTrace source code">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="proj-body">
+                        <span class="proj-year">2026 · IntelliAI Arena</span>
+                        <h3 class="proj-title">SnapTrace AI</h3>
+                        <p class="proj-subtitle">Smart Campus Lost &amp; Found with AI Vision</p>
+                        <div class="proj-badges">
+                            <span class="proj-badge hackathon">Hackathon</span>
+                            <span class="proj-badge ai">AI · Vision</span>
+                        </div>
+                        <p class="proj-desc">AI-powered campus lost-and-found with image recognition. Students photo a
+                            lost item and the system auto-matches it against found reports. Built with Next.js,
+                            Supabase, TypeScript — shipped live during IntelliAI Arena 2026 as a team of 3.</p>
+                        <div class="proj-tags">
+                            <span class="proj-tag">TypeScript</span>
+                            <span class="proj-tag">Next.js</span>
+                            <span class="proj-tag">Supabase</span>
+                            <span class="proj-tag">AI Vision</span>
+                            <span class="proj-tag">Vercel</span>
+                        </div>
+                        <a href="https://snaptrace-ai.vercel.app" target="_blank" rel="noopener" class="proj-cta">
+                            LIVE DEMO
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7" />
+                                <polyline points="7 7 17 7 17 17" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- PROJECT 3 — PROJECT AION -->
+                <article class="proj-card featured reveal-up">
+                    <div class="proj-img-wrap">
+                        <div class="proj-img-inner"
+                            style="background: linear-gradient(135deg, #001420, #002040, #0a1420);">
+                            <div style="position:relative; z-index:2; text-align:center;">
+                                <div style="font-size: 3.5rem; filter: drop-shadow(0 0 24px rgba(6,182,212,0.7));">🏭
+                                </div>
+                                <div
+                                    style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; color:rgba(34,211,238,0.8); margin-top:10px; text-transform:uppercase;">
+                                    RAG · FAISS · Knowledge Graph</div>
+                                <div
+                                    style="display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin-top:10px; max-width:400px;">
+                                    <span
+                                        style="background:rgba(6,182,212,0.15); border:1px solid rgba(6,182,212,0.35); color:#22d3ee; padding:3px 10px; border-radius:6px; font-size:0.65rem; font-family:'JetBrains Mono',monospace;">FAISS</span>
+                                    <span
+                                        style="background:rgba(204,255,0,0.1); border:1px solid rgba(204,255,0,0.25); color:#ccff00; padding:3px 10px; border-radius:6px; font-size:0.65rem; font-family:'JetBrains Mono',monospace;">Groq
+                                        API</span>
+                                    <span
+                                        style="background:rgba(168,85,247,0.15); border:1px solid rgba(168,85,247,0.35); color:#c084fc; padding:3px 10px; border-radius:6px; font-size:0.65rem; font-family:'JetBrains Mono',monospace;">SQLite
+                                        Graph</span>
+                                    <span
+                                        style="background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.3); color:#34d399; padding:3px 10px; border-radius:6px; font-size:0.65rem; font-family:'JetBrains Mono',monospace;">22
+                                        Endpoints</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="proj-img-actions">
+                            <a href="https://github.com/samarth-maheshwari-dev/Aion-project-for-Economic-Times"
+                                target="_blank" rel="noopener" class="proj-action-btn github" title="GitHub"
+                                aria-label="View Project Aion source code">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="proj-body">
+                        <span class="proj-year">2026 · ET AI Hackathon</span>
+                        <h3 class="proj-title">Project Aion — Industrial Knowledge AI</h3>
+                        <p class="proj-subtitle">Living operational brain for industrial plants · RAG + Knowledge Graph
+                        </p>
+                        <div class="proj-badges">
+                            <span class="proj-badge hackathon">ET AI Hackathon 2026</span>
+                            <span class="proj-badge ai">RAG · AI</span>
+                        </div>
+                        <p class="proj-desc">
+                            Built for the Economic Times AI Hackathon 2026. Aion ingests all industrial documents into a
+                            FAISS vector index + SQLite knowledge graph, enabling natural-language Q&amp;A with
+                            source-cited, cross-document answers. 22 REST endpoints. Engineers spend 30–40% of time
+                            hunting for info — Aion eliminates that.
+                        </p>
+                        <div class="proj-tags">
+                            <span class="proj-tag">Python</span>
+                            <span class="proj-tag">FastAPI</span>
+                            <span class="proj-tag">FAISS</span>
+                            <span class="proj-tag">sentence-transformers</span>
+                            <span class="proj-tag">Groq API</span>
+                            <span class="proj-tag">Tesseract OCR</span>
+                            <span class="proj-tag">React</span>
+                        </div>
+                        <a href="https://github.com/samarth-maheshwari-dev/Aion-project-for-Economic-Times"
+                            target="_blank" rel="noopener" class="proj-cta">
+                            VIEW ON GITHUB
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7" />
+                                <polyline points="7 7 17 7 17 17" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- PROJECT 4 — ANIMATED WEBSITE (Freelance) -->
+                <article class="proj-card reveal-up">
+                    <div class="proj-img-wrap">
+                        <div class="proj-img-inner"
+                            style="background: linear-gradient(135deg, #1a1000, #2a1a00, #100800);">
+                            <div style="position:relative; z-index:2; text-align:center;">
+                                <div style="font-size: 3.2rem; filter: drop-shadow(0 0 20px rgba(245,158,11,0.7));">✨
+                                </div>
+                                <div
+                                    style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; color:rgba(251,191,36,0.8); margin-top:8px; text-transform:uppercase;">
+                                    GSAP · Three.js · Vanilla JS</div>
+                            </div>
+                        </div>
+                        <div class="proj-img-actions">
+                            <a href="https://github.com/samarth-maheshwari-dev/ANIMATED-WEBSITE-FOR-ANIMATED-WEBSITE"
+                                target="_blank" rel="noopener" class="proj-action-btn github" title="GitHub"
+                                aria-label="View animated website source code">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="proj-body">
+                        <span class="proj-year">2025 · Client Deliverable</span>
+                        <h3 class="proj-title">Animated Website</h3>
+                        <p class="proj-subtitle">3D Frontend Showcase · Production Freelance</p>
+                        <div class="proj-badges">
+                            <span class="proj-badge freelance">Freelance</span>
+                        </div>
+                        <p class="proj-desc">Production-grade animated site with GSAP ScrollTrigger + Three.js 3D
+                            elements in pure vanilla JS. Scroll-driven animations with pinning, scrub, stagger — no
+                            React overhead. Shipped as a real client deliverable, not a demo.</p>
+                        <div class="proj-tags">
+                            <span class="proj-tag">JavaScript</span>
+                            <span class="proj-tag">GSAP</span>
+                            <span class="proj-tag">Three.js</span>
+                            <span class="proj-tag">ScrollTrigger</span>
+                            <span class="proj-tag">HTML5</span>
+                        </div>
+                        <a href="https://github.com/samarth-maheshwari-dev/ANIMATED-WEBSITE-FOR-ANIMATED-WEBSITE"
+                            target="_blank" rel="noopener" class="proj-cta">
+                            VIEW SOURCE
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7" />
+                                <polyline points="7 7 17 7 17 17" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- PROJECT 5 — WATERFALL RESTAURANT -->
+                <article class="proj-card reveal-up">
+                    <div class="proj-img-wrap">
+                        <div class="proj-img-inner"
+                            style="background: linear-gradient(135deg, #001a0a, #002a12, #001408);">
+                            <div style="position:relative; z-index:2; text-align:center;">
+                                <div style="font-size: 3.2rem; filter: drop-shadow(0 0 20px rgba(16,185,129,0.6));">🍽️
+                                </div>
+                                <div
+                                    style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; color:rgba(52,211,153,0.8); margin-top:8px; text-transform:uppercase;">
+                                    React · Next.js · GSAP · Live</div>
+                            </div>
+                        </div>
+                        <div class="proj-img-actions">
+                            <a href="https://waterfall-restaurant-live.vercel.app" target="_blank" rel="noopener"
+                                class="proj-action-btn live" title="Live Site"
+                                aria-label="View Waterfall Restaurant live site">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                    <polyline points="15 3 21 3 21 9" />
+                                    <line x1="10" y1="14" x2="21" y2="3" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="proj-body">
+                        <span class="proj-year">2025 · Freelance · Live</span>
+                        <h3 class="proj-title">Waterfall Restaurant</h3>
+                        <p class="proj-subtitle">Paid Client Website · Production Deployed</p>
+                        <div class="proj-badges">
+                            <span class="proj-badge freelance">Freelance · Paid</span>
+                        </div>
+                        <p class="proj-desc">A real, paid freelance project — a restaurant website with animations, live
+                            on Vercel. Client brief, execution, and deployment end-to-end. Cleanest evidence of
+                            freelance delivery capability.</p>
+                        <div class="proj-tags">
+                            <span class="proj-tag">React</span>
+                            <span class="proj-tag">Next.js</span>
+                            <span class="proj-tag">GSAP</span>
+                            <span class="proj-tag">Vercel</span>
+                        </div>
+                        <a href="https://waterfall-restaurant-live.vercel.app" target="_blank" rel="noopener"
+                            class="proj-cta">
+                            LIVE SITE
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7" />
+                                <polyline points="7 7 17 7 17 17" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- PROJECT 6 — DOTNET GAME -->
+                <article class="proj-card reveal-up">
+                    <div class="proj-img-wrap">
+                        <div class="proj-img-inner"
+                            style="background: linear-gradient(135deg, #1a0018, #280024, #100010);">
+                            <div style="position:relative; z-index:2; text-align:center;">
+                                <div style="font-size: 3.2rem; filter: drop-shadow(0 0 20px rgba(236,72,153,0.7));">🎮
+                                </div>
+                                <div
+                                    style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; color:rgba(244,114,182,0.8); margin-top:8px; text-transform:uppercase;">
+                                    C# · .NET · AI · Multiplayer</div>
+                            </div>
+                        </div>
+                        <div class="proj-img-actions">
+                            <a href="https://github.com/samarth-maheshwari-dev/Dotnet-Project" target="_blank"
+                                rel="noopener" class="proj-action-btn github" title="GitHub"
+                                aria-label="View game source code on GitHub">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="proj-body">
+                        <span class="proj-year">2024 · Platform Diversity</span>
+                        <h3 class="proj-title">AI Multiplayer Game</h3>
+                        <p class="proj-subtitle">C# / .NET · AI-driven NPCs · Real-time Multiplayer</p>
+                        <div class="proj-badges">
+                            <span class="proj-badge game">Game Dev</span>
+                            <span class="proj-badge ai">AI + Multiplayer</span>
+                        </div>
+                        <p class="proj-desc">C# .NET multiplayer game with AI-integrated NPC behaviour — built to
+                            demonstrate platform versatility beyond web. Most web developers never touch .NET native
+                            patterns.</p>
+                        <div class="proj-tags">
+                            <span class="proj-tag">C#</span>
+                            <span class="proj-tag">.NET</span>
+                            <span class="proj-tag">AI Integration</span>
+                            <span class="proj-tag">Multiplayer</span>
+                        </div>
+                        <a href="https://github.com/samarth-maheshwari-dev/Dotnet-Project" target="_blank"
+                            rel="noopener" class="proj-cta">
+                            VIEW SOURCE
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7" />
+                                <polyline points="7 7 17 7 17 17" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- PROJECT 7 — INTERVIEWOS (SaaS, In Progress) -->
+                <article class="proj-card reveal-up">
+                    <div class="proj-img-wrap">
+                        <div class="proj-img-inner"
+                            style="background: linear-gradient(135deg, #0a0820, #100a30, #060414);">
+                            <div style="position:relative; z-index:2; text-align:center;">
+                                <div style="font-size: 3.2rem; filter: drop-shadow(0 0 20px rgba(168,85,247,0.7));">🎯
+                                </div>
+                                <div
+                                    style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; color:rgba(192,132,252,0.8); margin-top:8px; text-transform:uppercase;">
+                                    SaaS · AI · In Progress</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="proj-body">
+                        <span class="proj-year">2025 – PRESENT · SaaS</span>
+                        <h3 class="proj-title">InterviewOS</h3>
+                        <p class="proj-subtitle">AI Interview Prep Platform · Adaptive Q&amp;A</p>
+                        <div class="proj-badges">
+                            <span class="proj-badge saas">SaaS · AI</span>
+                            <span class="proj-badge personal">In Progress</span>
+                        </div>
+                        <p class="proj-desc">AI-powered mock interview platform — generates questions by role &amp;
+                            stack, evaluates answers, tracks improvement. Product thinking beyond engineering: user
+                            flows, subscription model, real market demand.</p>
+                        <div class="proj-tags">
+                            <span class="proj-tag">Next.js</span>
+                            <span class="proj-tag">TypeScript</span>
+                            <span class="proj-tag">Supabase</span>
+                            <span class="proj-tag">AI APIs</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+            <!-- /projects-grid -->
+
+        </div>
+    </section>
+    <!-- /projects-section -->
 
     <!-- ========== CONTACT SECTION ========== -->
     <section class="contact-section" id="contact-section" aria-label="Contact Samarth Maheshwari">
