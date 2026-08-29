@@ -4399,6 +4399,420 @@
             color: var(--text-tertiary);
             background: transparent;
         }
+
+        /* ========== JARVIS CASE STUDY MODAL ========== */
+        .jarvis-modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 50000;
+            background: rgba(4, 2, 7, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s var(--transition), visibility 0.5s;
+            padding: 20px;
+        }
+
+        .jarvis-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .jarvis-modal-container {
+            position: relative;
+            width: 100%;
+            max-width: 680px;
+            max-height: 92vh;
+            overflow-y: auto;
+            background: rgba(12, 7, 22, 0.95);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 28px;
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.7), 0 0 60px rgba(168, 85, 247, 0.1);
+            padding: 40px 32px 32px 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            transform: scale(0.9) translateY(40px);
+            transition: transform 0.6s var(--transition-bounce);
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) transparent;
+        }
+
+        [data-theme="light"] .jarvis-modal-container {
+            background: rgba(255, 255, 255, 0.98);
+            border-color: rgba(124, 58, 237, 0.15);
+            box-shadow: 0 40px 80px rgba(124, 58, 237, 0.08);
+        }
+
+        .jarvis-modal-overlay.active .jarvis-modal-container {
+            transform: scale(1) translateY(0);
+        }
+
+        /* Modal Close Button */
+        .jarvis-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s var(--transition);
+            z-index: 10;
+        }
+
+        [data-theme="light"] .jarvis-modal-close {
+            background: rgba(0, 0, 0, 0.02);
+            color: var(--text-secondary);
+        }
+
+        .jarvis-modal-close:hover {
+            transform: rotate(90deg) scale(1.05);
+            border-color: var(--accent);
+            color: var(--text-primary);
+            box-shadow: 0 0 25px var(--accent-glow);
+            background: rgba(168, 85, 247, 0.1);
+        }
+
+        /* Navigation Tabs */
+        .jarvis-modal-nav {
+            display: flex;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            padding: 6px;
+            border-radius: 16px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .jarvis-modal-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        [data-theme="light"] .jarvis-modal-nav {
+            background: rgba(0, 0, 0, 0.015);
+        }
+
+        .jarvis-nav-tab {
+            flex: 1;
+            min-width: 100px;
+            background: transparent;
+            border: none;
+            color: var(--text-tertiary);
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s var(--transition);
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .jarvis-nav-tab.active {
+            background: var(--accent);
+            color: #ffffff;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        /* 3D Flashcard Perspective */
+        .jarvis-flashcard-wrapper {
+            perspective: 2000px;
+            width: 100%;
+            height: clamp(380px, 52vh, 480px);
+            margin: 10px 0;
+        }
+
+        .jarvis-flashcard {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .jarvis-flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .jarvis-card-face {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 20px;
+            padding: 30px;
+            overflow-y: auto;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 16px;
+            scrollbar-width: thin;
+        }
+
+        .jarvis-card-face::-webkit-scrollbar {
+            width: 4px;
+        }
+        .jarvis-card-face::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 4px;
+        }
+
+        .jarvis-card-front {
+            background: radial-gradient(circle at 0% 0%, rgba(168, 85, 247, 0.12), rgba(10, 6, 18, 0.98));
+        }
+
+        .jarvis-card-back {
+            background: radial-gradient(circle at 100% 100%, rgba(204, 255, 0, 0.08), rgba(10, 6, 18, 0.98));
+            transform: rotateY(180deg);
+        }
+
+        [data-theme="light"] .jarvis-card-front {
+            background: radial-gradient(circle at 0% 0%, rgba(124, 58, 237, 0.06), #fafaff);
+            border-color: rgba(0,0,0,0.05);
+        }
+
+        [data-theme="light"] .jarvis-card-back {
+            background: radial-gradient(circle at 100% 100%, rgba(124, 58, 237, 0.06), #fafaff);
+            border-color: rgba(0,0,0,0.05);
+        }
+
+        .jarvis-card-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 20px;
+            align-self: flex-start;
+            border: 1px solid transparent;
+        }
+
+        .tag-problem {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border-color: rgba(239, 68, 68, 0.2);
+        }
+        .tag-solution {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--success);
+            border-color: rgba(34, 197, 94, 0.2);
+        }
+        .tag-diff {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            border-color: rgba(59, 130, 246, 0.2);
+        }
+        .tag-features {
+            background: rgba(6, 182, 212, 0.1);
+            color: #06b6d4;
+            border-color: rgba(6, 182, 212, 0.2);
+        }
+        .tag-roadmap {
+            background: rgba(168, 85, 247, 0.1);
+            color: #c084fc;
+            border-color: rgba(168, 85, 247, 0.2);
+        }
+
+        .jarvis-card-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .jarvis-card-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.98rem;
+            line-height: 1.65;
+            color: var(--text-primary);
+            opacity: 0.85;
+        }
+
+        [data-theme="light"] .jarvis-card-desc {
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        .jarvis-card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 5px;
+        }
+
+        .jarvis-list-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--text-primary);
+            opacity: 0.85;
+        }
+
+        [data-theme="light"] .jarvis-list-item {
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        .jarvis-list-icon {
+            flex-shrink: 0;
+            width: 20px;
+            color: var(--accent);
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        /* Features Table Styles */
+        .jarvis-table-container {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        [data-theme="light"] .jarvis-table-container {
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        .jarvis-features-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            text-align: left;
+        }
+
+        .jarvis-features-table th {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 2px solid var(--border-color);
+            padding: 10px 14px;
+            color: var(--text-primary);
+            font-size: 0.75rem;
+        }
+
+        [data-theme="light"] .jarvis-features-table th {
+            background: rgba(0, 0, 0, 0.01);
+        }
+
+        .jarvis-features-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-primary);
+            opacity: 0.85;
+        }
+
+        [data-theme="light"] .jarvis-features-table td {
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        .jarvis-features-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .jarvis-features-table tr:hover td {
+            background: rgba(255, 255, 255, 0.015);
+        }
+
+        [data-theme="light"] .jarvis-features-table tr:hover td {
+            background: rgba(124, 58, 237, 0.02);
+        }
+
+        /* Footer Controls */
+        .jarvis-modal-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+
+        .jarvis-footer-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s var(--transition);
+        }
+
+        .jarvis-footer-btn:hover:not(:disabled) {
+            border-color: var(--accent);
+            background: rgba(168, 85, 247, 0.05);
+            color: var(--accent-light);
+        }
+
+        .jarvis-footer-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .jarvis-footer-btn svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s;
+        }
+
+        .jarvis-footer-btn:hover svg {
+            transform: translateX(-3px);
+        }
+        #jarvisNextBtn:hover svg {
+            transform: translateX(3px);
+        }
+
+        /* Dot Indicators */
+        .jarvis-dot-indicators {
+            display: flex;
+            gap: 8px;
+        }
+
+        .jarvis-indicator-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border-color);
+            transition: all 0.3s var(--transition);
+            cursor: pointer;
+        }
+
+        .jarvis-indicator-dot.active {
+            background: var(--accent);
+            transform: scale(1.25);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
     </style>
 </head>
 
@@ -4863,30 +5277,10 @@
             <div class="projects-grid">
 
                 <!-- PROJECT 1 — JARVIS (FEATURED) -->
-                <article class="proj-card featured reveal-up">
+                <article class="proj-card featured reveal-up jarvis-proj-card" style="cursor: pointer;">
                     <div class="proj-img-wrap">
-                        <div class="proj-img-inner"
-                            style="background: linear-gradient(135deg, #0a0014, #1a0030, #001a10, #0a0014); background-size: 400% 400%; animation: aurora-drift 8s ease-in-out infinite alternate;">
-                            <div
-                                style="position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; gap:12px;">
-                                <div style="font-size: 3.5rem; filter: drop-shadow(0 0 24px rgba(168,85,247,0.8));">🤖
-                                </div>
-                                <div
-                                    style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.2em; color:rgba(204,255,0,0.8); text-transform:uppercase; text-align:center;">
-                                    JARVIS · Local AI · Full Stack</div>
-                                <div
-                                    style="display:flex; gap:8px; flex-wrap:wrap; justify-content:center; max-width:320px;">
-                                    <span
-                                        style="background:rgba(168,85,247,0.2); border:1px solid rgba(168,85,247,0.4); color:#c084fc; padding:3px 10px; border-radius:6px; font-size:0.65rem; font-family:'JetBrains Mono',monospace;">FastAPI</span>
-                                    <span
-                                        style="background:rgba(204,255,0,0.1); border:1px solid rgba(204,255,0,0.25); color:#ccff00; padding:3px 10px; border-radius:6px; font-size:0.65rem; font-family:'JetBrains Mono',monospace;">Electron</span>
-                                    <span
-                                        style="background:rgba(6,182,212,0.15); border:1px solid rgba(6,182,212,0.3); color:#22d3ee; padding:3px 10px; border-radius:6px; font-size:0.65rem; font-family:'JetBrains Mono',monospace;">Ollama</span>
-                                    <span
-                                        style="background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.3); color:#34d399; padding:3px 10px; border-radius:6px; font-size:0.65rem; font-family:'JetBrains Mono',monospace;">React
-                                        18</span>
-                                </div>
-                            </div>
+                        <div class="proj-img-inner animate-aurora"
+                            style="background: url('jarvis.png'); background-size: cover; background-position: center; transition: transform 0.8s var(--transition); transform-style: preserve-3d;">
                         </div>
                         <!-- Overlay action buttons -->
                         <div class="proj-img-actions">
@@ -7862,7 +8256,7 @@
                         appendMessage('ai', data.message, data.sources, data.actions);
                         setState('idle');
                     } else {
-                        appendMessage('ai', data.error || 'Connection failed.');
+                        appendMessage('ai', data.error || data.message || 'Connection failed.', data.sources, data.actions);
                         setState('error');
                     }
                 } catch (err) {
@@ -7880,6 +8274,354 @@
                     setTimeout(() => { if (!isThinking && subStatus.textContent === 'SYSTEM ERROR') setState('idle'); }, 3000);
                 }
             }
+        })();
+    </script>
+
+    <!-- ========== JARVIS CASE STUDY MODAL HTML ========== -->
+    <div class="jarvis-modal-overlay" id="jarvisCaseStudyOverlay">
+        <div class="jarvis-modal-container">
+            <!-- Close Button -->
+            <button class="jarvis-modal-close" id="jarvisModalClose" aria-label="Close Case Study">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+
+            <!-- Navigation Tabs / Indicator -->
+            <nav class="jarvis-modal-nav">
+                <button class="jarvis-nav-tab active" data-index="0">Problem</button>
+                <button class="jarvis-nav-tab" data-index="1">Solution</button>
+                <button class="jarvis-nav-tab" data-index="2">Differentiation</button>
+                <button class="jarvis-nav-tab" data-index="3">Features</button>
+                <button class="jarvis-nav-tab" data-index="4">Roadmap</button>
+            </nav>
+
+            <!-- 3D Perspective Card Wrapper -->
+            <div class="jarvis-flashcard-wrapper">
+                <div class="jarvis-flashcard" id="jarvisFlashcard">
+                    <!-- FRONT FACE -->
+                    <div class="jarvis-card-face jarvis-card-front" id="cardFaceFront">
+                        <!-- Content dynamically loaded -->
+                    </div>
+                    <!-- BACK FACE -->
+                    <div class="jarvis-card-face jarvis-card-back" id="cardFaceBack">
+                        <!-- Content dynamically loaded -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Pagination Controls -->
+            <div class="jarvis-modal-footer">
+                <button class="jarvis-footer-btn" id="jarvisPrevBtn" disabled>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    Previous
+                </button>
+                <div class="jarvis-dot-indicators" id="jarvisDots">
+                    <span class="jarvis-indicator-dot active"></span>
+                    <span class="jarvis-indicator-dot"></span>
+                    <span class="jarvis-indicator-dot"></span>
+                    <span class="jarvis-indicator-dot"></span>
+                    <span class="jarvis-indicator-dot"></span>
+                </div>
+                <button class="jarvis-footer-btn" id="jarvisNextBtn">
+                    Next
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== JARVIS CASE STUDY SCRIPT ========== -->
+    <script>
+        (function initJarvisModal() {
+            const overlay = document.getElementById('jarvisCaseStudyOverlay');
+            const cardInner = document.getElementById('jarvisFlashcard');
+            const frontFace = document.getElementById('cardFaceFront');
+            const backFace = document.getElementById('cardFaceBack');
+            const closeBtn = document.getElementById('jarvisModalClose');
+            const prevBtn = document.getElementById('jarvisPrevBtn');
+            const nextBtn = document.getElementById('jarvisNextBtn');
+            const dotsContainer = document.getElementById('jarvisDots');
+            const jarvisTabs = document.querySelectorAll('.jarvis-nav-tab');
+
+            let currentIndex = 0;
+            let isFlipped = false; // false = front is showing, true = back is showing
+            let isTransitioning = false; // Guard for rapidly clicking Next/Prev
+
+            // Case Study Content Data
+            const slidesData = [
+                {
+                    tag: 'The Problem',
+                    tagClass: 'tag-problem',
+                    title: '⚠️ The Sandboxed Assistant',
+                    content: `
+                        <p class="jarvis-card-desc">Standard cloud-based AI chatbots operate completely isolated from your operating system. They inhabit a browser tab without hardware access.</p>
+                        <div class="jarvis-card-list">
+                            <div class="jarvis-list-item">
+                                <span class="jarvis-list-icon">❌</span>
+                                <div><strong>Zero Hardware Control:</strong> Chatbots cannot run scripts, execute terminal configurations, or run local files.</div>
+                            </div>
+                            <div class="jarvis-list-item">
+                                <span class="jarvis-list-icon">❌</span>
+                                <div><strong>Offline Paralysis:</strong> If your internet goes offline, the assistant fails completely, breaking work continuity.</div>
+                            </div>
+                            <div class="jarvis-list-item">
+                                <span class="jarvis-list-icon">❌</span>
+                                <div><strong>High Friction Stack:</strong> Developers spend hours copying code, executing scripts, and manual terminal testing.</div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    tag: 'The Solution',
+                    tagClass: 'tag-solution',
+                    title: '⚡ Orchestrated Desktop AI',
+                    content: `
+                        <p class="jarvis-card-desc">JARVIS acts as an intelligent automation bridge directly integrated with your Windows environment. It couples desktop dashboard efficiency with local model processing.</p>
+                        <div class="jarvis-card-list">
+                            <div class="jarvis-list-item">
+                                <span class="jarvis-list-icon">✅</span>
+                                <div><strong>API + Dashboard Loop:</strong> Electron container hosts a React GUI that communicates with a local FastAPI core.</div>
+                            </div>
+                            <div class="jarvis-list-item">
+                                <span class="jarvis-list-icon">✅</span>
+                                <div><strong>OS Automation Layer:</strong> Powers filesystem commands, subprocess tracking, and keyboard/mouse integrations.</div>
+                            </div>
+                            <div class="jarvis-list-item">
+                                <span class="jarvis-list-icon">✅</span>
+                                <div><strong>Offline-First Design:</strong> Gracefully delegates requests to local Ollama endpoints (DeepSeek, Llama3) offline.</div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    tag: 'Differentiation',
+                    tagClass: 'tag-diff',
+                    title: '⭐ Beyond the Textbox Wrapper',
+                    content: `
+                        <p class="jarvis-card-desc">JARVIS differs from generic ChatGPT clones by prioritizing system autonomy, private offline execution, and speed optimization.</p>
+                        <div class="jarvis-card-list">
+                            <div class="jarvis-list-item">
+                                <span class="jarvis-list-icon">🚀</span>
+                                <div><strong>Operating System Bindings:</strong> Direct binding to Windows shell APIs to interact with processes, memory, and logs.</div>
+                            </div>
+                            <div class="jarvis-list-item">
+                                <span class="jarvis-list-icon">🔒</span>
+                                <div><strong>True Privacy Control:</strong> Completely seals your code locally; no external transmission needed in offline mode.</div>
+                            </div>
+                            <div class="jarvis-list-item">
+                                <span class="jarvis-list-icon">⚡</span>
+                                <div><strong>Optimized Intent Classifier:</strong> Fast local parser that resolves static commands instantly, eliminating LLM request delays.</div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    tag: 'Core Features',
+                    tagClass: 'tag-features',
+                    title: '📊 Modular Feature Matrix',
+                    content: `
+                        <div class="jarvis-table-container">
+                            <table class="jarvis-features-table">
+                                <thead>
+                                    <tr>
+                                        <th>Component</th>
+                                        <th>Technology</th>
+                                        <th>Capabilities</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>OS Automation</strong></td>
+                                        <td>pywin32 / subprocess</td>
+                                        <td>Executes shell tools, monitors hardware telemetry, opens and targets apps.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Hybrid NLP</strong></td>
+                                        <td>Regex Classifiers</td>
+                                        <td>Ultra-low latency English/Hinglish phrase parser.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Speech Synthesizer</strong></td>
+                                        <td>edge-tts / SpeechRec</td>
+                                        <td>Real-time speech-to-text input matched with regional neural Indian voices.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Desktop GUI</strong></td>
+                                        <td>Electron / React</td>
+                                        <td>Sleek dark panel with terminal streams and model configs.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>LLM Router</strong></td>
+                                        <td>Ollama Cloud + Ollama Local</td>
+                                        <td>Dual-mode routing via <code>ollama_router.py</code> — falls back from Ollama Cloud to a fully on-device local model seamlessly.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `
+                },
+                {
+                    tag: 'Roadmap',
+                    tagClass: 'tag-roadmap',
+                    title: '🚀 Future Vision & Goals',
+                    content: `
+                        <p class="jarvis-card-desc">JARVIS is continuously evolving. Our roadmap works towards full sandbox autonomy and secure cross-network access.</p>
+                        <div class="jarvis-card-list">
+                            <div class="jarvis-list-item">
+                                <span class="jarvis-list-icon">🎯</span>
+                                <div><strong>Autonomous Debugging loops:</strong> Self-correcting terminal agent loops where JARVIS debugs its own execution outputs.</div>
+                            </div>
+                            <div class="jarvis-list-item">
+                                <span class="jarvis-list-icon">🎯</span>
+                                <div><strong>Secure Mobile Pipeline:</strong> Remote connection tunnels to securely trigger scripts on your main machine from mobile interfaces.</div>
+                            </div>
+                            <div class="jarvis-list-item">
+                                <span class="jarvis-list-icon">🎯</span>
+                                <div><strong>Local Vector Graph index:</strong> Comprehensive background semantic parser for folders, chats, and documentation.</div>
+                            </div>
+                        </div>
+                    `
+                }
+            ];
+
+            // Render content to target face
+            function renderSlideContent(targetFace, slideData) {
+                targetFace.innerHTML = `
+                    <span class="jarvis-card-tag ${slideData.tagClass}">${slideData.tag}</span>
+                    <h4 class="jarvis-card-title">${slideData.title}</h4>
+                    <div class="jarvis-card-body">${slideData.content}</div>
+                `;
+            }
+
+            // Sync navigation tabs
+            function updateNavTabs() {
+                jarvisTabs.forEach((tab, idx) => {
+                    tab.classList.toggle('active', idx === currentIndex);
+                });
+            }
+
+            // Sync dot indicators
+            function updateDots() {
+                const dots = dotsContainer.querySelectorAll('.jarvis-indicator-dot');
+                dots.forEach((dot, idx) => {
+                    dot.classList.toggle('active', idx === currentIndex);
+                });
+            }
+
+            // Slide logic with 3D Flip Animation
+            function goToSlide(targetIndex) {
+                if (isTransitioning || targetIndex === currentIndex) return;
+                isTransitioning = true;
+
+                // Sync indices
+                currentIndex = targetIndex;
+
+                // Determine active face to flip towards
+                const activeFace = isFlipped ? frontFace : backFace;
+                const inactiveFace = isFlipped ? backFace : frontFace;
+
+                // Pre-populate the incoming face with the new slide content
+                renderSlideContent(activeFace, slidesData[currentIndex]);
+
+                // Flip!
+                isFlipped = !isFlipped;
+                cardInner.classList.toggle('flipped', isFlipped);
+
+                // Update UI state in parallel
+                updateNavTabs();
+                updateDots();
+
+                // Enable/disable buttons based on boundaries
+                prevBtn.disabled = currentIndex === 0;
+                nextBtn.disabled = currentIndex === slidesData.length - 1;
+
+                // Unlock trans after animation completes
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 700); // matches CSS flip transition duration
+            }
+
+            // Open Modal
+            function openModal() {
+                // Initialize first slide on front face
+                currentIndex = 0;
+                isFlipped = false;
+                cardInner.classList.remove('flipped');
+                renderSlideContent(frontFace, slidesData[0]);
+
+                updateNavTabs();
+                updateDots();
+
+                prevBtn.disabled = true;
+                nextBtn.disabled = false;
+
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            // Close Modal
+            function closeModal() {
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            // Attach event listeners
+            const jarvisCard = document.querySelector('.jarvis-proj-card');
+            if (jarvisCard) {
+                jarvisCard.addEventListener('click', (e) => {
+                    // Let links inside card handle their action normally
+                    if (e.target.closest('a') || e.target.closest('button')) {
+                        return;
+                    }
+                    openModal();
+                });
+            }
+
+            closeBtn.addEventListener('click', closeModal);
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) closeModal();
+            });
+
+            // Footer Pager Buttons
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) goToSlide(currentIndex - 1);
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentIndex < slidesData.length - 1) goToSlide(currentIndex + 1);
+            });
+
+            // Tabs Selector
+            jarvisTabs.forEach((tab, index) => {
+                tab.addEventListener('click', () => {
+                    goToSlide(index);
+                });
+            });
+
+            // Dots Selector
+            dotsContainer.addEventListener('click', (e) => {
+                const dot = e.target.closest('.jarvis-indicator-dot');
+                if (dot) {
+                    const dots = Array.from(dotsContainer.querySelectorAll('.jarvis-indicator-dot'));
+                    const targetIndex = dots.indexOf(dot);
+                    goToSlide(targetIndex);
+                }
+            });
+
+            // Keyboard navigation inside modal
+            document.addEventListener('keydown', (e) => {
+                if (!overlay.classList.contains('active')) return;
+                
+                if (e.key === 'Escape') {
+                    closeModal();
+                } else if (e.key === 'ArrowRight' && currentIndex < slidesData.length - 1) {
+                    goToSlide(currentIndex + 1);
+                } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                    goToSlide(currentIndex - 1);
+                }
+            });
         })();
     </script>
 </body>
