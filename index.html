@@ -8,9 +8,10 @@
     <title>Portfolio - Home</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@400;700&family=JetBrains+Mono:wght@400&display=swap">
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
-        rel="stylesheet">
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@400;700&family=JetBrains+Mono:wght@400&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'">
     <style>
         /* ========== RESET & BASE ========== */
         *,
@@ -62,9 +63,13 @@
         }
 
         html {
-            scroll-behavior: smooth;
+            /* scroll-behavior: smooth removed — Lenis handles smooth scrolling;
+               having both causes double-smoothing lag */
+            scroll-behavior: auto;
             background-color: var(--bg-primary);
             transition: background-color 0.5s var(--transition);
+            overflow-x: hidden;
+            width: 100%;
         }
 
         body {
@@ -72,6 +77,8 @@
             background-color: transparent;
             color: var(--text-primary);
             overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
             transition: color 0.5s var(--transition);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -1170,6 +1177,7 @@
             padding: 2px;
             background: conic-gradient(from 0deg, var(--accent), transparent 40%, var(--accent-light) 70%, transparent);
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
             opacity: 0.8;
@@ -2676,11 +2684,15 @@
         }
 
         .marquee-track-right {
-            animation: scroll-right 45s linear infinite;
+            animation: scroll-right 30s linear infinite;
+            will-change: transform;
+            transform: translateZ(0);
         }
 
         .marquee-track-left {
-            animation: scroll-left 45s linear infinite;
+            animation: scroll-left 30s linear infinite;
+            will-change: transform;
+            transform: translateZ(0);
         }
 
         .marquee-item {
@@ -3808,11 +3820,12 @@
 
         @media (max-width: 768px) {
             #samarth-ai-window {
-                width: 100%;
+                width: 100vw;
                 height: 100dvh;
                 max-height: 100dvh;
                 bottom: 0;
                 right: 0;
+                left: 0;
                 border-radius: 0;
                 border: none;
                 z-index: 9999999;
@@ -3829,6 +3842,7 @@
             #sai-tooltip {
                 right: 90px;
                 bottom: 30px;
+                max-width: calc(100vw - 140px);
             }
         }
 
@@ -4092,12 +4106,14 @@
             flex: 1;
             display: -webkit-box;
             -webkit-line-clamp: 4;
+            line-clamp: 4;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
 
         .proj-card.featured .proj-desc {
             -webkit-line-clamp: 3;
+            line-clamp: 3;
         }
 
         /* Badges */
@@ -7916,17 +7932,22 @@
                     }, 50); // Scramble speed
                 }, 500); // Initial delay
 
-                // Native performant scroll parallax animation using gsap.set
+                // Performant parallax: direct CSS transform avoids GSAP overhead per frame.
+                // Using will-change hint so browser promotes to its own compositor layer.
+                // IMPORTANT: .hero-container is centered via left:50% + translateX(-50%).
+                // We must always include translateX(-50%) in our transform to preserve centering.
+                container.style.willChange = 'transform, opacity';
                 let ticking = false;
                 window.addEventListener('scroll', () => {
                     if (!ticking) {
                         window.requestAnimationFrame(() => {
                             const scrolled = window.scrollY;
                             if (scrolled <= window.innerHeight) {
-                                gsap.set(container, {
-                                    y: scrolled * 0.5,
-                                    opacity: Math.max(0, 1 - (scrolled / window.innerHeight) * 1.5)
-                                });
+                                const y = scrolled * 0.5;
+                                const opacity = Math.max(0, 1 - (scrolled / window.innerHeight) * 1.5);
+                                // translateX(-50%) preserves the horizontal centering (left: 50%)
+                                container.style.transform = `translateX(-50%) translateY(${y}px) translateZ(0)`;
+                                container.style.opacity = opacity;
                             }
                             ticking = false;
                         });
@@ -7940,25 +7961,33 @@
             script.src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js";
             script.onload = () => {
                 const lenisScript = document.createElement('script');
-                lenisScript.src = "https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js";
+                // Use jsDelivr which has better global CDN coverage than unpkg
+                lenisScript.src = "https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js";
                 lenisScript.onload = () => {
+                    // Respect reduced-motion: fall back to native scroll
+                    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
                     const lenis = window.lenis = new Lenis({
-                        duration: 1.2,
+                        // Tuned for buttery 60fps feel
+                        duration: 1.1,
                         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                        direction: 'vertical',
-                        gestureDirection: 'vertical',
-                        smooth: true,
-                        mouseMultiplier: 1,
+                        orientation: 'vertical',
+                        gestureOrientation: 'vertical',
+                        smoothWheel: !reduceMotion,
                         smoothTouch: false,
-                        touchMultiplier: 2,
+                        wheelMultiplier: 0.9,
+                        touchMultiplier: 1.8,
                         infinite: false,
+                        autoResize: true,
                     });
 
+                    // FIX: requestAnimationFrame must always loop;
+                    // lenis.raf() is a no-op when smooth=false so this is safe.
                     function raf(time) {
                         lenis.raf(time);
-                        requestAnimationFrame(raf);
+                        rafId = requestAnimationFrame(raf);
                     }
-                    requestAnimationFrame(raf);
+                    let rafId = requestAnimationFrame(raf);
 
                     runHeroAnimation();
                 };
@@ -8047,7 +8076,10 @@
             const tooltip = document.getElementById('sai-tooltip');
 
             let isThinking = false;
-            let tooltipInteracted = false;
+                        let tooltipInteracted = false;
+                        // In-memory conversation history (role: 'user' | 'assistant', content).
+                        // NOT persisted — a page refresh starts a fresh chat automatically.
+                        let chatHistory = [];
 
             // Show tooltip warmly after 4 seconds
             setTimeout(() => {
@@ -8150,7 +8182,7 @@
                                     toggleWindow();
                                     const targetEl = document.getElementById(act.target) || document.querySelector(`.${act.target}`);
                                     if (targetEl && window.lenis) {
-                                        window.lenis.scrollTo(targetEl, { offset: -80, duration: 1.5 });
+                                        window.lenis.scrollTo(targetEl, { offset: -80, duration: 0.8 });
                                     } else if (targetEl) {
                                         targetEl.scrollIntoView({ behavior: 'smooth' });
                                     }
@@ -8164,7 +8196,7 @@
                                     toggleWindow();
                                     const targetEl = document.getElementById('contact-section');
                                     if (targetEl && window.lenis) {
-                                        window.lenis.scrollTo(targetEl, { offset: -80, duration: 1.5 });
+                                        window.lenis.scrollTo(targetEl, { offset: -80, duration: 0.8 });
                                     } else if (targetEl) {
                                         targetEl.scrollIntoView({ behavior: 'smooth' });
                                     }
@@ -8230,36 +8262,38 @@
                 if (!text || isThinking) return;
 
                 inputField.value = '';
-                sendBtn.disabled = true;
-                isThinking = true;
-                appendMessage('user', text);
-                showTyping();
-                setState('thinking');
+                                sendBtn.disabled = true;
+                                isThinking = true;
+                                appendMessage('user', text);
+                                chatHistory.push({ role: 'user', content: text });
+                                showTyping();
+                                setState('thinking');
 
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 seconds max
+                                const controller = new AbortController();
+                                const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 seconds max
 
-                try {
-                    const response = await fetch(`${WORKER_URL}/api/ask`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ message: text }),
-                        signal: controller.signal
-                    });
+                                try {
+                                    const response = await fetch(`${WORKER_URL}/api/ask`, {
+                                        method: 'POST',
+                                        headers: { 'Content-Type': 'application/json' },
+                                        body: JSON.stringify({ message: text, history: chatHistory }),
+                                        signal: controller.signal
+                                    });
 
-                    clearTimeout(timeoutId);
-                    hideTyping();
+                                    clearTimeout(timeoutId);
+                                    hideTyping();
 
-                    const data = await response.json();
+                                    const data = await response.json();
 
-                    if (response.ok) {
-                        appendMessage('ai', data.message, data.sources, data.actions);
-                        setState('idle');
-                    } else {
-                        appendMessage('ai', data.error || data.message || 'Connection failed.', data.sources, data.actions);
-                        setState('error');
-                    }
-                } catch (err) {
+                                    if (response.ok) {
+                                        appendMessage('ai', data.message, data.sources, data.actions);
+                                        chatHistory.push({ role: 'assistant', content: data.message || '' });
+                                        setState('idle');
+                                    } else {
+                                        appendMessage('ai', data.error || data.message || 'Connection failed.', data.sources, data.actions);
+                                        setState('error');
+                                    }
+                                } catch (err) {
                     clearTimeout(timeoutId);
                     hideTyping();
                     if (err.name === 'AbortError') {

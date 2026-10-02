@@ -12,6 +12,12 @@ export interface Env {
 
 export interface AskRequest {
     message: string;
+    history?: HistoryTurn[];
+}
+
+export interface HistoryTurn {
+    role: 'user' | 'assistant';
+    content: string;
 }
 
 export interface AskResponse {

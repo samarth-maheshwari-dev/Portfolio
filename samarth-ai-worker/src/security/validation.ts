@@ -50,5 +50,19 @@ export function validateRequest(body: unknown): ValidationResult {
         return { valid: false, error: 'Please ask a meaningful question.' };
     }
 
-    return { valid: true, data: { message } };
+    // Optional chat history: array of {role, content} turns (max 20, safe length)
+    let history: { role: 'user' | 'assistant'; content: string }[] = [];
+    if (obj.history !== undefined) {
+        if (!Array.isArray(obj.history)) {
+            return { valid: false, error: 'Invalid "history" field.' };
+        }
+        history = obj.history
+            .filter((h: any) => h && typeof h === 'object'
+                && (h.role === 'user' || h.role === 'assistant')
+                && typeof h.content === 'string')
+            .map((h: any) => ({ role: h.role, content: String(h.content).slice(0, 1000) }))
+            .slice(-20);
+    }
+
+    return { valid: true, data: { message, history } };
 }

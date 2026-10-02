@@ -11,9 +11,20 @@ import type { IndexedChunk, RetrievedChunk } from '../types';
 // Pre-computed index imported at build time
 import vectorData from '../../data/vectors.json';
 
-const chunks: IndexedChunk[] = vectorData as IndexedChunk[];
+const chunks: IndexedChunk[] = vectorData as unknown as IndexedChunk[];
 
 // ── TF-IDF Helpers ──
+
+/** Common stopwords removed from both queries and index so they don't skew cosine scores */
+const STOPWORDS = new Set([
+    'a','an','the','and','or','but','if','then','than','so','is','are','was','were',
+    'be','been','being','am','of','to','for','with','on','at','by','from','in','into',
+    'about','which','what','who','whom','whose','how','when','where','why','does','do',
+    'did','can','could','will','would','should','may','might','this','that','these',
+    'those','it','its','as','not','no','yes','you','your','me','my','tell','know','i',
+    'we','they','he','she','have','has','had','get','got','please','please','also',
+    'any','some','very','just','like','more','most','there','here'
+]);
 
 /** Tokenize and normalize a string */
 function tokenize(text: string): string[] {
@@ -21,7 +32,7 @@ function tokenize(text: string): string[] {
         .toLowerCase()
         .replace(/[^a-z0-9\s]/g, ' ')
         .split(/\s+/)
-        .filter((w) => w.length > 1);
+        .filter((w) => w.length > 1 && !STOPWORDS.has(w));
 }
 
 /** Build a TF vector from tokens */
@@ -137,14 +148,24 @@ export function retrieve(query: string): RetrievedChunk[] {
     if (queryTokens.length === 0) return [];
 
     const queryVector = buildTfVector(queryTokens);
+    const titleTokens = queryTokens.filter((t) => t.length > 2);
 
     // Score all PUBLIC chunks
     const scored = chunks
         .filter((chunk) => chunk.visibility === 'public')
-        .map((chunk) => ({
-            ...chunk,
-            score: cosineSimilarity(queryVector, chunk.tfidfVector),
-        }))
+        .map((chunk) => {
+            // Entity/topic boost: if a meaningfully-sized query token appears in the
+            // chunk title (Aion, SnapTrace, skills...) it is very likely the right doc.
+            let score = cosineSimilarity(queryVector, chunk.tfidfVector);
+            const titleLower = chunk.title.toLowerCase();
+            for (const t of titleTokens) {
+                if (titleLower.includes(t)) {
+                    score += 1.0; // strong, title match dominates weak tf-idf noise
+                    break;
+                }
+            }
+            return { ...chunk, score };
+        })
         .filter((chunk) => chunk.score > 0)
         .sort((a, b) => b.score - a.score)
         .slice(0, CONFIG.TOP_K);

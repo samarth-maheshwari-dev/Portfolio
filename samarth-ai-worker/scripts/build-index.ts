@@ -68,7 +68,11 @@ function parseMD(content: string): ParsedDocument {
         const idx = line.indexOf(':');
         if (idx > -1) {
             const key = line.slice(0, idx).trim();
-            const val = line.slice(idx + 1).trim();
+            let val = line.slice(idx + 1).trim();
+            // Strip surrounding quotes so quoted visibility matches unquoted
+            if (val.startsWith('"') && val.endsWith('"')) {
+                val = val.slice(1, -1);
+            }
             metadata[key] = val;
         }
     });
@@ -98,13 +102,24 @@ function chunkText(text: string, maxTokensRoughly = 150): string[] {
     return chunks.length ? chunks : [text];
 }
 
+/** Common stopwords — MUST match src/rag/retrieve.ts so query and index vectors align */
+const STOPWORDS = new Set([
+    'a','an','the','and','or','but','if','then','than','so','is','are','was','were',
+    'be','been','being','am','of','to','for','with','on','at','by','from','in','into',
+    'about','which','what','who','whom','whose','how','when','where','why','does','do',
+    'did','can','could','will','would','should','may','might','this','that','these',
+    'those','it','its','as','not','no','yes','you','your','me','my','tell','know','i',
+    'we','they','he','she','have','has','had','get','got','please','please','also',
+    'any','some','very','just','like','more','most','there','here'
+]);
+
 /** Tokenize and normalize a string */
 function tokenize(text: string): string[] {
     return text
         .toLowerCase()
         .replace(/[^a-z0-9\s]/g, ' ')
         .split(/\s+/)
-        .filter((w) => w.length > 1);
+        .filter((w) => w.length > 1 && !STOPWORDS.has(w));
 }
 
 /** Build a TF vector from tokens */
