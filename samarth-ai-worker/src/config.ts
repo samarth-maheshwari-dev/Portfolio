@@ -4,25 +4,25 @@
 // ============================================================
 
 export const CONFIG = {
-    // Rate Limiting
-    MAX_REQUESTS_PER_IP_PER_MINUTE: 5,
-    MAX_REQUESTS_PER_IP_PER_HOUR: 30,
-    MAX_GLOBAL_AI_REQUESTS_PER_DAY: 300,
+    // Rate Limiting — generous enough for visitors, strict enough to prevent abuse
+    MAX_REQUESTS_PER_IP_PER_MINUTE: 8,
+    MAX_REQUESTS_PER_IP_PER_HOUR: 50,
+    MAX_GLOBAL_AI_REQUESTS_PER_DAY: 500,
 
     // Input / Output Limits
     MAX_INPUT_CHARS: 500,
-    MAX_OUTPUT_TOKENS: 250,
-    REQUEST_TIMEOUT_MS: 15000,
+    MAX_OUTPUT_TOKENS: 350,     // enough for a 3-4 sentence answer with bullets
+    REQUEST_TIMEOUT_MS: 12000,  // 12s — fail fast if OpenCode is slow
 
     // RAG
     TOP_K: 3,
     CONFIDENCE_THRESHOLD: 0.05,
 
-    // AI Provider
+    // AI Provider (OpenCode Zen — OpenAI-compatible free endpoint)
     OPENCODE_BASE_URL: 'https://opencode.ai/zen/v1',
     AI_MODEL: 'x-preview-f-free',
 
-    // Response Cache TTL (seconds)
+    // Response Cache TTL (seconds) — cache good answers for 1 hour
     CACHE_TTL: 3600,
 } as const;
 
@@ -44,5 +44,6 @@ export const ALLOWED_TARGETS = [
     'services-section',
     'contact-section',
     'tech-section',
+    'projects-section',
     'projects',
 ] as const;

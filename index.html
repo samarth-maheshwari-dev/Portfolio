@@ -7990,6 +7990,59 @@
                     let rafId = requestAnimationFrame(raf);
 
                     runHeroAnimation();
+
+                    // ── Smooth Nav Scroll ────────────────────────────────
+                    // Intercept all navbar anchor clicks and route them
+                    // through Lenis for a buttery animated scroll.
+                    // Navbar height is ~80px so we offset by that amount.
+                    const NAV_OFFSET = -88;
+
+                    function smoothScrollTo(targetId) {
+                        // Home → scroll to absolute top
+                        if (!targetId || targetId === '#' || targetId === '#hero-section') {
+                            lenis.scrollTo(0, { duration: 1.2 });
+                            return;
+                        }
+                        const el = document.querySelector(targetId);
+                        if (el) {
+                            lenis.scrollTo(el, { offset: NAV_OFFSET, duration: 1.2 });
+                        }
+                    }
+
+                    // Attach to all nav links and the Hire Me button
+                    document.querySelectorAll('.nav-links a, .hire-btn').forEach(link => {
+                        link.addEventListener('click', function (e) {
+                            const href = this.getAttribute('href');
+                            if (!href || (!href.startsWith('#') && !href.includes('contact'))) return;
+                            e.preventDefault();
+                            smoothScrollTo(href.startsWith('#') ? href : '#contact-section');
+                        });
+                    });
+
+                    // Highlight active nav link on scroll
+                    const navAnchors = document.querySelectorAll('.nav-links a');
+                    const sections = [
+                        { id: 'hero-section', href: '#' },
+                        { id: 'about-section', href: '#about-section' },
+                        { id: 'services-section', href: '#services-section' },
+                        { id: 'projects-section', href: '#projects-section' },
+                        { id: 'contact-section', href: '#contact-section' },
+                    ];
+
+                    lenis.on('scroll', ({ scroll }) => {
+                        let currentSection = sections[0].href;
+                        for (const s of sections) {
+                            const el = document.getElementById(s.id);
+                            if (!el) continue;
+                            if (el.getBoundingClientRect().top <= 120) {
+                                currentSection = s.href;
+                            }
+                        }
+                        navAnchors.forEach(a => {
+                            const isActive = a.getAttribute('href') === currentSection;
+                            a.style.color = isActive ? '#ccff00' : '';
+                        });
+                    });
                 };
                 document.body.appendChild(lenisScript);
             };
