@@ -7700,22 +7700,41 @@
         }
 
         document.addEventListener("DOMContentLoaded", () => {
+            // Text Generate Effect (Blur + Fade sequentially)
             const target = document.querySelector('.identity-desc');
-            // Ensure ogl is defined from the CDN
-            if (target && typeof ogl !== 'undefined') {
+            if (target) {
                 const text = target.textContent.trim().replace(/\s+/g, ' ');
-                target.innerHTML = ''; // Keep it empty, render on WebGL Canvas
-
-                const styles = window.getComputedStyle(target);
-                new WarpText(target, {
-                    text: text,
-                    color: styles.color || '#a1a1aa',
-                    fontSize: parseFloat(styles.fontSize) || 16,
-                    fontWeight: styles.fontWeight || 400,
-                    fontFamily: styles.fontFamily || 'Inter',
-                    warpStrength: 0.05,
-                    ripple: true
+                const words = text.split(" ");
+                target.innerHTML = '';
+                
+                const wordSpans = words.map((word, i) => {
+                    const span = document.createElement("span");
+                    span.className = "word";
+                    // start state: invisible, blurred
+                    span.style.opacity = "0";
+                    span.style.filter = "blur(4px)";
+                    // transition config similar to the React component
+                    span.style.transition = `opacity 0.5s ease ${i * 0.05}s, filter 0.5s ease ${i * 0.05}s`;
+                    span.style.display = "inline-block";
+                    span.style.whiteSpace = "pre";
+                    span.textContent = word + " ";
+                    target.appendChild(span);
+                    return span;
                 });
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            wordSpans.forEach(span => {
+                                span.style.opacity = "1";
+                                span.style.filter = "blur(0px)";
+                            });
+                            observer.unobserve(target); // animate only once
+                        }
+                    });
+                }, { threshold: 0.2 });
+                
+                observer.observe(target);
             }
         });
     </script>
