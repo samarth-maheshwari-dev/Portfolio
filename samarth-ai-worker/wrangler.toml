@@ -9,3 +9,8 @@ ALLOWED_ORIGIN = "https://samarth-portfolio-kappa-virid.vercel.app"
 
 # Secrets (set via `wrangler secret put`):
 # OPENCODE_API_KEY — never committed, never in source
+
+[[rules]]
+type = "Text"
+globs = ["**/*.md"]
+fallback = true

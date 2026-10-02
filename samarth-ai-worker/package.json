@@ -5,8 +5,7 @@
     "type": "module",
     "scripts": {
         "dev": "wrangler dev",
-        "deploy": "wrangler deploy",
-        "index": "npx tsx scripts/build-index.ts"
+        "deploy": "wrangler deploy"
     },
     "devDependencies": {
         "@cloudflare/workers-types": "^4.20240806.0",
