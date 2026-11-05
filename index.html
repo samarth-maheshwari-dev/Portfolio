@@ -4,8 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Samarth Maheshwari - AI & Full Stack Developer Portfolio">
-    <title>Portfolio - Home</title>
+    <meta name="description" content="Samarth Maheshwari — Full Stack Engineer and AI &amp; Automation Builder from Indore, India. React, Next.js, TypeScript, FastAPI, RAG and multi-model LLM systems. Open to internships.">
+    <title>Samarth Maheshwari — Full Stack Engineer · AI &amp; Automation Builder</title>
+    <link rel="canonical" href="https://samarth-portfolio-kappa-virid.vercel.app/">
+    <meta name="theme-color" content="#0a0612">
+    <meta name="author" content="Samarth Maheshwari">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://samarth-portfolio-kappa-virid.vercel.app/">
+    <meta property="og:title" content="Samarth Maheshwari — Full Stack Engineer · AI &amp; Automation Builder">
+    <meta property="og:description" content="I build and ship AI-powered full-stack products: a 5-model LLM desktop assistant, a RAG knowledge platform, and a live AI lost-and-found app.">
+    <meta property="og:image" content="https://samarth-portfolio-kappa-virid.vercel.app/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Samarth Maheshwari — Full Stack Engineer · AI &amp; Automation Builder">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Samarth Maheshwari — Full Stack Engineer · AI &amp; Automation Builder">
+    <meta name="twitter:description" content="AI-powered full-stack products, shipped. React · Next.js · TypeScript · FastAPI · RAG.">
+    <meta name="twitter:image" content="https://samarth-portfolio-kappa-virid.vercel.app/og-image.png">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Samarth Maheshwari",
+        "url": "https://samarth-portfolio-kappa-virid.vercel.app/",
+        "image": "https://samarth-portfolio-kappa-virid.vercel.app/profile.jpg",
+        "jobTitle": "Full Stack Engineer · AI & Automation Builder",
+        "address": { "@type": "PostalAddress", "addressLocality": "Indore", "addressRegion": "Madhya Pradesh", "addressCountry": "IN" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "Acropolis Institute of Technology and Research, Indore" },
+        "knowsAbout": ["React", "Next.js", "TypeScript", "Python", "FastAPI", "Supabase", "RAG", "LLM integration", "GSAP", "Three.js"],
+        "sameAs": ["https://github.com/samarth-maheshwari-dev", "https://www.linkedin.com/in/samarth-maheshwari-71a152326/"]
+    }
+    </script>
+    <script>
+        // Apply saved theme before first paint (prevents light-mode flash)
+        try { document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark'); } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@400;700&family=JetBrains+Mono:wght@400&display=swap">
@@ -4829,6 +4864,260 @@
             transform: scale(1.25);
             box-shadow: 0 0 10px var(--accent-glow);
         }
+
+        /* =====================================================================
+           PORTFOLIO FIXES (Nov 2026): nav + mobile menu, hero, journey, misc
+           ===================================================================== */
+        :root { --text-secondary: rgba(255, 255, 255, 0.72); }
+        [data-theme="light"] { --text-secondary: rgba(15, 10, 31, 0.7); }
+
+        .sr-only, .hp-field {
+            position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+            overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+        }
+
+        /* ---------- Navbar: theme toggle lives inside the nav ---------- */
+        .navbar .theme-toggle {
+            position: relative;
+            top: auto;
+            left: auto;
+            width: 44px;
+            height: 44px;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+        .nav-right { display: flex; align-items: center; gap: 12px; }
+        .nav-links a.is-active { color: #ccff00; }
+        [data-theme="light"] .nav-links a.is-active { color: var(--accent); }
+        .nav-links a:focus-visible, .hire-btn:focus-visible, .hero-btn:focus-visible, .nav-burger:focus-visible {
+            outline: 2px solid var(--accent-light);
+            outline-offset: 3px;
+        }
+        [data-theme="light"] .navbar:not(.scrolled) .nav-links a { color: #3b3355; }
+        [data-theme="light"] .navbar:not(.scrolled) .hire-btn { color: #0f0a1f; border-color: rgba(15, 10, 31, 0.5); }
+
+        .nav-burger {
+            display: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+        .nav-burger span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            border-radius: 2px;
+            background: currentColor;
+            transition: transform 0.3s ease, opacity 0.2s ease;
+        }
+        .nav-burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+        .nav-burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        @media (max-width: 768px) {
+            .nav-burger { display: flex; }
+            .hire-btn { padding: 10px 16px; font-size: 12px; }
+            .navbar .nav-links {
+                display: flex;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: -1;
+                flex-direction: column;
+                gap: 0;
+                padding: 88px 24px 24px;
+                background: rgba(10, 6, 18, 0.98);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                opacity: 1;
+                border-bottom: 1px solid var(--border-color);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+                transform: translateY(-105%);
+                visibility: hidden;
+                transition: transform 0.35s var(--transition), visibility 0s linear 0.35s;
+            }
+            .navbar .nav-links.open {
+                transform: none;
+                visibility: visible;
+                transition: transform 0.35s var(--transition), visibility 0s;
+            }
+            .navbar .nav-links a {
+                font-size: 15px;
+                padding: 16px 4px;
+                border-bottom: 1px solid var(--border-color);
+                color: #e5e7eb;
+            }
+            .navbar .nav-links a:last-child { border-bottom: none; }
+            [data-theme="light"] .navbar .nav-links { background: rgba(250, 250, 255, 0.98); }
+            [data-theme="light"] .navbar .nav-links a { color: #0f0a1f; }
+            .navbar.menu-open { background: transparent; }
+        }
+
+        /* ---------- Hero ---------- */
+        .hero-section {
+            height: auto;
+            min-height: 100vh;
+            min-height: 100svh;
+            align-items: center;
+            padding: 120px 0 72px;
+        }
+        .hero-container {
+            position: relative;
+            top: auto;
+            left: auto;
+            transform: none;
+            pointer-events: auto;
+            width: min(1200px, 90%);
+            gap: 0;
+        }
+        .hero-main-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 0.95;
+            background-image: linear-gradient(to bottom, var(--text-primary) 0%, var(--text-primary) 40%, var(--text-tertiary) 100%);
+        }
+        .hero-main-text #heroText { font-variant-numeric: tabular-nums; }
+        .hero-surname {
+            font-size: 0.42em;
+            letter-spacing: 0.16em;
+            margin-top: 0.15em;
+        }
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 22px;
+            padding: 7px 14px;
+            border-radius: 999px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: var(--text-primary);
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .hero-kicker-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success);
+            box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18);
+        }
+        .hero-role {
+            margin-top: 22px;
+            font-size: clamp(1.05rem, 2vw, 1.5rem);
+            font-weight: 600;
+            color: var(--accent-light);
+        }
+        [data-theme="light"] .hero-role { color: var(--accent); }
+        .hero-pitch {
+            margin-top: 14px;
+            max-width: 640px;
+            font-size: clamp(0.98rem, 1.3vw, 1.12rem);
+            line-height: 1.65;
+            color: var(--text-secondary);
+        }
+        .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+        .hero-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 46px;
+            padding: 12px 22px;
+            border-radius: 999px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: var(--text-primary);
+            font: 600 14px/1 'Inter', sans-serif;
+            letter-spacing: 0.02em;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+        }
+        .hero-btn:hover { transform: translateY(-2px); border-color: var(--accent); }
+        .hero-btn--primary { background: #ccff00; border-color: #ccff00; color: #0a0612; }
+        .hero-btn--primary:hover { background: #d8ff3d; border-color: #d8ff3d; }
+        [data-theme="light"] .hero-btn--primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+        .hero-btn--ghost { border-color: rgba(168, 85, 247, 0.55); }
+        .hero-stack {
+            margin-top: 26px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            color: var(--text-tertiary);
+        }
+        @media (max-width: 768px) {
+            .hero-section { padding: 104px 0 56px; }
+            .hero-container { align-items: flex-start; width: calc(100% - 40px); }
+            .hero-main-text { text-align: left; font-size: clamp(2.6rem, 14vw, 4rem); }
+            .hero-ctas { gap: 10px; }
+            .hero-btn { flex: 1 1 0; justify-content: center; padding: 12px 14px; }
+            .hero-btn--primary { flex-basis: 100%; }
+            .hero-btn-extra { display: none; }
+        }
+
+        /* ---------- Journey ---------- */
+        .journey-section { position: relative; padding: clamp(70px, 9vw, 120px) clamp(20px, 5vw, 80px); }
+        .journey-container { max-width: 1100px; margin: 0 auto; }
+        .journey-title {
+            font-size: clamp(2.6rem, 7vw, 5.5rem);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            line-height: 1;
+            margin-top: 8px;
+        }
+        .journey-list { list-style: none; margin-top: 40px; border-left: 1px solid var(--border-color); }
+        .journey-item {
+            position: relative;
+            display: grid;
+            grid-template-columns: 72px 1fr;
+            gap: 20px;
+            padding: 22px 0 22px 28px;
+        }
+        .journey-item::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 30px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 12px var(--accent-glow);
+        }
+        .journey-year {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: #ccff00;
+            padding-top: 4px;
+        }
+        [data-theme="light"] .journey-year { color: var(--accent); }
+        .journey-item h3 { font-size: clamp(1.05rem, 1.8vw, 1.3rem); color: var(--text-primary); margin-bottom: 6px; }
+        .journey-item p { color: var(--text-secondary); line-height: 1.6; font-size: 15px; max-width: 720px; }
+        @media (max-width: 600px) {
+            .journey-item { grid-template-columns: 1fr; gap: 6px; padding-left: 22px; }
+        }
+
+        /* ---------- Chat tooltip: never cover content on phones ---------- */
+        @media (max-width: 768px) {
+            /* hero already has an "Ask my AI" button on phones; the floating tooltip only covered content */
+            #sai-tooltip { display: none !important; }
+        }
     </style>
 </head>
 
@@ -4846,42 +5135,59 @@
     <section id="hero-section" class="hero-section">
         <div class="hero-bg-overlay"></div>
         <div class="hero-container" id="heroContainer">
-            <h1 id="heroText" class="hero-main-text">SAMARTH</h1>
+            <p class="hero-kicker"><span class="hero-kicker-dot" aria-hidden="true"></span>Available for internships &amp; opportunities</p>
+            <h1 class="hero-main-text"><span id="heroText">SAMARTH</span><span class="hero-surname">MAHESHWARI</span></h1>
+            <p class="hero-role">Full Stack Engineer · AI &amp; Automation Builder</p>
+            <p class="hero-pitch">I build and ship AI-powered products end to end — a 5-model LLM desktop assistant, a RAG
+                knowledge platform with 22 REST endpoints, and a live AI lost-and-found app. B.Tech CSIT student at
+                AITR, Indore.</p>
+            <div class="hero-ctas">
+                <a href="#projects-section" class="hero-btn hero-btn--primary" data-scroll>View Projects</a>
+                <a href="Samarth_Maheshwari_Resume.pdf" class="hero-btn" target="_blank" rel="noopener">Resume (PDF)</a>
+                <button type="button" class="hero-btn hero-btn--ghost" id="heroAskAI">
+                    <span aria-hidden="true">✦</span> Ask my AI<span class="hero-btn-extra">&nbsp;about me</span>
+                </button>
+            </div>
+            <p class="hero-stack" aria-label="Core stack">React · Next.js · TypeScript · Python · FastAPI · Supabase · RAG</p>
         </div>
     </section>
 
-    <!-- Theme Toggle -->
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-        <span class="theme-toggle-ring"></span>
-        <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <g class="sun-icon">
-                <circle cx="12" cy="12" r="4"></circle>
-                <path d="M12 2v2"></path>
-                <path d="M12 20v2"></path>
-                <path d="m4.93 4.93 1.41 1.41"></path>
-                <path d="m17.66 17.66 1.41 1.41"></path>
-                <path d="M2 12h2"></path>
-                <path d="M20 12h2"></path>
-                <path d="m6.34 17.66-1.41 1.41"></path>
-                <path d="m19.07 4.93-1.41 1.41"></path>
-            </g>
-            <g class="moon-icon">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </g>
-        </svg>
-    </button>
 
-    <nav class="navbar">
-        <div class="logo"></div>
-        <div class="nav-links">
+    <nav class="navbar" aria-label="Main">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme">
+            <span class="theme-toggle-ring"></span>
+            <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <g class="sun-icon">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M12 2v2"></path>
+                    <path d="M12 20v2"></path>
+                    <path d="m4.93 4.93 1.41 1.41"></path>
+                    <path d="m17.66 17.66 1.41 1.41"></path>
+                    <path d="M2 12h2"></path>
+                    <path d="M20 12h2"></path>
+                    <path d="m6.34 17.66-1.41 1.41"></path>
+                    <path d="m19.07 4.93-1.41 1.41"></path>
+                </g>
+                <g class="moon-icon">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </g>
+            </svg>
+        </button>
+        <div class="nav-links" id="navLinks">
             <a href="#">Home</a>
             <a href="#about-section">About</a>
             <a href="#services-section">Services</a>
             <a href="#projects-section">Projects</a>
             <a href="#contact-section">Contact</a>
         </div>
-        <a href="#contact-section" class="hire-btn">Hire Me</a>
+        <div class="nav-right">
+            <a href="#contact-section" class="hire-btn">Hire Me</a>
+            <button class="nav-burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false"
+                aria-controls="navLinks">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
     </nav>
 
     <!-- ABOUT SECTION — CINEMATIC REDESIGN -->
@@ -4927,13 +5233,6 @@
                                     loading="lazy" decoding="async">
                                 <div class="holo-image-overlay"></div>
                             </div>
-                            <div class="holo-status-bar">
-                                <span class="holo-status-label">Identity Verified</span>
-                                <span class="holo-status-indicator">
-                                    <span class="holo-status-dot"></span>
-                                    Online
-                                </span>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -4941,21 +5240,21 @@
                 <!-- Identity Panel -->
                 <div class="identity-panel reveal-up" data-spotlight>
                     <h3 class="identity-name">Samarth Maheshwari</h3>
-                    <div class="identity-role">AI &amp; Full Stack Engineer</div>
+                    <div class="identity-role">Full Stack Engineer · AI &amp; Automation Builder</div>
                     <div class="identity-location">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                             <circle cx="12" cy="10" r="3" />
                         </svg>
-                        India
+                        Indore, India
                     </div>
                     <p class="identity-desc">
-                        Hey, I'm Samarth. An enthusiastic AI full-stack developer who loves to build state-of-the-art
-                        web and mobile applications. I love turning concepts into scalable products using tech stack
-                        like React, FastAPI, Node.js, and artificial intelligence technologies. I always strive to keep
-                        my code clean and design great user experience along with learning new technologies like LLMs,
-                        Langchain, and MCP.
+                        I'm a B.Tech CSIT student at AITR, Indore who ships, not just prototypes. I built JARVIS, a
+                        Windows AI assistant that falls back across 5 LLMs from cloud to local, Project Aion, a RAG +
+                        knowledge-graph platform for the ET AI Hackathon, and SnapTrace, an AI lost-and-found app that
+                        went live during IntelliAI Arena. I work across React/Next.js and TypeScript on the front,
+                        Python/FastAPI and Supabase on the back, and wire LLMs in where they actually help.
                     </p>
                     <div class="identity-badges">
                         <span class="opp-badge opp-badge-live">
@@ -4964,9 +5263,9 @@
                                 <circle cx="12" cy="12" r="10" />
                                 <path d="M12 6v6l4 2" />
                             </svg>
-                            <span>Available Now</span>
+                            <span>Available for internships</span>
                         </span>
-                        <a href="Samarth_Maheshwari_Resume.docx" download class="opp-badge"
+                        <a href="Samarth_Maheshwari_Resume.pdf" target="_blank" rel="noopener" class="opp-badge"
                             style="text-decoration: none; cursor: pointer;">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -4974,179 +5273,179 @@
                                 <polyline points="7 10 12 15 17 10" />
                                 <line x1="12" y1="15" x2="12" y2="3" />
                             </svg>
-                            <span>Resume</span>
+                            <span>Resume (PDF)</span>
                         </a>
                     </div>
                 </div>
             </div>
 
             <!-- Floating Skills Marquee -->
-            <div class="marquee-wrapper reveal-up">
+            <div class="marquee-wrapper reveal-up" aria-label="Skills">
                 <!-- Row 1 -->
                 <div class="marquee-track marquee-track-left" style="animation-duration: 45s;">
                     <!-- Repeat Block 1 -->
-                    <div class="marquee-item"><span>React.js</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item"><span>React</span><span class="marquee-dot">.</span></div>
                     <div class="marquee-item"><span>Next.js</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>React Native</span><span class="marquee-dot">.</span></div>
                     <div class="marquee-item"><span>TypeScript</span><span class="marquee-dot">.</span></div>
                     <div class="marquee-item"><span>JavaScript</span><span class="marquee-dot">.</span></div>
                     <div class="marquee-item"><span>Tailwind CSS</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Bootstrap</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Material UI</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>HTML5</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item"><span>GSAP</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item"><span>Three.js</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item"><span>HTML5 / CSS3</span><span class="marquee-dot">.</span></div>
                     <!-- Repeat Block 2 -->
-                    <div class="marquee-item"><span>React.js</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Next.js</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>React Native</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>TypeScript</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>JavaScript</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Tailwind CSS</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Bootstrap</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Material UI</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>HTML5</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>React</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Next.js</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>TypeScript</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>JavaScript</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Tailwind CSS</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>GSAP</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Three.js</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>HTML5 / CSS3</span><span class="marquee-dot">.</span></div>
                     <!-- Repeat Block 3 -->
-                    <div class="marquee-item"><span>React.js</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Next.js</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>React Native</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>TypeScript</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>JavaScript</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Tailwind CSS</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Bootstrap</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Material UI</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>HTML5</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>React</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Next.js</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>TypeScript</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>JavaScript</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Tailwind CSS</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>GSAP</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Three.js</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>HTML5 / CSS3</span><span class="marquee-dot">.</span></div>
                     <!-- Repeat Block 4 -->
-                    <div class="marquee-item"><span>React.js</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Next.js</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>React Native</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>TypeScript</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>JavaScript</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Tailwind CSS</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Bootstrap</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Material UI</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>HTML5</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>React</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Next.js</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>TypeScript</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>JavaScript</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Tailwind CSS</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>GSAP</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Three.js</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>HTML5 / CSS3</span><span class="marquee-dot">.</span></div>
                 </div>
                 <!-- Row 2 -->
                 <div class="marquee-track marquee-track-right" style="animation-duration: 45s;">
                     <!-- Repeat Block 1 -->
+                    <div class="marquee-item"><span>Python</span><span class="marquee-dot">.</span></div>
                     <div class="marquee-item"><span>FastAPI</span><span class="marquee-dot">.</span></div>
                     <div class="marquee-item"><span>Node.js</span><span class="marquee-dot">.</span></div>
                     <div class="marquee-item"><span>Express.js</span><span class="marquee-dot">.</span></div>
                     <div class="marquee-item"><span>REST APIs</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Database</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>MongoDB</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item"><span>WebSockets</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item"><span>Supabase</span><span class="marquee-dot">.</span></div>
                     <div class="marquee-item"><span>PostgreSQL</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Python</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item"><span>SQLite</span><span class="marquee-dot">.</span></div>
                     <!-- Repeat Block 2 -->
-                    <div class="marquee-item"><span>FastAPI</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Node.js</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Express.js</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>REST APIs</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Database</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>MongoDB</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>PostgreSQL</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Python</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Python</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>FastAPI</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Node.js</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Express.js</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>REST APIs</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>WebSockets</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Supabase</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>PostgreSQL</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>SQLite</span><span class="marquee-dot">.</span></div>
                     <!-- Repeat Block 3 -->
-                    <div class="marquee-item"><span>FastAPI</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Node.js</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Express.js</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>REST APIs</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Database</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>MongoDB</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>PostgreSQL</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Python</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Python</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>FastAPI</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Node.js</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Express.js</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>REST APIs</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>WebSockets</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Supabase</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>PostgreSQL</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>SQLite</span><span class="marquee-dot">.</span></div>
                     <!-- Repeat Block 4 -->
-                    <div class="marquee-item"><span>FastAPI</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Node.js</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Express.js</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>REST APIs</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Database</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>MongoDB</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>PostgreSQL</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Python</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Python</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>FastAPI</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Node.js</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Express.js</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>REST APIs</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>WebSockets</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Supabase</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>PostgreSQL</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>SQLite</span><span class="marquee-dot">.</span></div>
                 </div>
                 <!-- Row 3 -->
                 <div class="marquee-track marquee-track-left" style="animation-duration: 45s;">
                     <!-- Repeat Block 1 -->
-                    <div class="marquee-item"><span>Claude</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Cursor AI</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>GitHub Copilot</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Google Gemini</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>LangChain</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item"><span>LLM Integration</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item"><span>RAG</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item"><span>FAISS</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item"><span>Ollama</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item"><span>Groq API</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item"><span>Gemini Vision</span><span class="marquee-dot">.</span></div>
                     <div class="marquee-item"><span>MCP</span><span class="marquee-dot">.</span></div>
                     <div class="marquee-item"><span>Prompt Engineering</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Agentic AI</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>ChatGPT</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item"><span>n8n</span><span class="marquee-dot">.</span></div>
                     <!-- Repeat Block 2 -->
-                    <div class="marquee-item"><span>Claude</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Cursor AI</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>GitHub Copilot</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Google Gemini</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>LangChain</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>MCP</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Prompt Engineering</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Agentic AI</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>ChatGPT</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>LLM Integration</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>RAG</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>FAISS</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Ollama</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Groq API</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Gemini Vision</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>MCP</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Prompt Engineering</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>n8n</span><span class="marquee-dot">.</span></div>
                     <!-- Repeat Block 3 -->
-                    <div class="marquee-item"><span>Claude</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Cursor AI</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>GitHub Copilot</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Google Gemini</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>LangChain</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>MCP</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Prompt Engineering</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Agentic AI</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>ChatGPT</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>LLM Integration</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>RAG</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>FAISS</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Ollama</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Groq API</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Gemini Vision</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>MCP</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Prompt Engineering</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>n8n</span><span class="marquee-dot">.</span></div>
                     <!-- Repeat Block 4 -->
-                    <div class="marquee-item"><span>Claude</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Cursor AI</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>GitHub Copilot</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Google Gemini</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>LangChain</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>MCP</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Prompt Engineering</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Agentic AI</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>ChatGPT</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>LLM Integration</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>RAG</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>FAISS</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Ollama</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Groq API</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Gemini Vision</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>MCP</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Prompt Engineering</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>n8n</span><span class="marquee-dot">.</span></div>
                 </div>
                 <!-- Row 4 -->
                 <div class="marquee-track marquee-track-right" style="animation-duration: 45s;">
                     <!-- Repeat Block 1 -->
-                    <div class="marquee-item"><span>VS Code</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>CI/CD</span><span class="marquee-dot">.</span></div>
                     <div class="marquee-item"><span>Git</span><span class="marquee-dot">.</span></div>
                     <div class="marquee-item"><span>GitHub</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Docker</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Postman</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item"><span>Vercel</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item"><span>Cloudflare Workers</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item"><span>Electron</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item"><span>C++ (DSA)</span><span class="marquee-dot">.</span></div>
                     <!-- Repeat Block 2 -->
-                    <div class="marquee-item"><span>VS Code</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>CI/CD</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Git</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>GitHub</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Docker</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Postman</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Git</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>GitHub</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Vercel</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Cloudflare Workers</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Electron</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>C++ (DSA)</span><span class="marquee-dot">.</span></div>
                     <!-- Repeat Block 3 -->
-                    <div class="marquee-item"><span>VS Code</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>CI/CD</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Git</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>GitHub</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Docker</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Postman</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Git</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>GitHub</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Vercel</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Cloudflare Workers</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Electron</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>C++ (DSA)</span><span class="marquee-dot">.</span></div>
                     <!-- Repeat Block 4 -->
-                    <div class="marquee-item"><span>VS Code</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>CI/CD</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Git</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>GitHub</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Docker</span><span class="marquee-dot">.</span></div>
-                    <div class="marquee-item"><span>Postman</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Git</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>GitHub</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Vercel</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Cloudflare Workers</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>Electron</span><span class="marquee-dot">.</span></div>
+                    <div class="marquee-item" aria-hidden="true"><span>C++ (DSA)</span><span class="marquee-dot">.</span></div>
                 </div>
             </div>
 
 
-            <!-- Service Section - WHAT WE CAN DO -->
+            <!-- Service Section - WHAT I BUILD -->
             <div class="service-list-container" id="services-section">
                 <div class="service-header">
                     <h2 class="service-title reveal-up">
-                        <span class="service-title-line">WHAT WE</span>
-                        <span class="service-title-line gradient">CAN DO</span>
+                        <span class="service-title-line">WHAT I</span>
+                        <span class="service-title-line gradient">BUILD</span>
                     </h2>
                 </div>
                 <div class="service-list reveal-up">
@@ -5171,7 +5470,7 @@
                                     frameworks, robust backend systems, and AI-powered solutions. From planning and
                                     architecture to deployment, I create secure, responsive, and production-ready
                                     digital experiences.</p>
-                                <a href="#" class="view-projects-btn"><span class="bracket">┌</span> VIEW PROJECTS <span
+                                <a href="#projects-section" class="view-projects-btn" data-scroll><span class="bracket">┌</span> VIEW PROJECTS <span
                                         class="bracket">┘</span></a>
                             </div>
                         </div>
@@ -5211,9 +5510,9 @@
                                     <li>FastAPI</li>
                                     <li>Node.js</li>
                                     <li>Express.js</li>
-                                    <li>MongoDB</li>
+                                    <li>Supabase</li>
                                     <li>PostgreSQL</li>
-                                    <li>JWT Authentication</li>
+                                    <li>Authentication</li>
                                 </ul>
                             </div>
                             <div class="service-content-right">
@@ -5231,11 +5530,11 @@
                         <div class="service-content">
                             <div class="service-content-left">
                                 <ul class="service-bullets">
-                                    <li>OpenAI Integration</li>
-                                    <li>LangChain</li>
+                                    <li>LLM APIs (Groq, Gemini, Ollama)</li>
+                                    <li>RAG Pipelines (FAISS)</li>
                                     <li>MCP</li>
                                     <li>Prompt Engineering</li>
-                                    <li>AI Chatbots</li>
+                                    <li>Multi-model Fallback</li>
                                     <li>Workflow Automation</li>
                                 </ul>
                             </div>
@@ -5243,28 +5542,6 @@
                                 <p>I integrate artificial intelligence into applications to automate workflows, improve
                                     productivity, and create intelligent user experiences using modern AI technologies.
                                 </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="service-row">
-                        <div class="service-row-header">
-                            <div class="service-num">05</div>
-                            <div class="service-name">MOBILE DEVELOPMENT</div>
-                            <div class="service-arrow">↘</div>
-                        </div>
-                        <div class="service-content">
-                            <div class="service-content-left">
-                                <ul class="service-bullets">
-                                    <li>React Native</li>
-                                    <li>API Integration</li>
-                                    <li>Responsive UI</li>
-                                    <li>State Management</li>
-                                    <li>Performance Optimization</li>
-                                </ul>
-                            </div>
-                            <div class="service-content-right">
-                                <p>I build responsive cross-platform mobile applications with smooth performance,
-                                    intuitive interfaces, and seamless integration with backend services.</p>
                             </div>
                         </div>
                     </div>
@@ -5556,6 +5833,50 @@
     </section>
     <!-- /projects-section -->
 
+    <!-- ========== JOURNEY SECTION ========== -->
+    <section class="journey-section" id="journey-section" aria-labelledby="journeyTitle">
+        <div class="journey-container">
+            <header class="journey-header reveal-up">
+                <p class="projects-eyebrow">Hackathons &amp; education</p>
+                <h2 class="journey-title" id="journeyTitle">JOURNEY</h2>
+            </header>
+            <ol class="journey-list">
+                <li class="journey-item reveal-up">
+                    <span class="journey-year">2026</span>
+                    <div>
+                        <h3>Smart India Hackathon 2026 — Team Lead</h3>
+                        <p>Leading a six-member team on an AI + full-stack problem statement: scoping, architecture and
+                            delivery.</p>
+                    </div>
+                </li>
+                <li class="journey-item reveal-up">
+                    <span class="journey-year">2026</span>
+                    <div>
+                        <h3>Economic Times AI Hackathon — Project Aion</h3>
+                        <p>Built a RAG + knowledge-graph assistant over industrial documents: FAISS vector search, OCR
+                            ingestion, source-cited answers, 22 REST endpoints.</p>
+                    </div>
+                </li>
+                <li class="journey-item reveal-up">
+                    <span class="journey-year">2026</span>
+                    <div>
+                        <h3>IntelliAI Arena, AITR — SnapTrace AI</h3>
+                        <p>Shipped a photo-first AI lost-and-found app live on Vercel within the hackathon, as a team of
+                            three.</p>
+                    </div>
+                </li>
+                <li class="journey-item reveal-up">
+                    <span class="journey-year">Now</span>
+                    <div>
+                        <h3>B.Tech, Computer Science &amp; Information Technology</h3>
+                        <p>Acropolis Institute of Technology and Research, Indore (RGPV). Certifications: Anthropic —
+                            Introduction to Model Context Protocol, Agent Skills, AI Fluency.</p>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </section>
+
     <!-- ========== CONTACT SECTION ========== -->
     <section class="contact-section" id="contact-section" aria-label="Contact Samarth Maheshwari">
 
@@ -5700,6 +6021,12 @@
                             <span class="form-field__error" role="alert">Message should be at least 10 characters</span>
                         </div>
 
+                        <!-- Honeypot: bots fill this, humans never see it -->
+                        <div class="hp-field" aria-hidden="true">
+                            <label for="contactHoney">Leave this empty</label>
+                            <input type="text" id="contactHoney" name="_honey" tabindex="-1" autocomplete="off">
+                        </div>
+
                         <button type="submit" class="form-submit" id="contactSubmit">
                             <span class="form-submit__text">Send Message</span>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -5740,7 +6067,7 @@
                 }
 
                 // Hide/Show based on scroll direction
-                if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                if (currentScrollY > lastScrollY && currentScrollY > 100 && !navbar.classList.contains('menu-open')) {
                     navbar.classList.add('hidden-scroll'); // scrolled down
                 } else {
                     navbar.classList.remove('hidden-scroll'); // scrolled up
@@ -5754,15 +6081,13 @@
         const themeToggle = document.getElementById('themeToggle');
         const root = document.documentElement;
 
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        root.setAttribute('data-theme', savedTheme);
+        // Saved theme is applied in <head> before first paint
 
         themeToggle.addEventListener('click', () => {
             const current = root.getAttribute('data-theme');
             const next = current === 'dark' ? 'light' : 'dark';
             root.setAttribute('data-theme', next);
-            localStorage.setItem('theme', next);
+            try { localStorage.setItem('theme', next); } catch (e) { /* storage blocked */ }
 
             // Subtle click ripple
             themeToggle.style.transform = 'scale(0.9)';
@@ -5938,7 +6263,7 @@
         }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
         document.querySelectorAll('.reveal-up').forEach((el, i) => {
-            el.style.transitionDelay = `${i * 0.08}s`;
+            el.style.transitionDelay = `${(i % 4) * 0.08}s`;
             revealObserver.observe(el);
         });
 
@@ -6144,1021 +6469,6 @@
             }
         })();
 
-        // =====================================================================
-        // TECH STACK — SKILLS DATA
-        // =====================================================================
-        const skillsData = [
-            // Programming Languages
-            {
-                id: 'python',
-                name: 'Python',
-                category: 'Programming Languages',
-                experience: 'Advanced',
-                description: 'AI, automation and backend development.',
-                usage: 'The backbone of my AI and automation projects. I use it for machine learning, data analysis, API development, and scripting.',
-                projects: 'AI chatbots, automation pipelines, data analysis tools, backend microservices',
-                note: 'My primary language for AI engineering. Python\'s ecosystem lets me move from idea to production faster than any other language.',
-                related: ['Django', 'Flask', 'FastAPI', 'TensorFlow', 'PyTorch', 'OpenCV', 'NumPy', 'Pandas', 'Scikit Learn', 'Hugging Face'],
-                icon: 'P'
-            },
-            {
-                id: 'javascript',
-                name: 'JavaScript',
-                category: 'Programming Languages',
-                experience: 'Advanced',
-                description: 'Interactive web experiences and full-stack development.',
-                usage: 'Core language for both frontend and backend development. Powers interactive UIs, API integrations, and real-time features.',
-                projects: 'Full-stack web apps, interactive dashboards, browser extensions, API services',
-                note: 'JavaScript is everywhere. From React frontends to Node.js backends — it\'s the glue of the modern web.',
-                related: ['React', 'Next.js', 'Node.js', 'TypeScript', 'Tailwind CSS'],
-                icon: 'JS'
-            },
-            {
-                id: 'typescript',
-                name: 'TypeScript',
-                category: 'Programming Languages',
-                experience: 'Advanced',
-                description: 'Type-safe, scalable application development.',
-                usage: 'My go-to for production applications. Type safety catches bugs early and makes refactoring confident and fast.',
-                projects: 'SaaS platforms, API backends, React/Next.js applications, library development',
-                note: 'Once you go TypeScript, you never go back. It\'s JavaScript with superpowers — especially for team projects.',
-                related: ['JavaScript', 'React', 'Next.js', 'Node.js'],
-                icon: 'TS'
-            },
-            {
-                id: 'c',
-                name: 'C',
-                category: 'Programming Languages',
-                experience: 'Intermediate',
-                description: 'Systems programming and performance-critical applications.',
-                usage: 'Used for understanding low-level computing, memory management, and building efficient algorithms.',
-                projects: 'System tools, algorithm implementations, embedded experiments',
-                note: 'C taught me how computers actually work. Every developer should learn it at least once.',
-                related: ['C++'],
-                icon: 'C'
-            },
-            {
-                id: 'cpp',
-                name: 'C++',
-                category: 'Programming Languages',
-                experience: 'Intermediate',
-                description: 'High-performance applications and game development.',
-                usage: 'Building performance-intensive applications where speed and memory efficiency are critical.',
-                projects: 'Algorithm visualizers, performance benchmarks, competitive programming',
-                note: 'C++ is my choice when Python is too slow and Rust isn\'t an option. Powerful but demands respect.',
-                related: ['C'],
-                icon: 'C++'
-            },
-            {
-                id: 'kotlin',
-                name: 'Kotlin',
-                category: 'Programming Languages',
-                experience: 'Intermediate',
-                description: 'Modern Android and multiplatform development.',
-                usage: 'Building modern Android applications with clean, concise syntax and full Java interoperability.',
-                projects: 'Android apps, multiplatform libraries',
-                note: 'Kotlin makes Android development enjoyable. The coroutines system is a game-changer for async code.',
-                related: [],
-                icon: 'Kt'
-            },
-            {
-                id: 'bash',
-                name: 'Bash',
-                category: 'Programming Languages',
-                experience: 'Intermediate',
-                description: 'Shell scripting and automation.',
-                usage: 'Automating repetitive tasks, CI/CD pipelines, system administration, and developer workflows.',
-                projects: 'Deployment scripts, automation pipelines, developer tooling',
-                note: 'The command line is my happy place. Bash turns hours of work into seconds of automation.',
-                related: ['Linux', 'Docker'],
-                icon: 'Bsh'
-            },
-            // Frontend
-            {
-                id: 'html',
-                name: 'HTML',
-                category: 'Frontend',
-                experience: 'Advanced',
-                description: 'Semantic web structure and accessibility.',
-                usage: 'Building accessible, semantic, and SEO-friendly web structures that form the foundation of every project.',
-                projects: 'Every web project I\'ve ever built',
-                note: 'The foundation of the web. I believe in clean, semantic HTML that works for everyone.',
-                related: ['CSS', 'JavaScript', 'React'],
-                icon: 'HTML'
-            },
-            {
-                id: 'css',
-                name: 'CSS',
-                category: 'Frontend',
-                experience: 'Advanced',
-                description: 'Beautiful, responsive, and animated interfaces.',
-                usage: 'Crafting pixel-perfect, responsive layouts with modern CSS — grids, flexbox, animations, and custom properties.',
-                projects: 'Portfolio sites, SaaS dashboards, landing pages',
-                note: 'CSS is not a design tool — it\'s a programming language for visual expression. Modern CSS is incredibly powerful.',
-                related: ['HTML', 'Tailwind CSS', 'Bootstrap', 'React'],
-                icon: 'CSS'
-            },
-            {
-                id: 'react',
-                name: 'React',
-                category: 'Frontend',
-                experience: 'Advanced',
-                description: 'Building beautiful modern frontends.',
-                usage: 'My go-to library for building interactive user experiences with reusable components and efficient state management.',
-                projects: 'Single-page apps, dashboards, interactive tools, SaaS frontends',
-                note: 'React changed how I think about UI. Component-based architecture is the way forward.',
-                related: ['Next.js', 'JavaScript', 'TypeScript', 'Tailwind CSS', 'Node.js'],
-                icon: '⚛'
-            },
-            {
-                id: 'nextjs',
-                name: 'Next.js',
-                category: 'Frontend',
-                experience: 'Advanced',
-                description: 'Full-stack React framework for production.',
-                usage: 'Building production-ready React applications with SSR, SSG, API routes, and optimized performance out of the box.',
-                projects: 'Portfolio websites, SaaS platforms, e-commerce, blogs',
-                note: 'Next.js is my default choice for any web project. It does everything and does it well.',
-                related: ['React', 'JavaScript', 'TypeScript', 'Tailwind CSS', 'Vercel'],
-                icon: 'N'
-            },
-            {
-                id: 'tailwind',
-                name: 'Tailwind CSS',
-                category: 'Frontend',
-                experience: 'Advanced',
-                description: 'Utility-first CSS framework for rapid UI development.',
-                usage: 'Building custom designs quickly without leaving HTML. Perfect for consistent, responsive interfaces.',
-                projects: 'Almost every recent project — portfolio, dashboards, landing pages',
-                note: 'Tailwind makes me 3x faster at building UIs. Utility-first is the best paradigm shift in CSS.',
-                related: ['CSS', 'React', 'Next.js', 'Bootstrap'],
-                icon: 'TW'
-            },
-            {
-                id: 'bootstrap',
-                name: 'Bootstrap',
-                category: 'Frontend',
-                experience: 'Intermediate',
-                description: 'Rapid prototyping and responsive layouts.',
-                usage: 'Quick prototypes and projects where rapid development with a proven grid system is needed.',
-                projects: 'Admin dashboards, internal tools, MVPs',
-                note: 'Bootstrap was my first CSS framework. Still useful for prototypes and internal tools.',
-                related: ['CSS', 'Tailwind CSS', 'HTML'],
-                icon: 'BS'
-            },
-            // Backend
-            {
-                id: 'nodejs',
-                name: 'Node.js',
-                category: 'Backend',
-                experience: 'Advanced',
-                description: 'Scalable server-side JavaScript runtime.',
-                usage: 'Building fast, scalable backend services, REST APIs, and real-time applications with event-driven architecture.',
-                projects: 'API backends, real-time chat apps, microservices, authentication systems',
-                note: 'Node.js brought JavaScript to the server. The npm ecosystem is unmatched for backend development.',
-                related: ['JavaScript', 'TypeScript', 'Express', 'MongoDB', 'Docker'],
-                icon: 'N'
-            },
-            {
-                id: 'django',
-                name: 'Django',
-                category: 'Backend',
-                experience: 'Intermediate',
-                description: 'Python web framework for rapid development.',
-                usage: 'Building robust, database-driven web applications with Django\'s "batteries-included" philosophy.',
-                projects: 'Content platforms, admin panels, REST APIs',
-                note: 'Django is Python\'s gift to web development. The admin panel alone saves weeks of work.',
-                related: ['Python', 'Flask', 'FastAPI', 'PostgreSQL'],
-                icon: 'Dj'
-            },
-            {
-                id: 'flask',
-                name: 'Flask',
-                category: 'Backend',
-                experience: 'Intermediate',
-                description: 'Lightweight Python web framework.',
-                usage: 'Microservices, lightweight APIs, and projects where simplicity and flexibility are key.',
-                projects: 'REST APIs, microservices, prototyping',
-                note: 'Flask gives me just enough structure without getting in the way. Perfect for APIs and microservices.',
-                related: ['Python', 'Django', 'FastAPI'],
-                icon: 'Fl'
-            },
-            {
-                id: 'fastapi',
-                name: 'FastAPI',
-                category: 'Backend',
-                experience: 'Intermediate',
-                description: 'Modern Python API framework with automatic docs.',
-                usage: 'Building high-performance APIs with automatic OpenAPI documentation and type validation.',
-                projects: 'ML model serving, REST APIs, real-time features',
-                note: 'FastAPI is the future of Python backends. Automatic docs, type safety, and incredible performance.',
-                related: ['Python', 'Django', 'Flask'],
-                icon: 'FA'
-            },
-            // AI & ML
-            {
-                id: 'tensorflow',
-                name: 'TensorFlow',
-                category: 'Artificial Intelligence',
-                experience: 'Intermediate',
-                description: 'Machine learning and deep learning framework.',
-                usage: 'Building and training machine learning models for classification, regression, and neural networks.',
-                projects: 'Image classifiers, NLP models, predictive analytics',
-                note: 'TensorFlow opened the door to deep learning for me. The ecosystem is vast and powerful.',
-                related: ['Python', 'PyTorch', 'OpenCV', 'NumPy', 'Scikit Learn'],
-                icon: 'TF'
-            },
-            {
-                id: 'pytorch',
-                name: 'PyTorch',
-                category: 'Artificial Intelligence',
-                experience: 'Intermediate',
-                description: 'Dynamic deep learning framework.',
-                usage: 'Research-oriented ML projects, dynamic neural networks, and custom model architectures.',
-                projects: 'Custom neural networks, research experiments, AI prototypes',
-                note: 'PyTorch\'s dynamic computation graph makes debugging and experimentation a joy.',
-                related: ['Python', 'TensorFlow', 'NumPy', 'OpenCV'],
-                icon: 'PT'
-            },
-            {
-                id: 'opencv',
-                name: 'OpenCV',
-                category: 'Artificial Intelligence',
-                experience: 'Intermediate',
-                description: 'Real-time computer vision library.',
-                usage: 'Image processing, real-time object detection, face recognition, and video analysis.',
-                projects: 'Face recognition systems, object tracking, image filters',
-                note: 'OpenCV turns camera feeds into actionable data. Computer vision is where AI gets really exciting.',
-                related: ['Python', 'TensorFlow', 'PyTorch', 'NumPy'],
-                icon: 'CV'
-            },
-            {
-                id: 'scikit',
-                name: 'Scikit Learn',
-                category: 'Artificial Intelligence',
-                experience: 'Intermediate',
-                description: 'Machine learning for data mining and analysis.',
-                usage: 'Classic ML algorithms for classification, regression, clustering, and data preprocessing.',
-                projects: 'Predictive models, data analysis pipelines, recommendation systems',
-                note: 'Scikit Learn is my first stop for ML tasks. Simple, consistent, and battle-tested.',
-                related: ['Python', 'NumPy', 'Pandas', 'TensorFlow'],
-                icon: 'SK'
-            },
-            {
-                id: 'numpy',
-                name: 'NumPy',
-                category: 'Artificial Intelligence',
-                experience: 'Advanced',
-                description: 'Numerical computing in Python.',
-                usage: 'Scientific computing, array operations, linear algebra, and numerical data processing.',
-                projects: 'Every data/ML project — from preprocessing to model evaluation',
-                note: 'NumPy is the foundation of Python\'s data stack. Everything in ML builds on it.',
-                related: ['Python', 'Pandas', 'TensorFlow', 'Scikit Learn', 'OpenCV'],
-                icon: 'NP'
-            },
-            {
-                id: 'pandas',
-                name: 'Pandas',
-                category: 'Artificial Intelligence',
-                experience: 'Advanced',
-                description: 'Data manipulation and analysis library.',
-                usage: 'Data cleaning, transformation, analysis, and visualization preparation.',
-                projects: 'Data analysis dashboards, ETL pipelines, reporting tools',
-                note: 'Pandas makes messy data beautiful. Data analysis without it feels impossible.',
-                related: ['Python', 'NumPy', 'Scikit Learn'],
-                icon: 'Pd'
-            },
-            {
-                id: 'huggingface',
-                name: 'Hugging Face',
-                category: 'Artificial Intelligence',
-                experience: 'Intermediate',
-                description: 'State-of-the-art NLP models and tools.',
-                usage: 'Leveraging pre-trained transformers for NLP tasks like text generation, summarization, and translation.',
-                projects: 'AI chatbots, text summarizers, sentiment analysis',
-                note: 'Hugging Face put state-of-the-art NLP in everyone\'s hands. The model hub is incredible.',
-                related: ['Python', 'TensorFlow', 'PyTorch'],
-                icon: 'HF'
-            },
-            // Databases
-            {
-                id: 'mongodb',
-                name: 'MongoDB',
-                category: 'Databases',
-                experience: 'Intermediate',
-                description: 'NoSQL database solutions.',
-                usage: 'Flexible document storage for applications that need to scale horizontally with schema-less data.',
-                projects: 'Real-time apps, content management, IoT data storage',
-                note: 'MongoDB\'s flexibility is perfect for prototyping and applications with evolving data models.',
-                related: ['Node.js', 'Express', 'PostgreSQL', 'Firebase'],
-                icon: 'MDB'
-            },
-            {
-                id: 'postgresql',
-                name: 'PostgreSQL',
-                category: 'Databases',
-                experience: 'Intermediate',
-                description: 'Advanced relational database system.',
-                usage: 'ACID-compliant data storage for applications requiring complex queries, data integrity, and reliability.',
-                projects: 'SaaS backends, analytics platforms, e-commerce databases',
-                note: 'PostgreSQL is the gold standard for relational databases. JSON support makes it even more versatile.',
-                related: ['Django', 'Node.js', 'MongoDB', 'Redis'],
-                icon: 'PG'
-            },
-            {
-                id: 'mysql',
-                name: 'MySQL',
-                category: 'Databases',
-                experience: 'Intermediate',
-                description: 'Popular open-source relational database.',
-                usage: 'Reliable relational data storage for web applications with proven performance and ecosystem support.',
-                projects: 'Web applications, CMS backends, data warehouses',
-                note: 'MySQL is the workhorse of the internet. Reliable, fast, and universally supported.',
-                related: ['PostgreSQL', 'MongoDB'],
-                icon: 'MY'
-            },
-            {
-                id: 'firebase',
-                name: 'Firebase',
-                category: 'Databases',
-                experience: 'Intermediate',
-                description: 'Real-time backend and database platform.',
-                usage: 'Real-time data sync, authentication, serverless functions, and rapid prototyping.',
-                projects: 'Real-time apps, MVPs, mobile backends',
-                note: 'Firebase is my secret weapon for rapid prototyping. Authentication + database in minutes.',
-                related: ['MongoDB', 'Node.js'],
-                icon: 'FB'
-            },
-            {
-                id: 'redis',
-                name: 'Redis',
-                category: 'Databases',
-                experience: 'Intermediate',
-                description: 'In-memory data structure store.',
-                usage: 'Caching, real-time leaderboards, session management, and pub/sub messaging systems.',
-                projects: 'Real-time features, caching layers, rate limiting',
-                note: 'Redis makes everything faster. Caching with Redis is the easiest performance win you can get.',
-                related: ['Node.js', 'PostgreSQL', 'Docker'],
-                icon: 'Re'
-            },
-            // Cloud & DevOps
-            {
-                id: 'docker',
-                name: 'Docker',
-                category: 'Cloud & DevOps',
-                experience: 'Intermediate',
-                description: 'Containerized scalable applications.',
-                usage: 'Containerizing applications for consistent development, testing, and production environments.',
-                projects: 'Microservices architecture, CI/CD pipelines, dev environments',
-                note: 'Docker eliminated "it works on my machine" forever. Containers are the standard.',
-                related: ['AWS', 'Linux', 'Node.js', 'Redis', 'PostgreSQL'],
-                icon: 'D'
-            },
-            {
-                id: 'aws',
-                name: 'AWS',
-                category: 'Cloud & DevOps',
-                experience: 'Intermediate',
-                description: 'Cloud infrastructure and services.',
-                usage: 'Deploying scalable applications using EC2, S3, Lambda, and other AWS services.',
-                projects: 'Cloud-hosted APIs, serverless functions, static site hosting',
-                note: 'AWS has a service for everything. The learning curve is steep but the capabilities are limitless.',
-                related: ['Docker', 'Linux', 'Azure', 'Vercel'],
-                icon: 'AWS'
-            },
-            {
-                id: 'azure',
-                name: 'Azure',
-                category: 'Cloud & DevOps',
-                experience: 'Intermediate',
-                description: 'Microsoft cloud computing platform.',
-                usage: 'Enterprise cloud solutions, AI services, and integration with Microsoft ecosystem.',
-                projects: 'Enterprise applications, AI services deployment',
-                note: 'Azure\'s AI services and enterprise integration make it powerful for corporate environments.',
-                related: ['AWS', 'Docker', 'Linux'],
-                icon: 'Az'
-            },
-            {
-                id: 'linux',
-                name: 'Linux',
-                category: 'Cloud & DevOps',
-                experience: 'Intermediate',
-                description: 'Open-source operating system for development.',
-                usage: 'My daily driver for servers, development environments, and system administration.',
-                projects: 'Server management, CI/CD, dev environments',
-                note: 'Linux is the developer\'s operating system. The terminal is my command center.',
-                related: ['Bash', 'Docker', 'AWS', 'Git'],
-                icon: 'Lx'
-            },
-            {
-                id: 'vercel',
-                name: 'Vercel',
-                category: 'Cloud & DevOps',
-                experience: 'Advanced',
-                description: 'Frontend deployment and serverless platform.',
-                usage: 'Deploying Next.js and frontend applications with automatic CI/CD, previews, and edge functions.',
-                projects: 'This portfolio, SaaS landing pages, Next.js apps',
-                note: 'Vercel makes deployment effortless. Push to GitHub and it\'s live. The developer experience is unmatched.',
-                related: ['Next.js', 'AWS', 'GitHub'],
-                icon: 'V'
-            },
-            // Tools
-            {
-                id: 'git',
-                name: 'Git',
-                category: 'Tools',
-                experience: 'Advanced',
-                description: 'Version control and collaboration.',
-                usage: 'Every project, every day. Branching, merging, rebasing — the foundation of modern development workflows.',
-                projects: 'All projects — from solo experiments to team collaborations',
-                note: 'Git is non-negotiable. Version control is how we build software in the 21st century.',
-                related: ['GitHub', 'VS Code', 'Linux'],
-                icon: 'G'
-            },
-            {
-                id: 'github',
-                name: 'GitHub',
-                category: 'Tools',
-                experience: 'Advanced',
-                description: 'Code hosting and collaboration platform.',
-                usage: 'Hosting repositories, CI/CD with Actions, code reviews, project management, and open source contributions.',
-                projects: 'All repositories, open source contributions, team collaborations',
-                note: 'GitHub is more than version control — it\'s my digital workshop and portfolio rolled into one.',
-                related: ['Git', 'VS Code', 'Vercel'],
-                icon: 'GH'
-            },
-            {
-                id: 'vscode',
-                name: 'VS Code',
-                category: 'Tools',
-                experience: 'Advanced',
-                description: 'My primary code editor — highly customized.',
-                usage: 'All development — from Python scripts to React components. Extensions make it infinitely extensible.',
-                projects: 'Every single project — this is where the magic happens',
-                note: 'VS Code with the right extensions is the best development environment I\'ve ever used.',
-                related: ['Git', 'GitHub'],
-                icon: 'VS'
-            },
-            {
-                id: 'figma',
-                name: 'Figma',
-                category: 'Tools',
-                experience: 'Intermediate',
-                description: 'Collaborative design and prototyping.',
-                usage: 'UI/UX design, wireframing, prototyping, and design handoff for web applications.',
-                projects: 'Portfolio designs, app mockups, design systems',
-                note: 'Figma bridges the gap between design and code. I design in Figma, build in code.',
-                related: ['CSS', 'Tailwind CSS', 'React'],
-                icon: 'Fg'
-            },
-            {
-                id: 'postman',
-                name: 'Postman',
-                category: 'Tools',
-                experience: 'Intermediate',
-                description: 'API testing and documentation.',
-                usage: 'Testing, debugging, and documenting APIs during development and integration.',
-                projects: 'API development, integration testing, documentation',
-                note: 'Postman is indispensable for API development. Automated testing saves so much time.',
-                related: ['Node.js', 'FastAPI', 'Flask'],
-                icon: 'Pm'
-            },
-            {
-                id: 'jupyter',
-                name: 'Jupyter Notebook',
-                category: 'Tools',
-                experience: 'Advanced',
-                description: 'Interactive computing and data exploration.',
-                usage: 'Data analysis, ML experimentation, prototyping algorithms, and sharing results.',
-                projects: 'Data science projects, ML model prototyping, research notebooks',
-                note: 'Jupyter is my lab notebook for data science. The ability to mix code, visuals, and notes is powerful.',
-                related: ['Python', 'NumPy', 'Pandas', 'TensorFlow'],
-                icon: 'JN'
-            },
-            {
-                id: 'photoshop',
-                name: 'Photoshop',
-                category: 'Tools',
-                experience: 'Intermediate',
-                description: 'Image editing and graphic design.',
-                usage: 'Image editing, asset creation, mockups, and visual content for web projects.',
-                projects: 'Social media graphics, UI assets, image optimization',
-                note: 'Photoshop skills are surprisingly useful for a developer. Sometimes you just need to edit an image.',
-                related: ['Figma'],
-                icon: 'PS'
-            },
-            {
-                id: 'msoffice',
-                name: 'MS Office',
-                category: 'Tools',
-                experience: 'Advanced',
-                description: 'Productivity and documentation suite.',
-                usage: 'Documentation, presentations, spreadsheets, and professional communication.',
-                projects: 'Project docs, reports, presentations, data sheets',
-                note: 'MS Office is still the standard for professional documentation. PowerPoint for client pitches, Excel for data.',
-                related: [],
-                icon: 'MS'
-            }
-        ];
-
-        // ========== SKILL ICON RENDERER ==========
-        function renderSkillIcon(skill, size = 32) {
-            if (skill.icon && skill.icon.length <= 3 && !skill.icon.match(/[^a-zA-Z0-9+]/)) {
-                return `<span class="fallback-text">${skill.icon}</span>`;
-            }
-            if (skill.icon && skill.icon.length === 1 && /[^\w]/.test(skill.icon)) {
-                // Emoji or special char
-                return `<span style="font-size:${size * 0.75}px">${skill.icon}</span>`;
-            }
-            return `<span class="fallback-text">${skill.name.charAt(0)}</span>`;
-        }
-
-        // ========== BUILD PYRAMID ==========
-        const pyramidRows = [
-            { items: ['python'], label: 'Core' },
-            { items: ['typescript', 'javascript', 'c'], label: 'Languages' },
-            { items: ['react', 'nextjs', 'nodejs', 'django', 'fastapi'], label: 'Frameworks' },
-            { items: ['tensorflow', 'pytorch', 'opencv', 'scikit', 'mongodb', 'postgresql', 'docker'], label: 'AI & Data' },
-            { items: ['aws', 'linux', 'vercel', 'git', 'github', 'figma', 'postman', 'html', 'css'], label: 'Tools & Cloud' }
-        ];
-
-        // Flatten for quick lookup
-        const skillsMap = {};
-        skillsData.forEach(s => { skillsMap[s.id] = s; });
-
-        // Relation map for glow
-        const relationMap = {};
-        skillsData.forEach(s => {
-            s.related.forEach(relId => {
-                const rel = relId.toLowerCase().replace(/[\s.-]/g, '');
-                if (!relationMap[s.id]) relationMap[s.id] = [];
-                // Find the actual skill id for the related name
-                const found = skillsData.find(sk => sk.name.toLowerCase().replace(/[\s.-]/g, '') === rel);
-                if (found && found.id !== s.id) {
-                    relationMap[s.id].push(found.id);
-                }
-            });
-        });
-
-        // Manual relation additions for critical connections
-        // Python relations
-        relationMap['python'] = ['django', 'flask', 'fastapi', 'tensorflow', 'pytorch', 'opencv', 'scikit', 'numpy', 'pandas', 'huggingface', 'jupyter'];
-        // React relations
-        relationMap['react'] = ['nextjs', 'javascript', 'typescript', 'tailwind', 'nodejs'];
-        // Next.js relations
-        relationMap['nextjs'] = ['react', 'javascript', 'typescript', 'tailwind', 'vercel'];
-        // JavaScript relations
-        relationMap['javascript'] = ['typescript', 'react', 'nextjs', 'nodejs', 'html', 'css'];
-        // TypeScript relations
-        relationMap['typescript'] = ['javascript', 'react', 'nextjs', 'nodejs'];
-        // Node.js relations
-        relationMap['nodejs'] = ['javascript', 'typescript', 'react', 'mongodb', 'docker'];
-
-        function buildPyramid() {
-            const container = document.getElementById('techPyramid');
-            if (!container) return;
-
-            container.innerHTML = '';
-            pyramidRows.forEach((row, rowIdx) => {
-                const rowEl = document.createElement('div');
-                rowEl.className = 'pyramid-row';
-                rowEl.style.transitionDelay = `${rowIdx * 0.1}s`;
-
-                row.items.forEach((itemId) => {
-                    const skill = skillsMap[itemId];
-                    if (!skill) return;
-
-                    const card = document.createElement('div');
-                    card.className = 'skill-card';
-                    card.dataset.skillId = skill.id;
-
-                    const iconWrap = document.createElement('div');
-                    iconWrap.className = 'skill-icon-wrap';
-                    iconWrap.innerHTML = renderSkillIcon(skill, 32);
-
-                    const label = document.createElement('span');
-                    label.className = 'skill-name-label';
-                    label.textContent = skill.name;
-
-                    card.appendChild(iconWrap);
-                    card.appendChild(label);
-                    rowEl.appendChild(card);
-                });
-
-                container.appendChild(rowEl);
-            });
-        }
-
-        buildPyramid();
-
-        // ========== TOOLTIP SYSTEM ==========
-        const tooltip = document.getElementById('skillTooltip');
-        const ttIcon = document.getElementById('ttIcon');
-        const ttName = document.getElementById('ttName');
-        const ttExp = document.getElementById('ttExp');
-        const ttDesc = document.getElementById('ttDesc');
-        const ttRelated = document.getElementById('ttRelated');
-        let tooltipTimeout = null;
-        let tooltipSkillId = null;
-
-        // Track all skill cards
-        const skillCards = document.querySelectorAll('.skill-card');
-
-        function getSkillData(card) {
-            return skillsMap[card.dataset.skillId];
-        }
-
-        function showTooltip(card, event) {
-            const skill = getSkillData(card);
-            if (!skill) return;
-
-            tooltipSkillId = skill.id;
-
-            // Populate
-            ttIcon.innerHTML = renderSkillIcon(skill, 20);
-            ttName.textContent = skill.name;
-            ttExp.textContent = skill.experience;
-            ttDesc.textContent = skill.description;
-
-            ttRelated.innerHTML = '';
-            if (skill.related && skill.related.length > 0) {
-                const label = document.createElement('span');
-                label.className = 'tooltip-related-label';
-                label.textContent = 'Related:';
-                ttRelated.appendChild(label);
-                skill.related.slice(0, 5).forEach(relName => {
-                    const chip = document.createElement('span');
-                    chip.className = 'tooltip-related-chip';
-                    chip.textContent = relName;
-                    ttRelated.appendChild(chip);
-                });
-            }
-
-            // Position
-            const x = event.clientX;
-            const y = event.clientY;
-
-            tooltip.style.left = (x + 20) + 'px';
-            tooltip.style.top = (y - 20) + 'px';
-
-            // Keep in viewport
-            requestAnimationFrame(() => {
-                const rect = tooltip.getBoundingClientRect();
-                const vw = window.innerWidth;
-                const vh = window.innerHeight;
-                if (rect.right > vw - 20) {
-                    tooltip.style.left = (x - rect.width - 20) + 'px';
-                }
-                if (rect.bottom > vh - 20) {
-                    tooltip.style.top = (y - rect.height - 10) + 'px';
-                }
-                // Ensure not off screen left/top
-                const r2 = tooltip.getBoundingClientRect();
-                if (r2.left < 10) tooltip.style.left = '10px';
-                if (r2.top < 10) tooltip.style.top = '10px';
-            });
-
-            tooltip.classList.add('visible');
-
-            // Highlight related skills
-            highlightRelated(skill.id);
-        }
-
-        function hideTooltip() {
-            tooltip.classList.remove('visible');
-            clearRelationGlow();
-            tooltipSkillId = null;
-        }
-
-        function highlightRelated(skillId) {
-            const relatedIds = relationMap[skillId] || [];
-            document.querySelectorAll('.skill-card').forEach(card => {
-                const id = card.dataset.skillId;
-                if (relatedIds.includes(id)) {
-                    card.classList.add('glow-relation');
-                }
-            });
-        }
-
-        function clearRelationGlow() {
-            document.querySelectorAll('.skill-card.glow-relation').forEach(card => {
-                card.classList.remove('glow-relation');
-            });
-        }
-
-        // Event delegation for skill cards
-        document.getElementById('techPyramid').addEventListener('mouseenter', (e) => {
-            const card = e.target.closest('.skill-card');
-            if (card) {
-                clearTimeout(tooltipTimeout);
-                showTooltip(card, e);
-            }
-        }, true);
-
-        document.getElementById('techPyramid').addEventListener('mousemove', (e) => {
-            const card = e.target.closest('.skill-card');
-            if (card) {
-                const skill = getSkillData(card);
-                if (skill && tooltipSkillId !== skill.id) {
-                    clearTimeout(tooltipTimeout);
-                    showTooltip(card, e);
-                } else if (skill) {
-                    // Update position smoothly
-                    const x = e.clientX;
-                    const y = e.clientY;
-                    tooltip.style.left = (x + 20) + 'px';
-                    tooltip.style.top = (y - 20) + 'px';
-                }
-            }
-        }, true);
-
-        document.getElementById('techPyramid').addEventListener('mouseleave', (e) => {
-            const card = e.target.closest('.skill-card');
-            if (!card || !card.contains(e.relatedTarget)) {
-                tooltipTimeout = setTimeout(hideTooltip, 100);
-            }
-        }, true);
-
-        // ========== 3D TILT & MAGNETIC EFFECT ==========
-        if (!isTouchDevice && !prefersReducedMotion) {
-            document.querySelectorAll('.skill-card').forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = (e.clientX - rect.left) / rect.width - 0.5;
-                    const y = (e.clientY - rect.top) / rect.height - 0.5;
-                    const rotateX = y * -15;
-                    const rotateY = x * 15;
-                    card.style.transform = `translateY(-4px) scale(1.05) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-                });
-
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = '';
-                });
-            });
-        }
-
-        // ========== CLICK -> MODAL ==========
-        const modalOverlay = document.getElementById('skillModalOverlay');
-        const modal = document.getElementById('skillModal');
-        const modalIcon = document.getElementById('modalIcon');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalBadge = document.getElementById('modalBadge');
-        const modalUsage = document.getElementById('modalUsage');
-        const modalProjects = document.getElementById('modalProjects');
-        const modalRelated = document.getElementById('modalRelated');
-        const modalNote = document.getElementById('modalNote');
-        const modalClose = document.getElementById('modalClose');
-
-        // Open modal
-        document.getElementById('techPyramid').addEventListener('click', (e) => {
-            const card = e.target.closest('.skill-card');
-            if (!card) return;
-            const skill = getSkillData(card);
-            if (!skill) return;
-
-            // Hide tooltip
-            hideTooltip();
-
-            // Populate modal
-            modalIcon.innerHTML = renderSkillIcon(skill, 28);
-            modalTitle.textContent = skill.name;
-            modalBadge.textContent = skill.experience + ' · Active';
-            modalUsage.textContent = skill.usage || skill.description;
-            modalProjects.textContent = skill.projects || 'Various projects and applications';
-            modalNote.textContent = skill.note || 'A core part of my development stack.';
-
-            // Related chips
-            modalRelated.innerHTML = '';
-            if (skill.related && skill.related.length > 0) {
-                skill.related.forEach(relName => {
-                    const chip = document.createElement('span');
-                    chip.className = 'modal-chip';
-                    chip.textContent = relName;
-                    modalRelated.appendChild(chip);
-                });
-            } else {
-                const chip = document.createElement('span');
-                chip.className = 'modal-chip';
-                chip.textContent = 'Standalone tool';
-                modalRelated.appendChild(chip);
-            }
-
-            // Show modal
-            modalOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-
-        // Close modal
-        function closeModal() {
-            modalOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        modalClose.addEventListener('click', closeModal);
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) closeModal();
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
-        });
-
-        // ========== TECH SECTION SPOTLIGHT ==========
-        const techSection = document.getElementById('tech-section');
-        const techSpotlight = document.getElementById('techSpotlight');
-        if (techSection && techSpotlight && !isTouchDevice && !prefersReducedMotion) {
-            techSection.addEventListener('mousemove', (e) => {
-                const rect = techSection.getBoundingClientRect();
-                techSpotlight.style.left = (e.clientX - rect.left) + 'px';
-                techSpotlight.style.top = (e.clientY - rect.top) + 'px';
-            });
-        }
-
-        // ========== SUBTITLE WORD ANIMATION ==========
-        (function animateTechSubtitle() {
-            const subtitle = document.getElementById('techSubtitle');
-            if (!subtitle || prefersReducedMotion) return;
-            const text = subtitle.textContent.trim();
-            subtitle.innerHTML = text.split(/\s+/).map((word, i) =>
-                `<span class="word" style="animation-delay:${0.3 + i * 0.04}s">${word}</span>`
-            ).join(' ');
-        })();
-
-        // ========== SCROLL REVEAL ==========
-        const techRevealObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add('revealed');
-                techRevealObserver.unobserve(entry.target);
-            });
-        }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
-
-        document.querySelectorAll('.tech-reveal-up').forEach((el) => {
-            techRevealObserver.observe(el);
-        });
-
-        // Pyramid rows reveal
-        const rowObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add('revealed');
-                rowObserver.unobserve(entry.target);
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-        document.querySelectorAll('.pyramid-row').forEach((row, i) => {
-            row.style.transitionDelay = `${i * 0.12}s`;
-            rowObserver.observe(row);
-        });
-
-        // ========== TECH PARTICLES ==========
-        (function initTechParticles() {
-            const canvas = document.getElementById('techParticles');
-            if (!canvas || prefersReducedMotion) return;
-
-            const ctx = canvas.getContext('2d');
-            let particles = [];
-            let animId;
-            let w, h;
-            let mouseX = -1000, mouseY = -1000;
-            let hoveredSkillId = null;
-
-            // Track which skill is hovered
-            document.getElementById('techPyramid').addEventListener('mouseenter', (e) => {
-                const card = e.target.closest('.skill-card');
-                if (card) hoveredSkillId = card.dataset.skillId;
-            }, true);
-
-            document.getElementById('techPyramid').addEventListener('mousemove', (e) => {
-                const card = e.target.closest('.skill-card');
-                hoveredSkillId = card ? card.dataset.skillId : null;
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            }, true);
-
-            document.getElementById('techPyramid').addEventListener('mouseleave', () => {
-                hoveredSkillId = null;
-                mouseX = -1000;
-                mouseY = -1000;
-            }, true);
-
-            function resize() {
-                const rect = techSection.getBoundingClientRect();
-                w = canvas.width = rect.width;
-                h = canvas.height = rect.height;
-            }
-
-            function createParticles() {
-                const count = Math.min(50, Math.floor(w / 28));
-                particles = Array.from({ length: count }, () => ({
-                    x: Math.random() * w,
-                    y: Math.random() * h,
-                    vx: (Math.random() - 0.5) * 0.4,
-                    vy: (Math.random() - 0.5) * 0.4,
-                    r: Math.random() * 2 + 0.8,
-                    a: Math.random() * 0.35 + 0.08,
-                    baseVx: 0,
-                    baseVy: 0
-                }));
-                particles.forEach(p => {
-                    p.baseVx = p.vx;
-                    p.baseVy = p.vy;
-                });
-            }
-
-            function draw() {
-                ctx.clearRect(0, 0, w, h);
-                const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-                const color = isLight ? '124, 58, 237' : '168, 85, 247';
-
-                // Get related skill ids for interaction
-                let relatedIds = [];
-                if (hoveredSkillId && relationMap[hoveredSkillId]) {
-                    relatedIds = relationMap[hoveredSkillId];
-                }
-
-                particles.forEach((p, i) => {
-                    // Mouse interaction
-                    const dx = p.x - (mouseX - (techSection?.getBoundingClientRect().left || 0));
-                    const dy = p.y - (mouseY - (techSection?.getBoundingClientRect().top || 0));
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 150 && dist > 0) {
-                        const force = (150 - dist) / 150 * 0.03;
-                        p.vx += dx / dist * force;
-                        p.vy += dy / dist * force;
-                    }
-                    // Restore
-                    p.vx += (p.baseVx - p.vx) * 0.01;
-                    p.vy += (p.baseVy - p.vy) * 0.01;
-
-                    p.x += p.vx;
-                    p.y += p.vy;
-                    if (p.x < 0) p.x = w;
-                    if (p.x > w) p.x = 0;
-                    if (p.y < 0) p.y = h;
-                    if (p.y > h) p.y = 0;
-
-                    let alpha = p.a;
-                    // Increase alpha for related particles
-                    if (hoveredSkillId && relatedIds.length > 0) {
-                        // Check if near a related skill card
-                        const nearbyRelated = Array.from(document.querySelectorAll('.skill-card')).some(card => {
-                            if (!relatedIds.includes(card.dataset.skillId)) return false;
-                            const rect = card.getBoundingClientRect();
-                            const cx = rect.left + rect.width / 2 - (techSection?.getBoundingClientRect().left || 0);
-                            const cy = rect.top + rect.height / 2 - (techSection?.getBoundingClientRect().top || 0);
-                            const d = Math.sqrt((p.x - cx) ** 2 + (p.y - cy) ** 2);
-                            return d < 200;
-                        });
-                        if (nearbyRelated) alpha = Math.min(1, alpha * 3);
-                    }
-
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(${color}, ${alpha})`;
-                    ctx.fill();
-
-                    // Draw connections
-                    for (let j = i + 1; j < particles.length; j++) {
-                        const p2 = particles[j];
-                        const dx2 = p.x - p2.x;
-                        const dy2 = p.y - p2.y;
-                        const dist2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
-                        if (dist2 < 100) {
-                            ctx.beginPath();
-                            ctx.moveTo(p.x, p.y);
-                            ctx.lineTo(p2.x, p2.y);
-                            ctx.strokeStyle = `rgba(${color}, ${0.05 * (1 - dist2 / 100)})`;
-                            ctx.lineWidth = 0.5;
-                            ctx.stroke();
-                        }
-                    }
-                });
-
-                animId = requestAnimationFrame(draw);
-            }
-
-            function start() {
-                resize();
-                createParticles();
-                cancelAnimationFrame(animId);
-                draw();
-            }
-
-            const sectionObserver = new IntersectionObserver((entries) => {
-                if (entries[0].isIntersecting) {
-                    start();
-                } else {
-                    cancelAnimationFrame(animId);
-                }
-            }, { threshold: 0.05 });
-
-            if (techSection) {
-                sectionObserver.observe(techSection);
-                window.addEventListener('resize', () => {
-                    if (techSection.getBoundingClientRect().top < window.innerHeight) start();
-                }, { passive: true });
-            }
-        })();
     </script>
 
     <!-- LiquidEther Vanilla JS Implementation -->
@@ -7166,16 +6476,21 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             if (typeof THREE === 'undefined') return;
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
             const container = document.getElementById('liquid-ether-bg');
             if (!container) return;
 
             const opts = {
                 colors: ['#5227FF', '#FF9FFC', '#B497CF'],
                 mouseForce: 20, cursorSize: 100, isViscous: false, viscous: 30,
-                iterationsViscous: 32, iterationsPoisson: 32, dt: 0.014, BFECC: true,
-                resolution: 0.5, isBounce: false, autoDemo: true, autoSpeed: 0.5,
+                iterationsViscous: 16, iterationsPoisson: 16, dt: 0.014, BFECC: true,
+                resolution: 0.4, isBounce: false, autoDemo: true, autoSpeed: 0.5,
                 autoIntensity: 2.2, takeoverDuration: 0.25, autoResumeDelay: 3000, autoRampDuration: 0.6
             };
+            // Phones / touch devices: cheaper simulation
+            if (window.matchMedia('(max-width: 768px), (pointer: coarse)').matches) {
+                Object.assign(opts, { iterationsPoisson: 8, resolution: 0.3, BFECC: false });
+            }
 
             function makePaletteTexture(stops) {
                 let arr;
@@ -7472,233 +6787,7 @@
         });
     </script>
 
-    <!-- WarpText Vanilla JS Implementation -->
-    <script src="https://unpkg.com/ogl"></script>
     <script>
-        const vertex = `#version 300 es
-        in vec2 position;
-        in vec2 uv;
-        out vec2 vUv;
-        void main() { vUv = uv; gl_Position = vec4(position, 0.0, 1.0); }`;
-
-        const fragment = `#version 300 es
-        precision highp float;
-        uniform sampler2D uTextTexture;
-        uniform vec2 uResolution;
-        uniform vec2 uPointer;
-        uniform float uPointerActive;
-        uniform float uTime;
-        uniform float uWarpStrength;
-        uniform float uWarpScale;
-        uniform float uSpeed;
-        uniform float uPointerInfluence;
-        uniform float uPointerStrength;
-        uniform float uRefraction;
-        uniform float uRipple;
-        uniform float uMotion;
-        in vec2 vUv;
-        out vec4 fragColor;
-        
-        float hash(vec2 p) { p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }
-        float noise(vec2 p) { vec2 i = floor(p); vec2 f = fract(p); vec2 u = f * f * (3.0 - 2.0 * f); float a = hash(i); float b = hash(i + vec2(1.0, 0.0)); float c = hash(i + vec2(0.0, 1.0)); float d = hash(i + vec2(1.0, 1.0)); return mix(mix(a, b, u.x), mix(c, d, u.x), u.y); }
-        float fbm(vec2 p) { float value = 0.0; float amplitude = 0.5; for (int i = 0; i < 4; i++) { value += amplitude * noise(p); p *= 2.02; amplitude *= 0.5; } return value; }
-        
-        vec4 sampleText(vec2 uv) { if (uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0 || uv.y > 1.0) { return vec4(0.0); } return texture(uTextTexture, uv); }
-        
-        void main() {
-          vec2 uv = vUv;
-          float aspect = uResolution.x / max(uResolution.y, 1.0);
-          float time = uTime * uSpeed;
-          float scale = max(uWarpScale, 0.001);
-          vec2 drift = vec2(time * 0.055, -time * 0.045);
-          float n1 = fbm(uv * scale * 3.1 + drift);
-          float n2 = fbm((uv + 19.17) * scale * 3.4 - drift.yx);
-          vec2 ambient = (vec2(n1, n2) - 0.5) * uWarpStrength * 0.045 * uMotion;
-          vec2 pointerDelta = uv - uPointer;
-          vec2 aspectDelta = vec2(pointerDelta.x * aspect, pointerDelta.y);
-          float dist = length(aspectDelta);
-          float radius = max(uPointerInfluence, 0.001);
-          float t = clamp(dist / radius, 0.0, 1.0);
-          float lens = smoothstep(radius, 0.0, dist) * uPointerActive;
-          float bulge = t * (1.0 - t) * (1.0 - t) * 6.75 * uPointerActive;
-          vec2 dir = dist > 0.0001 ? vec2(aspectDelta.x / aspect, aspectDelta.y) / dist : vec2(0.0);
-          float rippleWave = sin(dist * 28.0 - time * 4.2) * 0.5 + 0.5;
-          float rippleRing = (rippleWave - 0.5) * uRipple;
-          vec2 pointerWarp = -dir * bulge * uPointerStrength * 0.045;
-          pointerWarp += dir * rippleRing * bulge * uPointerStrength * 0.016;
-          vec2 displaced = uv + ambient + pointerWarp;
-          vec2 splitDir = ambient + pointerWarp;
-          float splitLen = length(splitDir);
-          splitDir = splitLen > 0.00001 ? splitDir / splitLen : vec2(0.7071, 0.7071);
-          vec2 split = splitDir * uRefraction * 0.16 * (0.35 + lens * 1.65);
-          vec4 base = sampleText(displaced);
-          float r = sampleText(displaced + split).r;
-          float g = base.g;
-          float b = sampleText(displaced - split).b;
-          float a = max(max(sampleText(displaced + split).a, base.a), sampleText(displaced - split).a);
-          vec3 color = vec3(r, g, b) + lens * base.a * 0.055;
-          fragColor = vec4(color, a);
-        }`;
-
-        const getFontValue = value => (typeof value === 'number' ? `${value}px` : value);
-        const measureLine = (ctx, line, letterSpacing) => {
-            const chars = Array.from(line);
-            const textWidth = chars.reduce((width, char) => width + ctx.measureText(char).width, 0);
-            return textWidth + Math.max(0, chars.length - 1) * letterSpacing;
-        };
-        const drawLine = (ctx, line, x, y, letterSpacing) => {
-            const chars = Array.from(line);
-            let cursor = x - measureLine(ctx, line, letterSpacing) / 2;
-            chars.forEach((char, index) => {
-                ctx.fillText(char, cursor, y);
-                cursor += ctx.measureText(char).width + (index === chars.length - 1 ? 0 : letterSpacing);
-            });
-        };
-
-        const buildTextCanvas = ({ container, width, height, dpr, props }) => {
-            const canvas = document.createElement('canvas');
-            canvas.width = Math.max(1, Math.floor(width * dpr));
-            canvas.height = Math.max(1, Math.floor(height * dpr));
-            const ctx = canvas.getContext('2d');
-            if (!ctx) return canvas;
-
-            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-            ctx.clearRect(0, 0, width, height);
-            ctx.textAlign = 'left';
-            ctx.textBaseline = 'middle';
-            ctx.fillStyle = props.color;
-            ctx.imageSmoothingEnabled = true;
-
-            const fontSizePx = parseFloat(props.fontSize) || 16;
-            const letterSpacing = props.letterSpacing || 0;
-            const lineHeight = props.lineHeight || fontSizePx * 1.75;
-            ctx.font = `${props.fontWeight} ${fontSizePx}px ${props.fontFamily}`;
-
-            // Auto-wrap text logic for non-newline text
-            const maxWidth = width * 1.0;
-            const words = String(props.text || '').replace(/\s+/g, ' ').split(' ');
-            const lines = [];
-            let currentLine = '';
-
-            words.forEach(word => {
-                const testLine = currentLine + word + ' ';
-                const testWidth = measureLine(ctx, testLine, letterSpacing);
-                if (testWidth > maxWidth && currentLine !== '') {
-                    lines.push(currentLine.trim());
-                    currentLine = word + ' ';
-                } else {
-                    currentLine = testLine;
-                }
-            });
-            lines.push(currentLine.trim());
-
-            // Left alignment adjustment for the canvas text
-            const startY = height / 2 - (lineHeight * (lines.length - 1)) / 2;
-            lines.forEach((line, index) => {
-                // To align left rather than center (math adapted)
-                let xPos = measureLine(ctx, line, letterSpacing) / 2;
-                drawLine(ctx, line, xPos, startY + index * lineHeight, letterSpacing)
-            });
-
-            return canvas;
-        };
-
-        class WarpText {
-            constructor(container, props) {
-                this.container = container;
-                this.props = Object.assign({
-                    text: 'Bend the moment', color: '#f8f5ff', warpStrength: 0.08, warpScale: 1.7,
-                    speed: 0.55, pointerInfluence: 0.42, pointerStrength: 0.38, refraction: 0.018, ripple: true,
-                    fontSize: '32', fontWeight: 400, fontFamily: 'inherit', letterSpacing: 0, lineHeight: null
-                }, props);
-                this.init();
-            }
-            init() {
-                this.container.classList.add('warp-text');
-                this.container.style.position = 'relative';
-                this.container.style.overflow = 'hidden';
-                this.container.style.minHeight = '240px';
-
-                const dpr = Math.min(window.devicePixelRatio || 1, 2);
-                try {
-                    this.renderer = new ogl.Renderer({ webgl: 2, alpha: true, premultipliedAlpha: false, antialias: true, dpr });
-                    this.gl = this.renderer.gl;
-                } catch (e) { return; }
-                this.gl.clearColor(0, 0, 0, 0);
-                const canvas = this.gl.canvas;
-                canvas.style.position = 'absolute';
-                canvas.style.inset = '0';
-                canvas.style.width = '100%';
-                canvas.style.height = '100%';
-                canvas.style.display = 'block';
-                this.container.appendChild(canvas);
-
-                this.texture = new ogl.Texture(this.gl, { generateMipmaps: false, minFilter: this.gl.LINEAR, magFilter: this.gl.LINEAR, wrapS: this.gl.CLAMP_TO_EDGE, wrapT: this.gl.CLAMP_TO_EDGE });
-                this.geometry = new ogl.Triangle(this.gl);
-                this.program = new ogl.Program(this.gl, {
-                    vertex, fragment, transparent: true, depthTest: false, depthWrite: false,
-                    uniforms: {
-                        uTextTexture: { value: this.texture }, uResolution: { value: new Float32Array([1, 1]) },
-                        uPointer: { value: new Float32Array([0.5, 0.5]) }, uPointerActive: { value: 0 },
-                        uTime: { value: 0 }, uWarpStrength: { value: this.props.warpStrength },
-                        uWarpScale: { value: this.props.warpScale }, uSpeed: { value: this.props.speed },
-                        uPointerInfluence: { value: this.props.pointerInfluence }, uPointerStrength: { value: this.props.pointerStrength },
-                        uRefraction: { value: this.props.refraction }, uRipple: { value: this.props.ripple ? 1 : 0 },
-                        uMotion: { value: 1 }
-                    }
-                });
-                this.mesh = new ogl.Mesh(this.gl, { geometry: this.geometry, program: this.program });
-
-                this.pointer = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5, active: 0, activeTarget: 0 };
-                this.startTime = performance.now();
-
-                // Allow fonts to load before first render
-                document.fonts?.ready.then(() => this.resize());
-
-                canvas.addEventListener('pointermove', e => {
-                    const rect = canvas.getBoundingClientRect();
-                    this.pointer.tx = (e.clientX - rect.left) / rect.width;
-                    this.pointer.ty = 1 - (e.clientY - rect.top) / rect.height;
-                    this.pointer.activeTarget = 1;
-                });
-                canvas.addEventListener('pointerleave', () => this.pointer.activeTarget = 0);
-                if (window.ResizeObserver) {
-                    new ResizeObserver(() => this.resize()).observe(this.container);
-                }
-                this.raf = requestAnimationFrame((now) => this.loop(now));
-            }
-            rasterize() {
-                const rect = this.container.getBoundingClientRect();
-                const textCanvas = buildTextCanvas({ container: this.container, width: rect.width, height: rect.height, dpr: this.renderer.dpr, props: this.props });
-                this.texture.image = textCanvas;
-                this.texture.needsUpdate = true;
-            }
-            resize() {
-                const rect = this.container.getBoundingClientRect();
-                if (rect.width <= 0) return;
-                this.renderer.setSize(rect.width, rect.height);
-                this.program.uniforms.uResolution.value[0] = this.gl.drawingBufferWidth;
-                this.program.uniforms.uResolution.value[1] = this.gl.drawingBufferHeight;
-                this.rasterize();
-            }
-            loop(now) {
-                const elapsed = (now - this.startTime) * 0.001;
-                const idleX = 0.5 + Math.sin(elapsed * 0.33) * 0.12;
-                const idleY = 0.5 + Math.cos(elapsed * 0.27) * 0.1;
-                this.pointer.x += ((this.pointer.activeTarget > 0 ? this.pointer.tx : idleX) - this.pointer.x) * (this.pointer.activeTarget > 0 ? 0.12 : 0.035);
-                this.pointer.y += ((this.pointer.activeTarget > 0 ? this.pointer.ty : idleY) - this.pointer.y) * (this.pointer.activeTarget > 0 ? 0.12 : 0.035);
-                this.pointer.active += ((this.pointer.activeTarget > 0 ? 1 : 0.18) - this.pointer.active) * 0.06;
-
-                this.program.uniforms.uPointer.value[0] = this.pointer.x;
-                this.program.uniforms.uPointer.value[1] = this.pointer.y;
-                this.program.uniforms.uPointerActive.value = this.pointer.active;
-                this.program.uniforms.uTime.value = elapsed;
-
-                this.renderer.render({ scene: this.mesh });
-                this.raf = requestAnimationFrame((n) => this.loop(n));
-            }
-        }
-
         document.addEventListener("DOMContentLoaded", () => {
             // Text Generate Effect (Blur + Fade sequentially)
             const target = document.querySelector('.identity-desc');
@@ -7712,9 +6801,10 @@
                     span.className = "word";
                     // start state: invisible, blurred
                     span.style.opacity = "0";
-                    span.style.filter = "blur(4px)";
+                    span.style.filter = "blur(3px)";
                     // transition config similar to the React component
-                    span.style.transition = `opacity 0.5s ease ${i * 0.05}s, filter 0.5s ease ${i * 0.05}s`;
+                    const d = Math.min(i * 0.012, 0.6);
+                    span.style.transition = `opacity 0.35s ease ${d}s, filter 0.35s ease ${d}s`;
                     span.style.display = "inline-block";
                     span.style.whiteSpace = "pre";
                     span.textContent = word + " ";
@@ -7732,9 +6822,13 @@
                             observer.unobserve(target); // animate only once
                         }
                     });
-                }, { threshold: 0.2 });
+                }, { threshold: 0.1 });
                 
-                observer.observe(target);
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    wordSpans.forEach(span => { span.style.transition = 'none'; span.style.opacity = '1'; span.style.filter = 'none'; });
+                } else {
+                    observer.observe(target);
+                }
             }
         });
     </script>
@@ -7866,6 +6960,14 @@
                         return;
                     }
 
+                    // Honeypot tripped -> silently "succeed" without sending
+                    const honey = document.getElementById('contactHoney');
+                    if (honey && honey.value) {
+                        form.reset();
+                        showStatus('success', 'Message sent successfully!');
+                        return;
+                    }
+
                     // Send to FormSubmit via AJAX
                     submitBtn.classList.add('is-loading');
                     submitBtn.disabled = true;
@@ -7881,10 +6983,12 @@
                             email: document.getElementById('contactEmail').value,
                             reason: document.getElementById('contactTopic').value,
                             message: document.getElementById('contactMessage').value,
-                            _subject: "New Portfolio Message from " + document.getElementById('contactName').value
+                            _subject: "New Portfolio Message from " + document.getElementById('contactName').value,
+                            _template: 'table',
+                            _honey: ''
                         })
                     })
-                        .then(response => response.json())
+                        .then(response => response.ok ? response.json() : Promise.reject(new Error('HTTP ' + response.status)))
                         .then(data => {
                             submitBtn.classList.remove('is-loading');
                             submitBtn.disabled = false;
@@ -7906,171 +7010,163 @@
             }
         })();
 
-        // ========== GSAP HERO ANIMATION LOGIC ==========
+        // ========== HERO + SMOOTH SCROLL ==========
         (function () {
-            const runHeroAnimation = () => {
-                const container = document.getElementById('heroContainer');
-                const textElem = document.getElementById('heroText');
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const container = document.getElementById('heroContainer');
+            const nameEl = document.getElementById('heroText');
 
-                if (!container || !textElem) return;
+            // 1. Quick name scramble (~0.9s). Never locks scrolling.
+            if (nameEl && !reduceMotion) {
+                const target = 'SAMARTH';
+                const glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                let frame = 0;
+                const total = 18;
+                const id = setInterval(() => {
+                    frame++;
+                    const revealed = Math.floor((frame / total) * target.length);
+                    nameEl.textContent = target.split('').map((c, k) =>
+                        k < revealed ? c : glyphs[Math.floor(Math.random() * glyphs.length)]).join('');
+                    if (frame >= total) { clearInterval(id); nameEl.textContent = target; }
+                }, 50);
+                setTimeout(() => { clearInterval(id); nameEl.textContent = target; }, 1500);
+            }
 
-                // Lock scroll during intro animation
-                document.body.style.overflow = 'hidden';
-                window.scrollTo(0, 0);
-
-                const target = "WELCOME TO MY PORTFOLIO";
-                const start = "SAMARTH MAHESHWARI       ";
-                let iterations = 0;
-
-                setTimeout(() => {
-                    const intervalId = setInterval(() => {
-                        let newText = target.split("").map((letter, index) => {
-                            if (index < Math.floor(iterations)) return target[index];
-                            if (index < start.length) return start[index];
-                            return "";
-                        }).join("");
-
-                        textElem.innerText = newText;
-
-                        if (iterations >= target.length) {
-                            clearInterval(intervalId);
-
-                            // GSAP Slide Up
-                            gsap.timeline({
-                                onComplete: () => {
-                                    document.body.style.overflow = ''; // Unlock scroll
-                                }
-                            })
-                                .to(container, {
-                                    top: window.innerWidth < 768 ? "30%" : "40%",
-                                    duration: 1.5,
-                                    ease: "power3.inOut"
-                                }, "+=0.2");
-                        }
-                        iterations += 1 / 3;
-                    }, 50); // Scramble speed
-                }, 500); // Initial delay
-
-                // Performant parallax: direct CSS transform avoids GSAP overhead per frame.
-                // Using will-change hint so browser promotes to its own compositor layer.
-                // IMPORTANT: .hero-container is centered via left:50% + translateX(-50%).
-                // We must always include translateX(-50%) in our transform to preserve centering.
-                container.style.willChange = 'transform, opacity';
+            // 2. Parallax fade of hero content while scrolling past it
+            if (container && !reduceMotion) {
                 let ticking = false;
                 window.addEventListener('scroll', () => {
-                    if (!ticking) {
-                        window.requestAnimationFrame(() => {
-                            const scrolled = window.scrollY;
-                            if (scrolled <= window.innerHeight) {
-                                const y = scrolled * 0.5;
-                                const opacity = Math.max(0, 1 - (scrolled / window.innerHeight) * 1.5);
-                                // translateX(-50%) preserves the horizontal centering (left: 50%)
-                                container.style.transform = `translateX(-50%) translateY(${y}px) translateZ(0)`;
-                                container.style.opacity = opacity;
-                            }
-                            ticking = false;
-                        });
-                        ticking = true;
-                    }
+                    if (ticking) return;
+                    ticking = true;
+                    requestAnimationFrame(() => {
+                        const y = window.scrollY;
+                        if (y <= window.innerHeight) {
+                            container.style.transform = `translateY(${y * 0.35}px)`;
+                            container.style.opacity = Math.max(0, 1 - (y / window.innerHeight) * 1.4);
+                        }
+                        ticking = false;
+                    });
                 }, { passive: true });
-            };
+            }
 
-            // Dynamically load GSAP and Lenis for smooth scrolling
-            const script = document.createElement('script');
-            script.src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js";
-            script.onload = () => {
+            // 3. "Ask my AI" CTA opens the chat widget
+            const askBtn = document.getElementById('heroAskAI');
+            if (askBtn) askBtn.addEventListener('click', () => {
+                const orb = document.getElementById('samarth-ai-orb');
+                if (orb) orb.click();
+            });
+
+            // 4. Smooth scrolling for in-page links (Lenis if available, native fallback)
+            const NAV_OFFSET = -88;
+            let lenis = null;
+            function smoothScrollTo(hash) {
+                const el = (!hash || hash === '#' || hash === '#hero-section') ? null : document.querySelector(hash);
+                if (lenis) {
+                    lenis.scrollTo(el || 0, { offset: el ? NAV_OFFSET : 0, duration: 1.2 });
+                } else {
+                    const top = el ? el.getBoundingClientRect().top + window.scrollY + NAV_OFFSET : 0;
+                    window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' });
+                }
+            }
+            document.querySelectorAll('.nav-links a, .hire-btn, [data-scroll]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const href = link.getAttribute('href');
+                    if (!href || !href.startsWith('#')) return;
+                    e.preventDefault();
+                    window.dispatchEvent(new CustomEvent('nav:navigate'));
+                    smoothScrollTo(href);
+                    if (href.length > 1) history.replaceState(null, '', href);
+                });
+            });
+
+            // 5. Active nav link highlight (works with or without Lenis)
+            const navAnchors = document.querySelectorAll('.nav-links a');
+            const sections = [
+                { id: 'hero-section', href: '#' },
+                { id: 'about-section', href: '#about-section' },
+                { id: 'services-section', href: '#services-section' },
+                { id: 'projects-section', href: '#projects-section' },
+                { id: 'journey-section', href: '#projects-section' },
+                { id: 'contact-section', href: '#contact-section' },
+            ];
+            let hlTicking = false;
+            window.addEventListener('scroll', () => {
+                if (hlTicking) return;
+                hlTicking = true;
+                requestAnimationFrame(() => {
+                    let current = '#';
+                    for (const sec of sections) {
+                        const el = document.getElementById(sec.id);
+                        if (el && el.getBoundingClientRect().top <= 120) current = sec.href;
+                    }
+                    navAnchors.forEach(a => {
+                        const active = a.getAttribute('href') === current;
+                        a.classList.toggle('is-active', active);
+                        if (active) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+                    });
+                    hlTicking = false;
+                });
+            }, { passive: true });
+
+            // 6. Lenis smooth wheel (pinned version; skipped for reduced motion)
+            if (!reduceMotion) {
                 const lenisScript = document.createElement('script');
-                // Use jsDelivr which has better global CDN coverage than unpkg
-                lenisScript.src = "https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js";
+                lenisScript.src = 'https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js';
+                lenisScript.async = true;
                 lenisScript.onload = () => {
-                    // Respect reduced-motion: fall back to native scroll
-                    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-                    const lenis = window.lenis = new Lenis({
-                        // Tuned for buttery 60fps feel
+                    if (typeof Lenis === 'undefined') return;
+                    lenis = window.lenis = new Lenis({
                         duration: 1.1,
                         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                        orientation: 'vertical',
-                        gestureOrientation: 'vertical',
-                        smoothWheel: !reduceMotion,
+                        smoothWheel: true,
                         smoothTouch: false,
                         wheelMultiplier: 0.9,
-                        touchMultiplier: 1.8,
-                        infinite: false,
-                        autoResize: true,
                     });
-
-                    // FIX: requestAnimationFrame must always loop;
-                    // lenis.raf() is a no-op when smooth=false so this is safe.
-                    function raf(time) {
-                        lenis.raf(time);
-                        rafId = requestAnimationFrame(raf);
-                    }
-                    let rafId = requestAnimationFrame(raf);
-
-                    runHeroAnimation();
-
-                    // ── Smooth Nav Scroll ────────────────────────────────
-                    // Intercept all navbar anchor clicks and route them
-                    // through Lenis for a buttery animated scroll.
-                    // Navbar height is ~80px so we offset by that amount.
-                    const NAV_OFFSET = -88;
-
-                    function smoothScrollTo(targetId) {
-                        // Home → scroll to absolute top
-                        if (!targetId || targetId === '#' || targetId === '#hero-section') {
-                            lenis.scrollTo(0, { duration: 1.2 });
-                            return;
-                        }
-                        const el = document.querySelector(targetId);
-                        if (el) {
-                            lenis.scrollTo(el, { offset: NAV_OFFSET, duration: 1.2 });
-                        }
-                    }
-
-                    // Attach to all nav links and the Hire Me button
-                    document.querySelectorAll('.nav-links a, .hire-btn').forEach(link => {
-                        link.addEventListener('click', function (e) {
-                            const href = this.getAttribute('href');
-                            if (!href || (!href.startsWith('#') && !href.includes('contact'))) return;
-                            e.preventDefault();
-                            smoothScrollTo(href.startsWith('#') ? href : '#contact-section');
-                        });
-                    });
-
-                    // Highlight active nav link on scroll
-                    const navAnchors = document.querySelectorAll('.nav-links a');
-                    const sections = [
-                        { id: 'hero-section', href: '#' },
-                        { id: 'about-section', href: '#about-section' },
-                        { id: 'services-section', href: '#services-section' },
-                        { id: 'projects-section', href: '#projects-section' },
-                        { id: 'contact-section', href: '#contact-section' },
-                    ];
-
-                    lenis.on('scroll', ({ scroll }) => {
-                        let currentSection = sections[0].href;
-                        for (const s of sections) {
-                            const el = document.getElementById(s.id);
-                            if (!el) continue;
-                            if (el.getBoundingClientRect().top <= 120) {
-                                currentSection = s.href;
-                            }
-                        }
-                        navAnchors.forEach(a => {
-                            const isActive = a.getAttribute('href') === currentSection;
-                            a.style.color = isActive ? '#ccff00' : '';
-                        });
-                    });
+                    const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf); };
+                    requestAnimationFrame(raf);
                 };
                 document.body.appendChild(lenisScript);
+            }
+        })();
+
+        // ========== MOBILE MENU ==========
+        (function () {
+            const burger = document.getElementById('navBurger');
+            const links = document.getElementById('navLinks');
+            const navbar = document.querySelector('.navbar');
+            if (!burger || !links) return;
+            const setOpen = (open) => {
+                burger.setAttribute('aria-expanded', String(open));
+                burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+                links.classList.toggle('open', open);
+                navbar.classList.toggle('menu-open', open);
+                if (open) navbar.classList.remove('hidden-scroll');
             };
-            document.body.appendChild(script);
+            burger.addEventListener('click', () => setOpen(burger.getAttribute('aria-expanded') !== 'true'));
+            window.addEventListener('nav:navigate', () => setOpen(false));
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && links.classList.contains('open')) { setOpen(false); burger.focus(); }
+            });
+            document.addEventListener('click', (e) => {
+                if (links.classList.contains('open') && !navbar.contains(e.target)) setOpen(false);
+            });
+            window.matchMedia('(min-width: 769px)').addEventListener('change', (mq) => { if (mq.matches) setOpen(false); });
+        })();
+
+        // ========== ANALYTICS (Vercel Web Analytics; only on the deployed site) ==========
+        (function () {
+            const h = location.hostname;
+            if (h === 'localhost' || h === '127.0.0.1' || location.protocol === 'file:') return;
+            window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+            const sc = document.createElement('script');
+            sc.defer = true;
+            sc.src = '/_vercel/insights/script.js';
+            document.head.appendChild(sc);
         })();
     </script>
 
     <!-- ========== SAMARTH AI (DIGITAL REPRESENTATIVE) ========== -->
-    <div id="sai-tooltip">Ask something about Samarth</div>
+    <div id="sai-tooltip" aria-hidden="true">Ask my AI about Samarth</div>
 
     <button id="samarth-ai-orb" aria-label="Open Samarth AI"
         style="position: fixed !important; bottom: 20px !important; right: 20px !important; z-index: 99999999 !important; display: flex !important; width: 60px !important; height: 60px !important; border-radius: 50% !important; background: rgba(168, 85, 247, 0.9) !important; border: 2px solid white !important; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(168,85,247, 0.8) !important;">
@@ -8110,10 +7206,10 @@
         </div>
 
         <div id="sai-suggestions">
-            <button class="sai-chip">Who is Samarth?</button>
-            <button class="sai-chip">What has he built?</button>
-            <button class="sai-chip">Skills</button>
-            <button class="sai-chip">Contact him</button>
+            <button class="sai-chip">Is he a fit for a junior AI full-stack role?</button>
+            <button class="sai-chip">What has he shipped?</button>
+            <button class="sai-chip">Walk me through JARVIS</button>
+            <button class="sai-chip">How do I contact him?</button>
         </div>
 
         <div id="sai-input-area">
@@ -8157,8 +7253,13 @@
             setTimeout(() => {
                 if (!tooltipInteracted && !win.classList.contains('open')) {
                     tooltip.classList.add('show');
+                    // Auto-hide so it never sits on top of content
+                    setTimeout(() => tooltip.classList.remove('show'), 6000);
                 }
             }, 4000);
+            window.addEventListener('scroll', () => {
+                if (window.innerWidth <= 768) tooltip.classList.remove('show');
+            }, { passive: true });
 
             function toggleWindow() {
                 tooltipInteracted = true;
@@ -8362,16 +7463,18 @@
                                         chatHistory.push({ role: 'assistant', content: data.message || '' });
                                         setState('idle');
                                     } else {
+                                        chatHistory.pop();
                                         appendMessage('ai', data.error || data.message || 'Connection failed.', data.sources, data.actions);
                                         setState('error');
                                     }
                                 } catch (err) {
                     clearTimeout(timeoutId);
                     hideTyping();
+                    chatHistory.pop(); // drop the unanswered user turn so Retry doesn't duplicate it
                     if (err.name === 'AbortError') {
                         appendMessage('ai', 'Request timed out. Please try again.', [], [{ type: 'RETRY', label: 'Retry', retryText: text }]);
                     } else {
-                        appendMessage('ai', 'Samarth AI is offline or unreachable block locally.', [], [{ type: 'RETRY', label: 'Retry', retryText: text }]);
+                        appendMessage('ai', "I can't reach Samarth's AI right now. Please retry, or email him directly at samarthmaheshwari54321@gmail.com.", [], [{ type: 'RETRY', label: 'Retry', retryText: text }]);
                     }
                     setState('error');
                 } finally {

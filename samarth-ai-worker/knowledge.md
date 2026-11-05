@@ -1,6 +1,6 @@
 ﻿# About Samarth Maheshwari
 
-Samarth Maheshwari is an AI-focused Full Stack Developer currently pursuing his B.Tech in Computer Science & Information Technology at Acropolis Institute of Technology and Research (AITR), Indore (2023 - 2027).
+Samarth Maheshwari is an AI-focused Full Stack Developer currently pursuing his B.Tech in Computer Science & Information Technology at Acropolis Institute of Technology and Research (AITR), Indore (2024 - 2028).
 
 He specializes in building practical AI-powered applications, automation systems, and modern web experiences. His technical journey is driven by a passion for solving real-world problems through code, combining strong backend architecture with high-quality frontend design.
 
@@ -12,8 +12,8 @@ Samarth's technical skills encompass a wide range of modern development tools an
 
 - Python: The backbone of his AI and automation projects.
 - JavaScript & TypeScript (Advanced): Used for full-stack web development.
-- C/C++ (Intermediate): For performance-critical applications and system tools.
-- Kotlin: For Android development.
+- C++ (Intermediate): For performance-critical applications and system tools.
+
 
 **Web Development (Frontend & Backend):**
 
@@ -57,8 +57,7 @@ Snaptrace AI is an intelligent platform designed to help students easily find an
 **Portfolio Website**
 This portfolio website is designed and built by Samarth as an interactive technical showcase. It is built as an ultra-fast static HTML site using vanilla JavaScript, CSS custom properties, smooth scrolling mechanisms through Lenis, and premium animations. It integrates a custom-built digital representative (Samarth AI) that uses a Cloudflare Worker backend.
 
-**Dotnet AI Game**
-An AI-integrated multiplayer game showcasing intelligence built alongside Dotnet functionalities.
+
 
 ## Contact Information
 

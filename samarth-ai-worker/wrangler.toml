@@ -14,3 +14,13 @@ ALLOWED_ORIGIN = "https://samarth-portfolio-kappa-virid.vercel.app"
 type = "Text"
 globs = ["**/*.md"]
 fallback = true
+
+# Shared rate limit across all Worker isolates (the in-memory limiter in
+# src/security/rate-limit.ts resets per isolate / cold start, so on its own
+# it does not stop someone from draining the AI quota).
+# Docs: https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/
+[[unsafe.bindings]]
+name = "RATE_LIMITER"
+type = "ratelimit"
+namespace_id = "1001"
+simple = { limit = 8, period = 60 }

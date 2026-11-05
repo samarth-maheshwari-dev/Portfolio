@@ -23,10 +23,9 @@ secrets.json
 config.json
 
 # Personal / Sensitive Documents
+# (resume PDF is intentionally committed: the site links to it)
 *.docx
-*.pdf
 Samarth_Maheshwari_Resume.docx
-Samarth_Maheshwari_Resume.pdf
 
 # Generated or Temporary files
 graphify-out/

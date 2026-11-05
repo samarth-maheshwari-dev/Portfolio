@@ -43,7 +43,7 @@ export const ALLOWED_TARGETS = [
     'about-section',
     'services-section',
     'contact-section',
-    'tech-section',
     'projects-section',
+    'journey-section',
     'projects',
 ] as const;

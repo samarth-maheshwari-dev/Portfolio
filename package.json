@@ -1,33 +1,16 @@
 {
-  "name": "portfolio",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "directories": {
-    "lib": "lib"
-  },
+  "name": "samarth-portfolio",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Personal portfolio of Samarth Maheshwari — static site (index.html) + Cloudflare Worker for the AI chat (samarth-ai-worker/).",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "echo 'No build required'"
+    "build": "echo 'Static site — no build step'",
+    "dev": "npx --yes serve -l 3000 ."
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/samarth-maheshwari-dev/Portfolio.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/samarth-maheshwari-dev/Portfolio/issues"
-  },
-  "homepage": "https://github.com/samarth-maheshwari-dev/Portfolio#readme",
-  "dependencies": {
-    "framer-motion": "^12.42.2",
-    "react": "^19.2.8"
-  },
-  "devDependencies": {
-    "@types/react": "^19.2.17",
-    "typescript": "^7.0.2"
-  }
+  "author": "Samarth Maheshwari",
+  "license": "UNLICENSED"
 }
