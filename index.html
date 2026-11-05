@@ -5070,6 +5070,9 @@
             .hero-btn-extra { display: none; }
         }
 
+        .sai-msg a { color: var(--accent-light); text-decoration: underline; word-break: break-all; }
+        [data-theme="light"] .sai-msg a { color: var(--accent); }
+
         /* ---------- Chat tooltip: never cover content on phones ---------- */
         @media (max-width: 768px) {
             /* hero already has an "Ask my AI" button on phones; the floating tooltip only covered content */
@@ -7238,6 +7241,8 @@
                 let parsed = escapeHTML(text);
                 parsed = parsed.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
                 parsed = parsed.replace(/\*(.*?)\*/g, '<em>$1</em>');
+                // Clickable links (text is already HTML-escaped above)
+                parsed = parsed.replace(/(https?:\/\/[^\s<]+[^\s<.,;:!?)])/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
                 parsed = parsed.replace(/\n\n/g, '</p><p>');
                 parsed = parsed.replace(/\n/g, '<br>');
                 return `<p>${parsed}</p>`;
@@ -7253,7 +7258,7 @@
                     if (sources && sources.length > 0) {
                         const trc = document.createElement('div');
                         trc.className = 'sai-source-trace';
-                        trc.innerHTML = `Sources: <br> ${sources.map(s => `<span>${s}</span>`).join('')}`;
+                        trc.innerHTML = `Sources: <br> ${sources.map(s => `<span>${escapeHTML(String(s))}</span>`).join('')}`;
                         msgDiv.appendChild(trc);
                     }
 

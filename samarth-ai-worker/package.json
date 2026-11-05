@@ -5,12 +5,15 @@
     "type": "module",
     "scripts": {
         "dev": "wrangler dev",
-        "deploy": "wrangler deploy"
+        "deploy": "wrangler deploy",
+        "test": "esbuild test/ask.test.ts --bundle --platform=node --format=esm --loader:.md=text --outfile=.test-dist/ask.test.mjs --log-level=warning && node .test-dist/ask.test.mjs",
+        "typecheck": "tsc --noEmit -p ."
     },
     "devDependencies": {
         "@cloudflare/workers-types": "^4.20240806.0",
+        "esbuild": "^0.25.12",
+        "tsx": "^4.19.0",
         "typescript": "^5.5.0",
-        "wrangler": "^3.70.0",
-        "tsx": "^4.19.0"
+        "wrangler": "^3.70.0"
     }
 }

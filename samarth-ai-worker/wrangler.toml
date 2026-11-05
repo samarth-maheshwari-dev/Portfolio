@@ -4,23 +4,43 @@ compatibility_date = "2024-08-06"
 
 [vars]
 AI_ENABLED = "true"
-AI_MODEL = "x-preview-f-free"
 ALLOWED_ORIGIN = "https://samarth-portfolio-kappa-virid.vercel.app"
 
-# Secrets (set via `wrangler secret put`):
-# OPENCODE_API_KEY — never committed, never in source
+# Providers are tried in this order; any provider without its binding/key is skipped.
+#   workers-ai : Cloudflare Workers AI — no API key, 10,000 free Neurons/day (resets 00:00 UTC)
+#   groq       : needs secret GROQ_API_KEY   (free plan, per-model daily caps)
+#   gemini     : needs secret GEMINI_API_KEY (Google AI Studio free tier)
+AI_PROVIDERS = "workers-ai,groq,gemini"
+WORKERS_AI_MODEL = "@cf/meta/llama-3.1-8b-instruct-fp8-fast"
+GROQ_MODELS = "openai/gpt-oss-20b,qwen/qwen3.8-27b"
+GEMINI_MODEL = "gemini-2.5-flash-lite"
 
+# Secrets (never committed) — set with:
+#   npx wrangler secret put GROQ_API_KEY
+#   npx wrangler secret put GEMINI_API_KEY
+
+# Cloudflare Workers AI binding (env.AI)
+[ai]
+binding = "AI"
+
+# knowledge.md is bundled into the worker as text
 [[rules]]
 type = "Text"
 globs = ["**/*.md"]
 fallback = true
 
 # Shared rate limit across all Worker isolates (the in-memory limiter in
-# src/security/rate-limit.ts resets per isolate / cold start, so on its own
-# it does not stop someone from draining the AI quota).
+# src/security/rate-limit.ts resets per isolate / cold start).
 # Docs: https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/
 [[unsafe.bindings]]
 name = "RATE_LIMITER"
 type = "ratelimit"
 namespace_id = "1001"
 simple = { limit = 8, period = 60 }
+
+# Optional: shared answer cache across isolates (free KV: 100k reads / 1k writes per day).
+#   npx wrangler kv namespace create CHAT_CACHE
+# then uncomment and paste the id it prints:
+# [[kv_namespaces]]
+# binding = "CHAT_CACHE"
+# id = "PASTE_ID_HERE"

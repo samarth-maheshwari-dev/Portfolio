@@ -3,9 +3,9 @@
 // Handles CORS, routing, and environment injection.
 // ============================================================
 
-import { handleAsk } from './api/ask';
+import { handleAsk, deepHealth } from './api/ask';
+import { checkRateLimit } from './security/rate-limit';
 import type { Env } from './types';
-import { CONFIG } from './config';
 
 export default {
     async fetch(
@@ -48,10 +48,21 @@ export default {
                 }
             }
             else if (url.pathname === '/health' && request.method === 'GET') {
-                response = new Response(JSON.stringify({ status: 'ok', enabled: env.AI_ENABLED }), {
-                    status: 200,
-                    headers: { 'Content-Type': 'application/json' }
-                });
+                if (url.searchParams.get('deep') === '1') {
+                    // Real provider calls — rate limited so it can't be used to burn quota
+                    const ip = request.headers.get('cf-connecting-ip') || 'unknown';
+                    const rate = await checkRateLimit(ip, env);
+                    const body = rate.allowed ? await deepHealth(env) : { ok: false, error: 'rate limited' };
+                    response = new Response(JSON.stringify(body), {
+                        status: body.ok ? 200 : 503,
+                        headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
+                    });
+                } else {
+                    response = new Response(JSON.stringify({ status: 'ok', enabled: env.AI_ENABLED !== 'false' }), {
+                        status: 200,
+                        headers: { 'Content-Type': 'application/json' },
+                    });
+                }
             }
             else {
                 response = new Response('Not Found', { status: 404 });

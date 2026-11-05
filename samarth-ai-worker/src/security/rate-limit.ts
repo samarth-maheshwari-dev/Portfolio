@@ -59,7 +59,7 @@ export async function checkRateLimit(ip: string, env?: Env): Promise<RateLimitRe
             if (!success) {
                 return {
                     allowed: false,
-                    error: 'Rate limit exceeded (Durable Storage). Please wait before asking again.',
+                    error: "You're asking quickly! Please wait a few seconds and try again.",
                 };
             }
         } catch (e) {

@@ -1,29 +1,41 @@
 // ============================================================
 // Samarth AI — Configuration
-// All tunable constants in one place.
+// All tunable constants in one place. Provider/model choices
+// live in wrangler.toml [vars] so they can change without code.
 // ============================================================
 
 export const CONFIG = {
-    // Rate Limiting — generous enough for visitors, strict enough to prevent abuse
+    // Rate limiting (per IP). The shared Cloudflare RATE_LIMITER binding is
+    // the real guard; these in-memory limits are a per-isolate backstop.
     MAX_REQUESTS_PER_IP_PER_MINUTE: 8,
     MAX_REQUESTS_PER_IP_PER_HOUR: 50,
-    MAX_GLOBAL_AI_REQUESTS_PER_DAY: 500,
+    MAX_GLOBAL_AI_REQUESTS_PER_DAY: 3000,
 
-    // Input / Output Limits
+    // Input / output
     MAX_INPUT_CHARS: 500,
-    MAX_OUTPUT_TOKENS: 350,     // enough for a 3-4 sentence answer with bullets
-    REQUEST_TIMEOUT_MS: 12000,  // 12s — fail fast if OpenCode is slow
+    MAX_OUTPUT_TOKENS: 350,
+    // Reasoning models spend tokens "thinking" before answering
+    MAX_OUTPUT_TOKENS_REASONING: 900,
 
-    // RAG
-    TOP_K: 3,
-    CONFIDENCE_THRESHOLD: 0.05,
+    // Time budget for the whole provider chain, and per attempt
+    CHAIN_BUDGET_MS: 11000,
+    PER_PROVIDER_TIMEOUT_MS: 6000,
 
-    // AI Provider (OpenCode Zen — OpenAI-compatible free endpoint)
-    OPENCODE_BASE_URL: 'https://opencode.ai/zen/v1',
-    AI_MODEL: 'x-preview-f-free',
+    // Knowledge retrieval: only the most relevant sections are sent to the LLM
+    // (keeps prompts ~600-900 tokens, which matters for free-tier token caps)
+    TOP_SECTIONS: 3,
 
-    // Response Cache TTL (seconds) — cache good answers for 1 hour
-    CACHE_TTL: 3600,
+    // Answer cache TTL
+    CACHE_TTL_SECONDS: 6 * 3600,
+
+    // Defaults (overridable in wrangler.toml [vars])
+    DEFAULT_PROVIDERS: 'workers-ai,groq,gemini',
+    DEFAULT_WORKERS_AI_MODEL: '@cf/meta/llama-3.1-8b-instruct-fp8-fast',
+    DEFAULT_GROQ_MODELS: 'openai/gpt-oss-20b,qwen/qwen3.8-27b',
+    DEFAULT_GEMINI_MODEL: 'gemini-2.5-flash-lite',
+
+    GROQ_BASE_URL: 'https://api.groq.com/openai/v1',
+    GEMINI_BASE_URL: 'https://generativelanguage.googleapis.com/v1beta/openai',
 } as const;
 
 // Allowed portfolio action types — NEVER allow arbitrary JS
@@ -37,12 +49,11 @@ export const ALLOWED_ACTIONS = [
     'OPEN_SKILLS',
 ] as const;
 
-// Allowed scroll targets — whitelist only
+// Allowed scroll targets — must exist as element ids in index.html
 export const ALLOWED_TARGETS = [
     'hero-section',
     'about-section',
     'services-section',
     'contact-section',
     'projects-section',
-    'projects',
 ] as const;

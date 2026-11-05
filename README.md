@@ -11,7 +11,7 @@
 | Part | Tech | Notes |
 |------|------|-------|
 | Site | HTML, CSS, vanilla JS, Three.js (WebGL fluid background), Lenis | Single static page deployed on Vercel. No build step. |
-| AI chat ("Ask my AI") | Cloudflare Worker (TypeScript) in [`samarth-ai-worker/`](samarth-ai-worker) | Answers recruiter questions from a curated knowledge file, with rate limiting, input validation, response caching and a static fallback when the model is down. |
+| AI chat ("Ask my AI") | Cloudflare Worker (TypeScript) in [`samarth-ai-worker/`](samarth-ai-worker) | Answers only about Samarth from [`knowledge.md`](samarth-ai-worker/knowledge.md). Provider chain: Cloudflare Workers AI → Groq → Gemini, then a deterministic answer from the knowledge file, so it never shows "offline". Rate limiting, validation, FAQ + answer caching, daily health check. |
 | Contact form | FormSubmit (AJAX) | Client-side validation + honeypot spam trap. |
 
 ## Featured projects
@@ -26,16 +26,17 @@
 # site
 npx serve .            # or: python -m http.server 3000
 
-# AI worker (needs OPENCODE_API_KEY set via `wrangler secret put` / .dev.vars)
+# AI worker — works with no keys (Workers AI); optional GROQ_API_KEY / GEMINI_API_KEY in .dev.vars
 cd samarth-ai-worker
 npm install
+npm test               # 22 end-to-end tests with mocked providers
 npm run dev            # http://127.0.0.1:8787 — the site auto-uses this on localhost
 ```
 
 ## Deploy
 
 - **Site:** push to `main` → Vercel deploys automatically.
-- **Worker:** `cd samarth-ai-worker && npm run deploy`
+- **Worker:** `cd samarth-ai-worker && npm run deploy` (to update what the bot knows, edit `knowledge.md` and deploy)
 
 ## Contact
 

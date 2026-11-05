@@ -1,64 +1,52 @@
 ﻿# About Samarth Maheshwari
 
-Samarth Maheshwari is an AI-focused Full Stack Developer currently pursuing his B.Tech in Computer Science & Information Technology at Acropolis Institute of Technology and Research (AITR), Indore (2024 - 2028).
+Samarth Maheshwari is a full stack developer from Indore, India, who builds AI-powered products end to end. He is pursuing a B.Tech in Computer Science & Information Technology at Acropolis Institute of Technology and Research (AITR), Indore (RGPV University), batch 2024–2028.
 
-He specializes in building practical AI-powered applications, automation systems, and modern web experiences. His technical journey is driven by a passion for solving real-world problems through code, combining strong backend architecture with high-quality frontend design.
+He is targeting Java full stack and AI full stack roles. Java is his chosen backend language for his career; the projects he has shipped so far are built with Python (FastAPI) and JavaScript/TypeScript (React, Next.js), and he has object-oriented C# (.NET) experience from an AI game project.
+
+## Availability and Role Fit
+
+Samarth is open to internships, technical collaborations and interesting projects. He fits junior full stack, Java full stack and AI-integration roles where he can work across the frontend, the backend API and LLM features. Evidence from his work: he has shipped a live AI web app during a hackathon (SnapTrace AI), built a RAG backend with 22 REST endpoints (Project Aion), and built a desktop AI assistant with a 5-model LLM fallback chain (JARVIS). He also led a six-member team for Smart India Hackathon 2026.
 
 ## Technical Skills
 
-Samarth's technical skills encompass a wide range of modern development tools and languages:
+- Languages: Java (target backend language), Python, JavaScript, TypeScript, C#, C++ (for DSA), SQL
+- Frontend: React, Next.js, Vite, Tailwind CSS, HTML/CSS, GSAP, Lenis, Three.js
+- Backend: FastAPI, Node.js, Express.js, REST API design, WebSockets, authentication
+- Databases and data: Supabase (PostgreSQL), PostgreSQL, SQLite, Firebase, FAISS vector search
+- AI: LLM integration (Groq, Gemini, Claude API, Ollama), retrieval-augmented generation (RAG), multi-model fallback, Gemini Vision, Model Context Protocol (MCP), n8n automation, prompt engineering
+- Tools and deployment: Git, GitHub, GitHub Actions, Vercel, Netlify, Cloudflare Workers, Electron
 
-**Programming Languages:**
+## Project: JARVIS — AI Desktop Assistant
 
-- Python: The backbone of his AI and automation projects.
-- JavaScript & TypeScript (Advanced): Used for full-stack web development.
-- C++ (Intermediate): For performance-critical applications and system tools.
+JARVIS is Samarth's flagship personal project: an AI desktop assistant for Windows 11. It uses a 5-model LLM fallback chain that moves from cloud models to local Ollama models when a model fails, so it keeps working offline. It can automate the Windows desktop (pywin32), search the web (DuckDuckGo) and extract page content (Trafilatura with BeautifulSoup as fallback), and speaks with neural text-to-speech (edge-tts). Stack: Python, FastAPI, Electron, React, Ollama, WebSockets. Code: https://github.com/samarth-maheshwari-dev/Personal-Ai-ASISTANT
 
+## Project: Project Aion — Industrial Knowledge AI
 
-**Web Development (Frontend & Backend):**
+Project Aion was built for the Economic Times AI Hackathon 2026. It is a retrieval-augmented generation (RAG) system that turns scattered industrial documents (OEM manuals, SOPs, diagrams) into a searchable knowledge system: documents are ingested with OCR (Tesseract), embedded with sentence-transformers into a FAISS vector index, linked in an SQLite knowledge graph, and answered in natural language with source citations through Groq-hosted LLMs. The backend exposes 22 REST endpoints (FastAPI) with a React frontend. Code: https://github.com/samarth-maheshwari-dev/Aion-project-for-Economic-Times
 
-- React & Next.js: For building interactive UIs and production-ready applications.
-- Node.js, Express: For scalable server-side applications.
-- Django, Flask, FastAPI: For Python-based robust backend services.
-- Tailwind CSS: For rapid, responsive UI development.
-- HTML/CSS: The foundation of his accessible web structures.
+## Project: SnapTrace AI — Campus Lost and Found
 
-**Databases:**
+SnapTrace AI is a photo-first lost-and-found platform for college campuses, built by a team of three at IntelliAI Arena 2026 (AITR) and shipped live during the hackathon. Students photograph a lost or found item and Gemini Vision helps identify and match it. Stack: TypeScript, React/Next.js, Supabase, Gemini Vision, Vercel. Live: https://snaptrace-ai.vercel.app
 
-- PostgreSQL & MySQL: Advanced relational databases.
-- MongoDB: Flexible NoSQL document storage.
-- Firebase & Redis: For real-time applications and caching.
+## Project: AI Tic Tac Toe (C# / .NET)
 
-**Artificial Intelligence & Machine Learning:**
+A Tic Tac Toe game in C# with an unbeatable AI opponent using the Minimax algorithm with alpha-beta pruning, plus a two-player mode. The code separates AI logic, game state and rendering following SOLID object-oriented design.
 
-- TensorFlow & PyTorch: Deep learning frameworks.
-- Scikit Learn: For data mining and analysis.
-- OpenCV: For computer vision applications.
-- NumPy & Pandas: For data manipulation and scientific computing.
-- Hugging Face: For state-of-the-art NLP models.
-- Langchain, MCP (Model Context Protocol).
+## Project: Animated Website and this Portfolio
 
-**Cloud, DevOps & Tools:**
+Samarth delivered a production animated website for a client using GSAP ScrollTrigger and Three.js in vanilla JavaScript. This portfolio is a static site with a WebGL fluid background, and its AI assistant (Samarth AI) runs on a Cloudflare Worker that answers only from this knowledge file, with rate limiting, caching and fallbacks across several AI providers.
 
-- Docker, AWS, Azure, Linux, Vercel
-- Git, GitHub, VS Code, Figma, Postman, Jupyter Notebooks
+## Hackathons and Leadership
 
-## Projects
+- Smart India Hackathon 2026: team lead of a six-member team working on an AI and full stack problem statement.
+- Economic Times AI Hackathon 2026: built Project Aion.
+- IntelliAI Arena 2026 (AITR): built and shipped SnapTrace AI live with a team of three.
 
-**Project Aion - ET AI Hackathon**
-Project Aion is an Industrial Knowledge Intelligence Platform designed for the Economic Times (ET) AI Hackathon 2026. It transforms disconnected industrial documents (OEM manuals, SOPs, P&IDs) into an AI-powered, continuously evolving knowledge system. Key features include Semantic Search using FAISS, SQLite knowledge graph integration, and cross-document reasoning and retrieval.
+## Certifications
 
-**JARVIS Personal AI Assistant**
-JARVIS is Samarth's personal AI assistant built with Python. It functions as an intelligent automation layer and voice-activated system control. Instead of being a simple chatbot, JARVIS integrates directly with his computer to automate and control Windows systems visually and interactively.
+Anthropic: Claude 101, Introduction to Agent Skills, Introduction to Model Context Protocol, AI Fluency: Framework & Foundations, AI Fluency for Students. Others: Prompt Engineering with ChatGPT, Database Management System (NPTEL), Ultimate Web Development Course.
 
-**Snaptrace AI**
-Snaptrace AI is an intelligent platform designed to help students easily find and claim lost items on campus. By leveraging AI, it categorizes, matches, and streamlines the lost-and-found process, saving time and preventing permanent loss of belongings.
+## Contact
 
-**Portfolio Website**
-This portfolio website is designed and built by Samarth as an interactive technical showcase. It is built as an ultra-fast static HTML site using vanilla JavaScript, CSS custom properties, smooth scrolling mechanisms through Lenis, and premium animations. It integrates a custom-built digital representative (Samarth AI) that uses a Cloudflare Worker backend.
-
-
-
-## Contact Information
-
-Samarth is currently open to internship opportunities, collaborations, and freelance projects. He is actively looking to apply his skills in AI, automation, and full-stack development in professional environments. You can reach him through the contact section on his portfolio, which includes a direct form and a WhatsApp quick-link button.
+Email: samarthmaheshwari54321@gmail.com. LinkedIn: https://www.linkedin.com/in/samarth-maheshwari-71a152326/ . GitHub: https://github.com/samarth-maheshwari-dev . His resume (PDF) and a contact form are on this portfolio, and the contact section also has a WhatsApp link.
