@@ -1,0 +1,24 @@
+name: Chatbot health
+
+# Calls the worker's deep health check (one tiny request per AI provider).
+# If no provider answers, the run fails and GitHub emails you — so you hear
+# about an outage before a recruiter does.
+on:
+  schedule:
+    - cron: "17 3 * * *"   # daily 03:17 UTC (08:47 IST)
+  workflow_dispatch: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Deep health check
+        run: |
+          code=$(curl -s -o body.json -w "%{http_code}" --max-time 60 \
+            "https://samarth-ai-worker.samarthmaheshwari54321.workers.dev/health?deep=1")
+          cat body.json; echo
+          if [ "$code" != "200" ]; then
+            echo "::error::Samarth AI has no working provider (HTTP $code)"
+            exit 1
+          fi
