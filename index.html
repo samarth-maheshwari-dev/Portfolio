@@ -5073,6 +5073,22 @@
         .sai-msg a { color: var(--accent-light); text-decoration: underline; word-break: break-all; }
         [data-theme="light"] .sai-msg a { color: var(--accent); }
 
+        /* JARVIS case study: room for the close button, phone layout, hide chat orb while open */
+        .jarvis-modal-container { padding-top: 64px; }
+        .jarvis-modal-close { top: 14px; right: 14px; }
+        body:has(.jarvis-modal-overlay.active) #samarth-ai-orb,
+        body:has(.jarvis-modal-overlay.active) #sai-tooltip { visibility: hidden !important; }
+        @media (max-width: 600px) {
+            .jarvis-modal-container { padding: 60px 14px 16px; gap: 14px; }
+            .jarvis-modal-nav { overflow-x: auto; }
+            .jarvis-nav-tab { min-width: auto; padding-left: 12px; padding-right: 12px; }
+            .jarvis-flashcard-wrapper { height: clamp(400px, 64vh, 600px); margin: 0; }
+            .jarvis-card-face { padding: 20px 18px; gap: 12px; }
+            .jarvis-card-title { font-size: 1.3rem; }
+            .jarvis-card-desc, .jarvis-list-item { font-size: 0.9rem; line-height: 1.55; }
+            .jarvis-dot-indicators { display: none; }
+        }
+
         /* ---------- Chat tooltip: never cover content on phones ---------- */
         @media (max-width: 768px) {
             /* hero already has an "Ask my AI" button on phones; the floating tooltip only covered content */
@@ -5098,8 +5114,7 @@
             <p class="hero-kicker"><span class="hero-kicker-dot" aria-hidden="true"></span>Available for internships &amp; opportunities</p>
             <h1 class="hero-main-text"><span id="heroText">SAMARTH</span><span class="hero-surname">MAHESHWARI</span></h1>
             <p class="hero-role">Full Stack Engineer · AI &amp; Automation Builder</p>
-            <p class="hero-pitch">I build and ship AI-powered products end to end — a 5-model LLM desktop assistant, a RAG
-                knowledge platform with 22 REST endpoints, and a live AI lost-and-found app. B.Tech CSIT student at
+            <p class="hero-pitch">I build and ship AI-powered products end to end — a 5-model LLM desktop assistant, a RAG platform for industrial documents, and a live AI lost-and-found app. B.Tech CSIT student at
                 AITR, Indore.</p>
             <div class="hero-ctas">
                 <a href="#projects-section" class="hero-btn hero-btn--primary" data-scroll>View Projects</a>
@@ -5559,17 +5574,16 @@
                     <div class="proj-body">
                         <span class="proj-year">2025 – PRESENT · Flagship</span>
                         <h3 class="proj-title">JARVIS — AI Desktop Assistant</h3>
-                        <p class="proj-subtitle">Full-Stack desktop AI with multi-model orchestration, Hinglish NLP &
-                            neural TTS</p>
+                        <p class="proj-subtitle">Desktop assistant that runs Windows from English or Hinglish commands</p>
                         <div class="proj-badges">
                             <span class="proj-badge ai">AI · Flagship</span>
                             <span class="proj-badge personal">Personal</span>
                         </div>
                         <p class="proj-desc">
-                            A fully local, production-grade AI desktop assistant for Windows 11. JARVIS runs as an
-                            Electron desktop app with a React 18 dashboard, backed by FastAPI and an autonomous 5-model
-                            LLM fallback chain (cloud → local). Features a custom Hinglish NLP parser, neural Indian
-                            TTS, Win32 OS automation, and real-time WebSocket logs.
+                            A Windows 11 assistant that actually operates the PC: windows, volume, media, apps and
+                            files, from plain English or Hinglish commands. Electron + React front end, FastAPI
+                            backend, and a 5-model LLM chain that falls back from Ollama cloud models to local
+                            ones, so it keeps answering offline. Click the card for the full breakdown.
                         </p>
                         <div class="proj-tags">
                             <span class="proj-tag">Python 3.13</span>
@@ -5634,14 +5648,16 @@
                             <span class="proj-badge hackathon">Hackathon</span>
                             <span class="proj-badge ai">AI · Vision</span>
                         </div>
-                        <p class="proj-desc">AI-powered campus lost-and-found with image recognition. Students photo a
-                            lost item and the system auto-matches it against found reports. Built with Next.js,
-                            Supabase, TypeScript — shipped live during IntelliAI Arena 2026 as a team of 3.</p>
+                        <p class="proj-desc">Photo-first lost-and-found for college campuses. Gemini Vision turns a photo into item
+                            details (type, colour, brand, marks) and found reports are ranked by how closely they
+                            match. Built with React, TypeScript and Supabase by a team of three and shipped live
+                            during IntelliAI Arena 2026.</p>
                         <div class="proj-tags">
                             <span class="proj-tag">TypeScript</span>
-                            <span class="proj-tag">Next.js</span>
+                            <span class="proj-tag">React</span>
+                            <span class="proj-tag">Vite</span>
                             <span class="proj-tag">Supabase</span>
-                            <span class="proj-tag">AI Vision</span>
+                            <span class="proj-tag">Gemini Vision</span>
                             <span class="proj-tag">Vercel</span>
                         </div>
                         <a href="https://snaptrace-ai.vercel.app" target="_blank" rel="noopener" class="proj-cta">
@@ -5677,8 +5693,7 @@
                                         style="background:rgba(168,85,247,0.15); border:1px solid rgba(168,85,247,0.35); color:#c084fc; padding:3px 10px; border-radius:6px; font-size:0.65rem; font-family:'JetBrains Mono',monospace;">SQLite
                                         Graph</span>
                                     <span
-                                        style="background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.3); color:#34d399; padding:3px 10px; border-radius:6px; font-size:0.65rem; font-family:'JetBrains Mono',monospace;">22
-                                        Endpoints</span>
+                                        style="background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.3); color:#34d399; padding:3px 10px; border-radius:6px; font-size:0.65rem; font-family:'JetBrains Mono',monospace;">19 Endpoints</span>
                                 </div>
                             </div>
                         </div>
@@ -5703,10 +5718,11 @@
                             <span class="proj-badge ai">RAG · AI</span>
                         </div>
                         <p class="proj-desc">
-                            Built for the Economic Times AI Hackathon 2026. Aion ingests all industrial documents into a
-                            FAISS vector index + SQLite knowledge graph, enabling natural-language Q&amp;A with
-                            source-cited, cross-document answers. 22 REST endpoints. Engineers spend 30–40% of time
-                            hunting for info — Aion eliminates that.
+                            Built for the Economic Times AI Hackathon 2026. Plant documents (manuals, SOPs, incident
+                            reports, scanned PDFs) go through OCR, get embedded into a FAISS index and linked in an
+                            SQLite knowledge graph of equipment and incidents. Engineers ask in plain English and get
+                            answers with citations from Groq-hosted LLMs, with local Ollama as fallback. FastAPI
+                            backend with 19 REST endpoints, React frontend.
                         </p>
                         <div class="proj-tags">
                             <span class="proj-tag">Python</span>
@@ -7416,11 +7432,11 @@
 
             <!-- Navigation Tabs / Indicator -->
             <nav class="jarvis-modal-nav">
-                <button class="jarvis-nav-tab active" data-index="0">Problem</button>
-                <button class="jarvis-nav-tab" data-index="1">Solution</button>
-                <button class="jarvis-nav-tab" data-index="2">Differentiation</button>
+                <button class="jarvis-nav-tab active" data-index="0">Why</button>
+                <button class="jarvis-nav-tab" data-index="1">How it works</button>
+                <button class="jarvis-nav-tab" data-index="2">Design choices</button>
                 <button class="jarvis-nav-tab" data-index="3">Features</button>
-                <button class="jarvis-nav-tab" data-index="4">Roadmap</button>
+                <button class="jarvis-nav-tab" data-index="4">What's next</button>
             </nav>
 
             <!-- 3D Perspective Card Wrapper -->
@@ -7478,110 +7494,109 @@
             // Case Study Content Data
             const slidesData = [
                 {
-                    tag: 'The Problem',
+                    tag: 'Why I built it',
                     tagClass: 'tag-problem',
-                    title: '⚠️ The Sandboxed Assistant',
+                    title: 'Chatbots can explain. They can\'t do.',
                     content: `
-                        <p class="jarvis-card-desc">Standard cloud-based AI chatbots operate completely isolated from your operating system. They inhabit a browser tab without hardware access.</p>
+                        <p class="jarvis-card-desc">A chat assistant in a browser tab can tell me how to lower the volume or find a file, but it can't do it for me. I wanted an assistant that actually operates my Windows laptop, understands the Hinglish I type and speak, and still answers when the internet drops.</p>
                         <div class="jarvis-card-list">
                             <div class="jarvis-list-item">
-                                <span class="jarvis-list-icon">❌</span>
-                                <div><strong>Zero Hardware Control:</strong> Chatbots cannot run scripts, execute terminal configurations, or run local files.</div>
+                                <span class="jarvis-list-icon">•</span>
+                                <div><strong>Commands, not instructions:</strong> "volume kam karo" or "chrome kholo" should just happen.</div>
                             </div>
                             <div class="jarvis-list-item">
-                                <span class="jarvis-list-icon">❌</span>
-                                <div><strong>Offline Paralysis:</strong> If your internet goes offline, the assistant fails completely, breaking work continuity.</div>
+                                <span class="jarvis-list-icon">•</span>
+                                <div><strong>Works offline:</strong> if the cloud models can't be reached, a model running on the laptop answers instead.</div>
                             </div>
                             <div class="jarvis-list-item">
-                                <span class="jarvis-list-icon">❌</span>
-                                <div><strong>High Friction Stack:</strong> Developers spend hours copying code, executing scripts, and manual terminal testing.</div>
+                                <span class="jarvis-list-icon">•</span>
+                                <div><strong>One place:</strong> commands, answers and live logs in a single desktop app.</div>
                             </div>
                         </div>
                     `
                 },
                 {
-                    tag: 'The Solution',
+                    tag: 'How it works',
                     tagClass: 'tag-solution',
-                    title: '⚡ Orchestrated Desktop AI',
+                    title: 'Desktop app → FastAPI → intent router',
                     content: `
-                        <p class="jarvis-card-desc">JARVIS acts as an intelligent automation bridge directly integrated with your Windows environment. It couples desktop dashboard efficiency with local model processing.</p>
+                        <p class="jarvis-card-desc">An Electron + React app sends every request to a local FastAPI server. The intent router (<code>brain.py</code>) decides whether it's an OS action, a live web query or a question for an LLM.</p>
                         <div class="jarvis-card-list">
                             <div class="jarvis-list-item">
-                                <span class="jarvis-list-icon">✅</span>
-                                <div><strong>API + Dashboard Loop:</strong> Electron container hosts a React GUI that communicates with a local FastAPI core.</div>
+                                <span class="jarvis-list-icon">•</span>
+                                <div><strong>OS actions:</strong> <code>jarvis.py</code> (~4,000 lines) drives Windows directly: window focus/minimise/close (pywin32), volume (pycaw), media sessions, Spotify and YouTube tabs, app launching and file search.</div>
                             </div>
                             <div class="jarvis-list-item">
-                                <span class="jarvis-list-icon">✅</span>
-                                <div><strong>OS Automation Layer:</strong> Powers filesystem commands, subprocess tracking, and keyboard/mouse integrations.</div>
+                                <span class="jarvis-list-icon">•</span>
+                                <div><strong>Live questions:</strong> anything time-sensitive goes to a DuckDuckGo search.</div>
                             </div>
                             <div class="jarvis-list-item">
-                                <span class="jarvis-list-icon">✅</span>
-                                <div><strong>Offline-First Design:</strong> Gracefully delegates requests to local Ollama endpoints (DeepSeek, Llama3) offline.</div>
+                                <span class="jarvis-list-icon">•</span>
+                                <div><strong>Everything else:</strong> <code>ollama_router.py</code> tries 5 models in order, two Ollama cloud models first, then gemma4:e2b, qwen2.5:3b and phi3:mini locally, each with its own timeout.</div>
                             </div>
                         </div>
                     `
                 },
                 {
-                    tag: 'Differentiation',
+                    tag: 'Design choices',
                     tagClass: 'tag-diff',
-                    title: '⭐ Beyond the Textbox Wrapper',
+                    title: 'Decisions that shaped it',
                     content: `
-                        <p class="jarvis-card-desc">JARVIS differs from generic ChatGPT clones by prioritizing system autonomy, private offline execution, and speed optimization.</p>
                         <div class="jarvis-card-list">
                             <div class="jarvis-list-item">
-                                <span class="jarvis-list-icon">🚀</span>
-                                <div><strong>Operating System Bindings:</strong> Direct binding to Windows shell APIs to interact with processes, memory, and logs.</div>
+                                <span class="jarvis-list-icon">•</span>
+                                <div><strong>Rules before the LLM:</strong> common commands (open, close, volume, play) are matched by a regex-based Hinglish parser, so they run instantly instead of waiting on a model. Chained requests are split on "then / phir / aur".</div>
                             </div>
                             <div class="jarvis-list-item">
-                                <span class="jarvis-list-icon">🔒</span>
-                                <div><strong>True Privacy Control:</strong> Completely seals your code locally; no external transmission needed in offline mode.</div>
+                                <span class="jarvis-list-icon">•</span>
+                                <div><strong>Cloud first, local as backup:</strong> cloud models answer better; local models keep it working offline. Timeouts are 30 s for cloud models and up to 120 s for local ones.</div>
                             </div>
                             <div class="jarvis-list-item">
-                                <span class="jarvis-list-icon">⚡</span>
-                                <div><strong>Optimized Intent Classifier:</strong> Fast local parser that resolves static commands instantly, eliminating LLM request delays.</div>
+                                <span class="jarvis-list-icon">•</span>
+                                <div><strong>Voice matches the script:</strong> Latin-script Hinglish replies use the en-IN-NeerjaNeural voice, Devanagari replies use hi-IN-SwaraNeural (edge-tts, with gTTS as fallback).</div>
                             </div>
                         </div>
                     `
                 },
                 {
-                    tag: 'Core Features',
+                    tag: 'Features',
                     tagClass: 'tag-features',
-                    title: '📊 Modular Feature Matrix',
+                    title: 'What it can do today',
                     content: `
                         <div class="jarvis-table-container">
                             <table class="jarvis-features-table">
                                 <thead>
                                     <tr>
-                                        <th>Component</th>
-                                        <th>Technology</th>
-                                        <th>Capabilities</th>
+                                        <th>Area</th>
+                                        <th>Built with</th>
+                                        <th>What it does</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>OS Automation</strong></td>
-                                        <td>pywin32 / subprocess</td>
-                                        <td>Executes shell tools, monitors hardware telemetry, opens and targets apps.</td>
+                                        <td><strong>Windows</strong></td>
+                                        <td>pywin32, pygetwindow</td>
+                                        <td>Focus, minimise, maximise, restore or close any window by name.</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Hybrid NLP</strong></td>
-                                        <td>Regex Classifiers</td>
-                                        <td>Ultra-low latency English/Hinglish phrase parser.</td>
+                                        <td><strong>Audio &amp; media</strong></td>
+                                        <td>pycaw, Windows media sessions</td>
+                                        <td>Volume and mute, play/pause, Spotify and YouTube tab control.</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Speech Synthesizer</strong></td>
-                                        <td>edge-tts / SpeechRec</td>
-                                        <td>Real-time speech-to-text input matched with regional neural Indian voices.</td>
+                                        <td><strong>Apps &amp; files</strong></td>
+                                        <td>psutil, python-pptx, send2trash</td>
+                                        <td>Launch installed and Store apps, search files, create files, and build PPT/PDF documents from a prompt.</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Desktop GUI</strong></td>
-                                        <td>Electron / React</td>
-                                        <td>Sleek dark panel with terminal streams and model configs.</td>
+                                        <td><strong>Voice</strong></td>
+                                        <td>Web Speech API, edge-tts</td>
+                                        <td>Speech input in the app, spoken Indian English/Hindi replies, "hey jarvis" wake phrase and Ctrl+Alt+J hotkey.</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>LLM Router</strong></td>
-                                        <td>Ollama Cloud + Ollama Local</td>
-                                        <td>Dual-mode routing via <code>ollama_router.py</code> — falls back from Ollama Cloud to a fully on-device local model seamlessly.</td>
+                                        <td><strong>Desktop app</strong></td>
+                                        <td>Electron 30, React 18, FastAPI, WebSocket</td>
+                                        <td>Chat threads, a live log stream from the backend, and an editable assistant personality.</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -7589,23 +7604,22 @@
                     `
                 },
                 {
-                    tag: 'Roadmap',
+                    tag: "What's next",
                     tagClass: 'tag-roadmap',
-                    title: '🚀 Future Vision & Goals',
+                    title: 'What I\'d improve next',
                     content: `
-                        <p class="jarvis-card-desc">JARVIS is continuously evolving. Our roadmap works towards full sandbox autonomy and secure cross-network access.</p>
                         <div class="jarvis-card-list">
                             <div class="jarvis-list-item">
-                                <span class="jarvis-list-icon">🎯</span>
-                                <div><strong>Autonomous Debugging loops:</strong> Self-correcting terminal agent loops where JARVIS debugs its own execution outputs.</div>
+                                <span class="jarvis-list-icon">•</span>
+                                <div><strong>Split the router:</strong> <code>brain.py</code> has grown to ~1,000 lines. Break it into one handler per intent, with unit tests.</div>
                             </div>
                             <div class="jarvis-list-item">
-                                <span class="jarvis-list-icon">🎯</span>
-                                <div><strong>Secure Mobile Pipeline:</strong> Remote connection tunnels to securely trigger scripts on your main machine from mobile interfaces.</div>
+                                <span class="jarvis-list-icon">•</span>
+                                <div><strong>One chat history:</strong> command and conversation history live in two places today (JSON files in <code>memory/</code> and the Electron app's SQLite database). Merge them into one store.</div>
                             </div>
                             <div class="jarvis-list-item">
-                                <span class="jarvis-list-icon">🎯</span>
-                                <div><strong>Local Vector Graph index:</strong> Comprehensive background semantic parser for folders, chats, and documentation.</div>
+                                <span class="jarvis-list-icon">•</span>
+                                <div><strong>Measure the fallback:</strong> log latency and failure rate per model, so the model order is chosen from data instead of guesswork.</div>
                             </div>
                         </div>
                     `

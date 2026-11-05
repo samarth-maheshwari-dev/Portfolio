@@ -33,7 +33,7 @@ const FAQ: FaqEntry[] = [
         patterns: [/^(who is|tell me about|about) samarth( maheshwari)?$/, /^who is he$/],
         response: {
             message:
-                "Samarth Maheshwari is a full stack developer from Indore who builds AI-powered products end to end. He's doing a B.Tech in CSIT at AITR, Indore (2024–2028) and is targeting Java full stack and AI full stack roles.\n\nHe has shipped **SnapTrace AI** (live AI lost-and-found app, built at a hackathon), **Project Aion** (RAG platform with 22 REST endpoints, ET AI Hackathon 2026) and **JARVIS** (desktop AI assistant with a 5-model LLM fallback chain).",
+                "Samarth Maheshwari is a full stack developer from Indore who builds AI-powered products end to end. He's doing a B.Tech in CSIT at AITR, Indore (2024–2028) and is targeting Java full stack and AI full stack roles.\n\nHe has shipped **SnapTrace AI** (live AI lost-and-found app, built at a hackathon), **Project Aion** (RAG platform for industrial documents, ET AI Hackathon 2026) and **JARVIS** (desktop AI assistant with a 5-model LLM fallback chain).",
             sources: ['About Samarth Maheshwari'],
             actions: [ABOUT],
         },
@@ -46,7 +46,7 @@ const FAQ: FaqEntry[] = [
         ],
         response: {
             message:
-                "Samarth fits junior full stack, Java full stack and AI-integration roles. What backs that up:\n\n- **Ships end to end:** SnapTrace AI went live on Vercel during a hackathon (TypeScript, Supabase, Gemini Vision).\n- **Backend + AI depth:** Project Aion has 22 REST endpoints with FAISS retrieval, OCR ingestion and source-cited answers.\n- **Reliability thinking:** JARVIS falls back across 5 LLMs from cloud to local so it keeps working offline.\n- **Leadership:** he led a six-member Smart India Hackathon 2026 team.\n\nHe's open to internships right now.",
+                "Samarth fits junior full stack, Java full stack and AI-integration roles. What backs that up:\n\n- **Ships end to end:** SnapTrace AI went live on Vercel during a hackathon (TypeScript, Supabase, Gemini Vision).\n- **Backend + AI depth:** Project Aion is a FastAPI backend with 19 REST endpoints, FAISS retrieval, OCR ingestion and source-cited answers.\n- **Reliability thinking:** JARVIS falls back across 5 LLMs from cloud to local so it keeps working offline.\n- **Leadership:** he led a six-member Smart India Hackathon 2026 team.\n\nHe's open to internships right now.",
             sources: ['Availability and Role Fit'],
             actions: [PROJECTS, CONTACT],
         },
@@ -59,7 +59,7 @@ const FAQ: FaqEntry[] = [
         ],
         response: {
             message:
-                "Main projects:\n\n- **JARVIS** — Windows AI desktop assistant, 5-model LLM fallback (cloud → local Ollama), desktop automation, web search, neural TTS.\n- **Project Aion** — RAG + knowledge-graph platform for industrial documents, 22 REST endpoints (ET AI Hackathon 2026).\n- **SnapTrace AI** — photo-first campus lost-and-found, shipped live during IntelliAI Arena 2026: https://snaptrace-ai.vercel.app\n- **AI Tic Tac Toe** — C#/.NET game with Minimax + alpha-beta pruning.\n\nAsk me about any one of them for details.",
+                "Main projects:\n\n- **JARVIS** — Windows AI desktop assistant, 5-model LLM fallback (cloud → local Ollama), desktop automation, web search, neural TTS.\n- **Project Aion** — RAG + knowledge-graph platform for industrial documents, 19 REST endpoints (ET AI Hackathon 2026).\n- **SnapTrace AI** — photo-first campus lost-and-found, shipped live during IntelliAI Arena 2026: https://snaptrace-ai.vercel.app\n- **AI Tic Tac Toe** — C#/.NET game with Minimax + alpha-beta pruning.\n\nAsk me about any one of them for details.",
             sources: ['Projects'],
             actions: [PROJECTS],
         },
@@ -68,7 +68,7 @@ const FAQ: FaqEntry[] = [
         patterns: [/^(walk me through|tell me about|what is|explain) jarvis$/, /^jarvis$/],
         response: {
             message:
-                "**JARVIS** is Samarth's AI desktop assistant for Windows 11.\n\n- **Reliability:** a 5-model LLM fallback chain moves from cloud models to local Ollama models when one fails, so it keeps working offline.\n- **Actions:** automates the Windows desktop (pywin32), searches the web (DuckDuckGo) and extracts pages (Trafilatura, BeautifulSoup fallback).\n- **Voice:** neural text-to-speech with edge-tts.\n- **Stack:** Python, FastAPI, Electron, React, Ollama, WebSockets.\n\nCode: https://github.com/samarth-maheshwari-dev/Personal-Ai-ASISTANT",
+                "**JARVIS** is Samarth's AI desktop assistant for Windows 11.\n\n- **Reliability:** a 5-model LLM fallback chain moves from cloud models to local Ollama models when one fails, so it keeps working offline.\n- **Fast path:** a regex-based Hinglish parser runs common commands (apps, windows, volume, music) instantly; live questions go to DuckDuckGo.\n- **Actions:** window control (pywin32), volume (pycaw), media, Spotify/YouTube tabs, file search, PPT/PDF generation.\n- **Voice:** Indian English/Hindi neural voices (edge-tts), \"hey jarvis\" wake phrase.\n- **Stack:** Python, FastAPI, Electron, React, Ollama, WebSockets.\n\nCode: https://github.com/samarth-maheshwari-dev/Personal-Ai-ASISTANT",
             sources: ['Project: JARVIS — AI Desktop Assistant'],
             actions: [PROJECTS],
         },
