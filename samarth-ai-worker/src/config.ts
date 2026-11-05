@@ -44,6 +44,5 @@ export const ALLOWED_TARGETS = [
     'services-section',
     'contact-section',
     'projects-section',
-    'journey-section',
     'projects',
 ] as const;

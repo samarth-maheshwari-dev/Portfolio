@@ -4866,7 +4866,7 @@
         }
 
         /* =====================================================================
-           PORTFOLIO FIXES (Nov 2026): nav + mobile menu, hero, journey, misc
+           PORTFOLIO FIXES (Nov 2026): nav + mobile menu, hero, misc
            ===================================================================== */
         :root { --text-secondary: rgba(255, 255, 255, 0.72); }
         [data-theme="light"] { --text-secondary: rgba(15, 10, 31, 0.7); }
@@ -5068,49 +5068,6 @@
             .hero-btn { flex: 1 1 0; justify-content: center; padding: 12px 14px; }
             .hero-btn--primary { flex-basis: 100%; }
             .hero-btn-extra { display: none; }
-        }
-
-        /* ---------- Journey ---------- */
-        .journey-section { position: relative; padding: clamp(70px, 9vw, 120px) clamp(20px, 5vw, 80px); }
-        .journey-container { max-width: 1100px; margin: 0 auto; }
-        .journey-title {
-            font-size: clamp(2.6rem, 7vw, 5.5rem);
-            font-weight: 900;
-            letter-spacing: -0.02em;
-            color: var(--text-primary);
-            line-height: 1;
-            margin-top: 8px;
-        }
-        .journey-list { list-style: none; margin-top: 40px; border-left: 1px solid var(--border-color); }
-        .journey-item {
-            position: relative;
-            display: grid;
-            grid-template-columns: 72px 1fr;
-            gap: 20px;
-            padding: 22px 0 22px 28px;
-        }
-        .journey-item::before {
-            content: '';
-            position: absolute;
-            left: -5px;
-            top: 30px;
-            width: 9px;
-            height: 9px;
-            border-radius: 50%;
-            background: var(--accent);
-            box-shadow: 0 0 12px var(--accent-glow);
-        }
-        .journey-year {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 13px;
-            color: #ccff00;
-            padding-top: 4px;
-        }
-        [data-theme="light"] .journey-year { color: var(--accent); }
-        .journey-item h3 { font-size: clamp(1.05rem, 1.8vw, 1.3rem); color: var(--text-primary); margin-bottom: 6px; }
-        .journey-item p { color: var(--text-secondary); line-height: 1.6; font-size: 15px; max-width: 720px; }
-        @media (max-width: 600px) {
-            .journey-item { grid-template-columns: 1fr; gap: 6px; padding-left: 22px; }
         }
 
         /* ---------- Chat tooltip: never cover content on phones ---------- */
@@ -5832,50 +5789,6 @@
         </div>
     </section>
     <!-- /projects-section -->
-
-    <!-- ========== JOURNEY SECTION ========== -->
-    <section class="journey-section" id="journey-section" aria-labelledby="journeyTitle">
-        <div class="journey-container">
-            <header class="journey-header reveal-up">
-                <p class="projects-eyebrow">Hackathons &amp; education</p>
-                <h2 class="journey-title" id="journeyTitle">JOURNEY</h2>
-            </header>
-            <ol class="journey-list">
-                <li class="journey-item reveal-up">
-                    <span class="journey-year">2026</span>
-                    <div>
-                        <h3>Smart India Hackathon 2026 — Team Lead</h3>
-                        <p>Leading a six-member team on an AI + full-stack problem statement: scoping, architecture and
-                            delivery.</p>
-                    </div>
-                </li>
-                <li class="journey-item reveal-up">
-                    <span class="journey-year">2026</span>
-                    <div>
-                        <h3>Economic Times AI Hackathon — Project Aion</h3>
-                        <p>Built a RAG + knowledge-graph assistant over industrial documents: FAISS vector search, OCR
-                            ingestion, source-cited answers, 22 REST endpoints.</p>
-                    </div>
-                </li>
-                <li class="journey-item reveal-up">
-                    <span class="journey-year">2026</span>
-                    <div>
-                        <h3>IntelliAI Arena, AITR — SnapTrace AI</h3>
-                        <p>Shipped a photo-first AI lost-and-found app live on Vercel within the hackathon, as a team of
-                            three.</p>
-                    </div>
-                </li>
-                <li class="journey-item reveal-up">
-                    <span class="journey-year">Now</span>
-                    <div>
-                        <h3>B.Tech, Computer Science &amp; Information Technology</h3>
-                        <p>Acropolis Institute of Technology and Research, Indore (RGPV). Certifications: Anthropic —
-                            Introduction to Model Context Protocol, Agent Skills, AI Fluency.</p>
-                    </div>
-                </li>
-            </ol>
-        </div>
-    </section>
 
     <!-- ========== CONTACT SECTION ========== -->
     <section class="contact-section" id="contact-section" aria-label="Contact Samarth Maheshwari">
@@ -7086,7 +6999,6 @@
                 { id: 'about-section', href: '#about-section' },
                 { id: 'services-section', href: '#services-section' },
                 { id: 'projects-section', href: '#projects-section' },
-                { id: 'journey-section', href: '#projects-section' },
                 { id: 'contact-section', href: '#contact-section' },
             ];
             let hlTicking = false;
